@@ -1,15 +1,19 @@
+using JetBrains.Annotations;
+using Microsoft.MixedReality.Toolkit.UX;
 using SimpleKeplerOrbits;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Kepler : MonoBehaviour
 {
 
     public GameObject Attractor;
-    public int apoapssis;
-    public int periapsis;
+    public float apoapsis;
+    public float periapsis;
     public float argumentOfPeriapsis = 0;
     public float inclination = 0;
     public float t;
@@ -18,18 +22,36 @@ public class Kepler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        apoapsis = Mathf.Abs(Attractor.transform.position.x - GameObject.Find("B1").transform.position.x);
+        periapsis = Mathf.Abs(Attractor.transform.position.x - GameObject.Find("A1").transform.position.x);
     }
+
+    public void setPeriapsis()
+    {
+        UnityEngine.UI.Slider perislider = GameObject.Find("Periapsis").GetComponent<UnityEngine.UI.Slider>();
+        periapsis = perislider.value;
+    }
+
+    public void setApoapsis()
+    {
+        UnityEngine.UI.Slider aposlider = GameObject.Find("Apoapsis").GetComponent<UnityEngine.UI.Slider>();
+        apoapsis = aposlider.value;
+    }    
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        GameObject.Find("A1").transform.position = new Vector3(periapsis, 0, 0);
+        GameObject.Find("B1").transform.position = new Vector3(-apoapsis, 0, 0);
+
+        //apoapssis = Mathf.Abs(Attractor.transform.position.x - GameObject.Find("B1").transform.position.x);
+        //periapsis = Mathf.Abs(Attractor.transform.position.x - GameObject.Find("A1").transform.position.x);
         cnt++;
         if (cnt > 360)
             cnt -= 360;
         t = (float)cnt/360;
-        print(t);
-        transform.position = ComputePointOnOrbit(apoapssis, periapsis, argumentOfPeriapsis, inclination, t);
-        print(transform.position);
+        transform.position = Attractor.transform.position + ComputePointOnOrbit(apoapsis, periapsis, argumentOfPeriapsis, inclination, t);
+        //print(transform.position);
     }
 
 
