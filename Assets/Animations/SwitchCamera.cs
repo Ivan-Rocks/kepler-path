@@ -8,6 +8,11 @@ public class SwitchCamera : MonoBehaviour
     public GameObject Camera_2;
     public int Manager;
 
+    public void ChangeCamera()
+    {
+        GetComponent<Animator>().SetTrigger("Change");
+    }
+
     public void ManagerCamera()
     {
         if(Manager == 0)

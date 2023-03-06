@@ -310,7 +310,25 @@ namespace SimpleKeplerOrbits
 			}
 		}
 
-		[ContextMenu("Inverse velocity")]
+        [ContextMenu("Pause velocity")]
+        public void PauseVelocity()
+        {
+            if (IsReferencesAsigned)
+            {
+				TimeScale = 0;
+            }
+        }
+
+        [ContextMenu("Play velocity")]
+        public void PlayVelocity()
+        {
+            if (IsReferencesAsigned)
+            {
+                TimeScale = 1;
+            }
+        }
+
+        [ContextMenu("Inverse velocity")]
 		public void InverseVelocity()
 		{
 			if (IsReferencesAsigned)
@@ -332,22 +350,23 @@ namespace SimpleKeplerOrbits
 			}
 		}
 
-		[ContextMenu("Inverse velocity and position")]
-		public void InverseOrbit()
-		{
-			if (IsReferencesAsigned)
-			{
-				OrbitData.Velocity = -OrbitData.Velocity;
-				OrbitData.Position = -OrbitData.Position;
-				OrbitData.CalculateOrbitStateFromOrbitalVectors();
-				ForceUpdateVelocityHandleFromInternalState();
-			}
-		}
+        [ContextMenu("Inverse velocity and position")]
+        public void InverseOrbit()
+        {
+            if (IsReferencesAsigned)
+            {
+                OrbitData.Velocity = -OrbitData.Velocity;
+                OrbitData.Position = -OrbitData.Position;
+                OrbitData.CalculateOrbitStateFromOrbitalVectors();
+                ForceUpdateVelocityHandleFromInternalState();
+            }
+        }
 
-		[ContextMenu("Reset orbit")]
+        [ContextMenu("Reset orbit")]
 		public void ResetOrbit()
 		{
 			OrbitData = new KeplerOrbitData();
 		}
 	}
 }
+
