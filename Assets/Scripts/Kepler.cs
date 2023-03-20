@@ -12,6 +12,8 @@ public class Kepler : MonoBehaviour
 {
 
     public GameObject Attractor;
+    public bool paused;
+    //public GameObject ImaginaryFocus;
     public float apoapsis;
     public float periapsis;
     public float argumentOfPeriapsis = 0;
@@ -22,8 +24,14 @@ public class Kepler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        paused = false;
         apoapsis = Mathf.Abs(Attractor.transform.position.x - GameObject.Find("B1").transform.position.x);
         periapsis = Mathf.Abs(Attractor.transform.position.x - GameObject.Find("A1").transform.position.x);
+    }
+
+    public void onPause()
+    {
+        paused = !paused;
     }
 
     public void setPeriapsis()
@@ -43,10 +51,13 @@ public class Kepler : MonoBehaviour
     {
         GameObject.Find("A1").transform.position = new Vector3(periapsis, 0, 0);
         GameObject.Find("B1").transform.position = new Vector3(-apoapsis, 0, 0);
-
+        GameObject.Find("Fictional Focus").transform.position = new Vector3(periapsis-apoapsis, 0, 0);
         //apoapssis = Mathf.Abs(Attractor.transform.position.x - GameObject.Find("B1").transform.position.x);
         //periapsis = Mathf.Abs(Attractor.transform.position.x - GameObject.Find("A1").transform.position.x);
-        cnt++;
+        if (!paused)
+        {
+            cnt++;
+        }
         if (cnt > 360)
             cnt -= 360;
         t = (float)cnt/360;
