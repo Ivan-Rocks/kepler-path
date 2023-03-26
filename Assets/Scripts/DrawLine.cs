@@ -23,7 +23,7 @@ public class DrawLine : MonoBehaviour
     void Update()
     {
         l.SetPosition(0, planet.transform.position);
-        l.SetPosition(1, sun.transform.position); 
+        l.SetPosition(1, sun.transform.position);
         distance = (planet.transform.position - sun.transform.position).magnitude;
         distanceText.text = distance.ToString("f3");
     }
