@@ -28,7 +28,7 @@ public class EllipticalOrbit : MonoBehaviour
         for (int i = 0;i < 360; i++)
         {
             positions[i] = Attractor.transform.position + ComputePointOnOrbit(apoapsis, periapsis, argumentOfPeriapsis, inclination, (float)i/360);
-            print(positions[i]);
+            //print(positions[i]);
         }
         orbit.SetPositions(positions);
     }
