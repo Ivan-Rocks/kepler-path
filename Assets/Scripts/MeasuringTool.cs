@@ -9,6 +9,7 @@ using UnityEngine.UIElements;
 
 public class MeasuringTool : MonoBehaviour
 {
+    public GameObject controls;
     public GameObject planet;
     public TextMeshProUGUI distanceText;
     private EllipticalOrbit k;
@@ -60,10 +61,11 @@ public class MeasuringTool : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Camera cam = Camera.current.GetComponent<Camera>();
-        if (cam.name == "Topview" && k.paused)
+        if (Camera.current != null && controls.GetComponent<Controls>().measuring)
         {
+            Camera cam = Camera.current.GetComponent<Camera>();
             reset_btn.GetComponent<PressableButton>().enabled = true;
+            //First Press
             if (Input.GetMouseButton(0) && record_status == 0)
             {
                 Ray ray = Camera.current.ScreenPointToRay(Input.mousePosition);
@@ -75,6 +77,7 @@ public class MeasuringTool : MonoBehaviour
                     print("first" + start.name);
                 }
             }
+            //Second Press
             if (Input.GetMouseButton(0) && record_status == 1)
             {
                 Ray ray = Camera.current.ScreenPointToRay(Input.mousePosition);
@@ -88,7 +91,7 @@ public class MeasuringTool : MonoBehaviour
                     distanceText.text = distance.ToString("f3");
                 }
             }
-
+            //Can record
             if (start != null && end != null && record_status == 2)
             {
                 lineRend.positionCount = 2;

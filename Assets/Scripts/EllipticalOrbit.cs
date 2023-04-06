@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class EllipticalOrbit : MonoBehaviour
 {
+    public GameObject controls;
     public GameObject Attractor;
-    public bool paused = false;
+    //public bool paused = false;
     //public GameObject ImaginaryFocus;
     public float apoapsis;
     public float periapsis;
@@ -23,9 +24,9 @@ public class EllipticalOrbit : MonoBehaviour
         GameObject.Find("A1").transform.position = new Vector3(periapsis, 0, 0);
         GameObject.Find("B1").transform.position = new Vector3(-apoapsis, 0, 0);
         GameObject.Find("Fictional Focus").transform.position = new Vector3(periapsis - apoapsis, 0, 0);
-        orbit.positionCount= 360;
-        Vector3[] positions = new Vector3[360];
-        for (int i = 0;i < 360; i++)
+        orbit.positionCount= 361;
+        Vector3[] positions = new Vector3[361];
+        for (int i = 0;i <= 360; i++)
         {
             positions[i] = Attractor.transform.position + ComputePointOnOrbit(apoapsis, periapsis, argumentOfPeriapsis, inclination, (float)i/360);
             //print(positions[i]);
@@ -33,14 +34,10 @@ public class EllipticalOrbit : MonoBehaviour
         orbit.SetPositions(positions);
     }
 
-    public void onPause()
-    {
-        paused = !paused;
-    }
-
     // Update is called once per frame
     void FixedUpdate()
     {
+        bool paused = controls.GetComponent<Controls>().paused; 
         if (!paused)
         {
             cnt++;
