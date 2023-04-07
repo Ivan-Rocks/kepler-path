@@ -82,7 +82,7 @@ public class Controls : MonoBehaviour
         Record.gameObject.SetActive(true);
         Reset.gameObject.SetActive(true);
         Cancel.gameObject.SetActive(true);
-        Record.GetComponent<PressableButton>().enabled=true;
+        Record.GetComponent<PressableButton>().enabled=false;
         Reset.GetComponent<PressableButton>().enabled=true;
         Cancel.GetComponent<PressableButton>().enabled=true;
         //Cancel upper row
