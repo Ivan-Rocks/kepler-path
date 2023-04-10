@@ -97,8 +97,10 @@ MonoBehaviour:
   start: 
   end: 
   distance: 
-  ghost: {fileID: 2950490065037111657, guid: 362aba2c66e17d54f9843ea7ab236042, type: 3}
-  sun: {fileID: 0}
+  degree: 0
+  prefabInstance: {fileID: 0}
+  ghost_prefab: {fileID: 2950490065037111657, guid: 362aba2c66e17d54f9843ea7ab236042, type: 3}
+  Attractor: {fileID: 0}
 --- !u!1 &5868269513815635237
 GameObject:
   m_ObjectHideFlags: 0

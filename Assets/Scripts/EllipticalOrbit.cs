@@ -13,7 +13,7 @@ public class EllipticalOrbit : MonoBehaviour
     public float argumentOfPeriapsis = 0;
     public float inclination = 0;
     private LineRenderer orbit;
-    private int cnt = 0;
+    public int degree = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -40,11 +40,11 @@ public class EllipticalOrbit : MonoBehaviour
         bool paused = controls.GetComponent<Controls>().paused; 
         if (!paused)
         {
-            cnt++;
+            degree++;
         }
-        if (cnt > 360)
-            cnt -= 360;
-        float t = (float)cnt / 360;
+        if (degree > 360)
+            degree -= 360;
+        float t = (float)degree / 360;
         transform.position = Attractor.transform.position + ComputePointOnOrbit(apoapsis, periapsis, argumentOfPeriapsis, inclination, t);
 
     }

@@ -9,16 +9,43 @@ public class entry_manager : MonoBehaviour
     public string start;
     public string end;
     public string distance;
-    public GameObject ghost;
+    //Related 
+    public int degree;
+    private bool visible = false;
+    public GameObject prefabInstance;
+    public GameObject ghost_prefab;
+    private GameObject Attractor;
+    private EllipticalOrbit k;
     void Start()
     {
+        if (start.Contains("Planet")) {
+            start = start + " at " + degree.ToString();
+        }
+        if (end.Contains("Planet"))
+        {
+            end = end + " at " + degree.ToString();
+        }
+        k = GameObject.Find("Planet").GetComponent<EllipticalOrbit>();
+        Attractor = GameObject.Find("Sun");
+        prefabInstance = Instantiate(ghost_prefab, Attractor.transform);
+        prefabInstance.SetActive(false);
     }
 
     public void onShow()
     {
-        print("sorry, not implemented yet");
-        //Transform sun = GameObject.Find("Sun").transform;
-        //GameObject prefabInstance = Instantiate(ghost);
+        print("show");
+        if (!visible)
+        {
+            Vector3 pos = EllipticalOrbit.ComputePointOnOrbit(k.apoapsis,k.periapsis,
+                k.argumentOfPeriapsis,k.inclination,(float)degree/360);
+            prefabInstance.transform.position = pos;
+            prefabInstance.SetActive(true);
+            print(pos);
+        } else
+        {
+            prefabInstance.SetActive(false);
+        }
+        visible = !visible;
     }
 
     public void OnDelete()
@@ -46,5 +73,7 @@ public class entry_manager : MonoBehaviour
         Transform deleteTransform = gameObject.transform.Find("Delete");
         Button deleteButton = deleteTransform.gameObject.GetComponent<Button>();
         deleteButton.onClick.AddListener(OnDelete);
+        //visibility of objects
+
     }
 }

@@ -39,12 +39,10 @@ public class MeasuringTool : MonoBehaviour
         entry.start = start.name.ToString();
         entry.end = end.name.ToString();
         entry.distance = distance.ToString();
-        print(start.name);
-        print(end.name);
-        print(distance.ToString());
-        // Set the position and rotation of the prefab instance
-        //prefabInstance.transform.localPosition = Vector3.zero;
-        //prefabInstance.transform.localRotation = Quaternion.identity;
+        entry.degree = k.degree;
+        //print(start.name);
+        //print(end.name);
+        //print(distance.ToString());
     }
     public void onReset()
     {
