@@ -8,6 +8,8 @@ public class Controls : MonoBehaviour
 {
     public bool paused = false;
     public bool measuring = false;
+    //nearmenu
+    public GameObject NearMenuBase;
     //Buttons
     public GameObject Reload;
     public GameObject SwitchCam;
@@ -42,7 +44,7 @@ public class Controls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (activeCamera!= null && activeCamera==topview && paused)
+        if (activeCamera!= null && activeCamera == paused)
         {
             Measure.GetComponent<PressableButton>().enabled = true;
         } else
@@ -61,6 +63,7 @@ public class Controls : MonoBehaviour
         activeCamera.enabled = false;
         if (activeCamera == sideview)
         {
+            
             activeCamera = topview;
         }
         else
