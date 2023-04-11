@@ -214,8 +214,8 @@ Transform:
   m_GameObject: {fileID: 62247717}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.72, y: 0.72, z: 0.72}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 13
@@ -1224,6 +1224,7 @@ MonoBehaviour:
   periapsis: 3
   argumentOfPeriapsis: 0
   inclination: 0
+  degree: 0
 --- !u!1 &463860447
 GameObject:
   m_ObjectHideFlags: 0
@@ -2098,6 +2099,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   paused: 0
   measuring: 0
+  NearMenuBase: {fileID: 0}
   Reload: {fileID: 370151925}
   SwitchCam: {fileID: 560952374}
   Pause: {fileID: 102131579}
