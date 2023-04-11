@@ -9,7 +9,7 @@ public class Controls : MonoBehaviour
     public bool paused = false;
     public bool measuring = false;
     //nearmenu
-    public GameObject NearMenuBase;
+    public GameObject MainMenu;
     //Buttons
     public GameObject Reload;
     public GameObject SwitchCam;
@@ -44,7 +44,7 @@ public class Controls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (activeCamera!= null && activeCamera == paused)
+        if (activeCamera!= null && paused)
         {
             Measure.GetComponent<PressableButton>().enabled = true;
         } else
@@ -81,6 +81,10 @@ public class Controls : MonoBehaviour
     public void onMeasure()
     {
         print("measuring mode");
+        //Cancel upper row
+        SwitchCam.gameObject.SetActive(false);
+        Pause.gameObject.SetActive(false);
+        Measure.gameObject.SetActive(false);
         //Activate lower row
         Record.gameObject.SetActive(true);
         Reset.gameObject.SetActive(true);
@@ -88,27 +92,25 @@ public class Controls : MonoBehaviour
         Record.GetComponent<PressableButton>().enabled=false;
         Reset.GetComponent<PressableButton>().enabled=true;
         Cancel.GetComponent<PressableButton>().enabled=true;
-        //Cancel upper row
-        SwitchCam.gameObject.SetActive(false);
-        Pause.gameObject.SetActive(false);
-        Measure.gameObject.SetActive(false);
-        measuring= true;
+        measuring = true;
     }
 
     public void onCancel()
     {
         print("playing mode");
-        //Activate Upper row
-        SwitchCam.gameObject.SetActive(true);
-        Pause.gameObject.SetActive(true);
-        Measure.gameObject.SetActive(true);
-        SwitchCam.GetComponent<PressableButton>().enabled = true;
-        Pause.GetComponent<PressableButton>().enabled = true;
-        Measure.GetComponent<PressableButton>().enabled = true;
         //Cancel lower row
         Record.gameObject.SetActive(false);
         Reset.gameObject.SetActive(false);
         Cancel.gameObject.SetActive(false);
         measuring = false;
+        //Activate Upper row
+        Measure.GetComponent<PressableButton>().enabled = false;
+        SwitchCam.gameObject.SetActive(true);
+        Pause.gameObject.SetActive(true);
+        Measure.gameObject.SetActive(true);
+        SwitchCam.GetComponent<PressableButton>().enabled = true;
+        Pause.GetComponent<PressableButton>().enabled = true;
+        Measure.GetComponent<PressableButton>().enabled = false;
+
     }
 }
