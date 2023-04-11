@@ -50,6 +50,7 @@ public class entry_manager : MonoBehaviour
 
     public void OnDelete()
     {
+        Destroy(prefabInstance);
         Destroy(gameObject);
     }
 

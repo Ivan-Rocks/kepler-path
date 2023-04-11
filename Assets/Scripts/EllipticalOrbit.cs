@@ -13,6 +13,7 @@ public class EllipticalOrbit : MonoBehaviour
     public float argumentOfPeriapsis = 0;
     public float inclination = 0;
     private LineRenderer orbit;
+    private Vector3[] positions = new Vector3[361];
     public int degree = 0;
 
     // Start is called before the first frame update
@@ -25,18 +26,29 @@ public class EllipticalOrbit : MonoBehaviour
         GameObject.Find("B1").transform.position = new Vector3(-apoapsis, 0, 0);
         GameObject.Find("Fictional Focus").transform.position = new Vector3(periapsis - apoapsis, 0, 0);
         orbit.positionCount= 361;
-        Vector3[] positions = new Vector3[361];
-        for (int i = 0;i <= 360; i++)
+        //Vector3[] positions = new Vector3[361];
+        for (int i = 0; i <= 360; i++)
         {
-            positions[i] = Attractor.transform.position + ComputePointOnOrbit(apoapsis, periapsis, argumentOfPeriapsis, inclination, (float)i/360);
+            positions[i] = ComputePointOnOrbit(apoapsis, periapsis, argumentOfPeriapsis, inclination, (float)i / 360);
             //print(positions[i]);
         }
-        orbit.SetPositions(positions);
+        //orbit.SetPositions(positions);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        Vector3[] pos = new Vector3[361];
+        Quaternion system_rotation = GameObject.Find("Simulation").transform.rotation;
+        for (int i=0; i<=360; i++)
+        {
+            pos[i] = system_rotation *positions[i] + Attractor.transform.position;
+            //pos[i] = system_rotation * pos[i];
+        }
+        print(positions[5]);
+        print(pos[5]);
+        orbit.SetPositions(pos);
+
         bool paused = controls.GetComponent<Controls>().paused; 
         if (!paused)
         {
@@ -45,7 +57,7 @@ public class EllipticalOrbit : MonoBehaviour
         if (degree > 360)
             degree -= 360;
         float t = (float)degree / 360;
-        transform.position = Attractor.transform.position + ComputePointOnOrbit(apoapsis, periapsis, argumentOfPeriapsis, inclination, t);
+        transform.position = Attractor.transform.position + system_rotation * ComputePointOnOrbit(apoapsis, periapsis, argumentOfPeriapsis, inclination, t);
 
     }
 
