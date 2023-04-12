@@ -12,25 +12,27 @@ public class Controls : MonoBehaviour
     public GameObject MainMenu;
     //Buttons
     public GameObject Reload;
-    public GameObject SwitchCam;
+    //public GameObject SwitchCam;
     public GameObject Pause;
     public GameObject Measure;
     public GameObject Record;
     public GameObject Reset;
     public GameObject Cancel;
+    public GameObject Simulation;
+
     //Cameras
-    public Camera topview;
+    //public Camera topview;
     public Camera sideview;
     private Camera activeCamera;
     // Start is called before the first frame update
     void Start()
     {
         sideview.enabled = true;
-        topview.enabled = false;
+        //topview.enabled = false;
         activeCamera = sideview;
         //Link to onClick functions
         Reload.GetComponent<PressableButton>().OnClicked.AddListener(onReload);
-        SwitchCam.GetComponent<PressableButton>().OnClicked.AddListener(onSwitchCam);
+        //SwitchCam.GetComponent<PressableButton>().OnClicked.AddListener(onSwitchCam);
         Pause.GetComponent<PressableButton>().OnClicked.AddListener(onPause);
         Measure.GetComponent<PressableButton>().OnClicked.AddListener(onMeasure);
         Cancel.GetComponent<PressableButton>().OnClicked.AddListener(onCancel);
@@ -58,20 +60,20 @@ public class Controls : MonoBehaviour
         SceneManager.LoadScene(scene.name);
     }
 
-    public void onSwitchCam() 
-    {
-        activeCamera.enabled = false;
-        if (activeCamera == sideview)
-        {
+    //public void onSwitchCam() 
+    //{
+        //activeCamera.enabled = false;
+        //if (activeCamera == sideview)
+        //{
             
-            activeCamera = topview;
-        }
-        else
-        {
-            activeCamera = sideview;
-        }
-        activeCamera.enabled = true;
-    }
+            //activeCamera = topview;
+        //}
+        //else
+        //{
+            //activeCamera = sideview;
+        //}
+        //activeCamera.enabled = true;
+    //}
 
     public void onPause()
     {
@@ -82,7 +84,7 @@ public class Controls : MonoBehaviour
     {
         print("measuring mode");
         //Cancel upper row
-        SwitchCam.gameObject.SetActive(false);
+        //SwitchCam.gameObject.SetActive(false);
         Pause.gameObject.SetActive(false);
         Measure.gameObject.SetActive(false);
         //Activate lower row
@@ -105,12 +107,11 @@ public class Controls : MonoBehaviour
         measuring = false;
         //Activate Upper row
         Measure.GetComponent<PressableButton>().enabled = false;
-        SwitchCam.gameObject.SetActive(true);
+        //SwitchCam.gameObject.SetActive(true);
         Pause.gameObject.SetActive(true);
         Measure.gameObject.SetActive(true);
-        SwitchCam.GetComponent<PressableButton>().enabled = true;
+        //SwitchCam.GetComponent<PressableButton>().enabled = true;
         Pause.GetComponent<PressableButton>().enabled = true;
         Measure.GetComponent<PressableButton>().enabled = false;
-
     }
 }
