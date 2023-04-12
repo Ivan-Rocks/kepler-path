@@ -8,9 +8,8 @@ public class Controls : MonoBehaviour
 {
     public bool paused = false;
     public bool measuring = false;
-    //nearmenu
-    public GameObject MainMenu;
     //Buttons
+    public GameObject ObservationPanel;
     public GameObject QuestLog;
     public GameObject Reload;
     //public GameObject SwitchCam;
@@ -39,6 +38,7 @@ public class Controls : MonoBehaviour
         Cancel.GetComponent<PressableButton>().OnClicked.AddListener(onCancel);
         //Set Measuring realted buttons
         Measure.GetComponent<PressableButton>().enabled= false;
+        ObservationPanel.SetActive(false);
         Record.gameObject.SetActive(false);
         Reset.gameObject.SetActive(false);
         Cancel.gameObject.SetActive(false);
@@ -92,6 +92,8 @@ public class Controls : MonoBehaviour
         Record.gameObject.SetActive(true);
         Reset.gameObject.SetActive(true);
         Cancel.gameObject.SetActive(true);
+        ObservationPanel.gameObject.SetActive(true);
+
         Record.GetComponent<PressableButton>().enabled=false;
         Reset.GetComponent<PressableButton>().enabled=true;
         Cancel.GetComponent<PressableButton>().enabled=true;
@@ -105,6 +107,7 @@ public class Controls : MonoBehaviour
         Record.gameObject.SetActive(false);
         Reset.gameObject.SetActive(false);
         Cancel.gameObject.SetActive(false);
+        ObservationPanel.gameObject.SetActive(false);
         measuring = false;
         //Activate Upper row
         Measure.GetComponent<PressableButton>().enabled = false;
