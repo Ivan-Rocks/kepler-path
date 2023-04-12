@@ -11,6 +11,7 @@ public class Controls : MonoBehaviour
     //nearmenu
     public GameObject MainMenu;
     //Buttons
+    public GameObject QuestLog;
     public GameObject Reload;
     //public GameObject SwitchCam;
     public GameObject Pause;
