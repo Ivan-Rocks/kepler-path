@@ -43,7 +43,6 @@ public class EllipticalOrbit : MonoBehaviour
         for (int i=0; i<=360; i++)
         {
             pos[i] = system_rotation *positions[i] + Attractor.transform.position;
-            //pos[i] = system_rotation * pos[i];
         }
         print(positions[5]);
         print(pos[5]);

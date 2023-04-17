@@ -17,6 +17,7 @@ public class MeasuringTool : MonoBehaviour
     public float distance;
     public GameObject record_btn;
     public GameObject reset_btn;
+    public GameObject cancel_btn;
     private int record_status = 0;
     private GameObject start;
     private GameObject end;
@@ -48,6 +49,18 @@ public class MeasuringTool : MonoBehaviour
     public void onReset()
     {
         print("reset");
+        record_status = 0;
+        lineRend.positionCount = 0;
+        lineRend.positionCount = 2;
+        distanceText.text = "";
+        start = null;
+        end = null;
+        record_btn.GetComponent<PressableButton>().enabled = false;
+    }
+
+    public void onCancel()
+    {
+        print("cancel");
         record_status = 0;
         lineRend.positionCount = 0;
         lineRend.positionCount = 2;

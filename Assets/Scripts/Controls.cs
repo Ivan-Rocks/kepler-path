@@ -10,7 +10,7 @@ public class Controls : MonoBehaviour
     public bool measuring = false;
     //Buttons
     public GameObject ObservationPanel;
-    public GameObject QuestLog;
+    public GameObject Log;
     public GameObject Reload;
     //public GameObject SwitchCam;
     public GameObject Pause;
@@ -31,8 +31,8 @@ public class Controls : MonoBehaviour
         //topview.enabled = false;
         activeCamera = sideview;
         //Link to onClick functions
+        Log.GetComponent<PressableButton>().OnClicked.AddListener(onShowLog);
         Reload.GetComponent<PressableButton>().OnClicked.AddListener(onReload);
-        //SwitchCam.GetComponent<PressableButton>().OnClicked.AddListener(onSwitchCam);
         Pause.GetComponent<PressableButton>().OnClicked.AddListener(onPause);
         Measure.GetComponent<PressableButton>().OnClicked.AddListener(onMeasure);
         Cancel.GetComponent<PressableButton>().OnClicked.AddListener(onCancel);
@@ -55,26 +55,22 @@ public class Controls : MonoBehaviour
             Measure.GetComponent<PressableButton>().enabled = false;
         }
     }
+
+    public void onShowLog()
+    {
+        if (ObservationPanel.activeSelf)
+        {
+            ObservationPanel.SetActive(false);
+        } else
+        {
+            ObservationPanel.SetActive(true);
+        }
+    }
     public void onReload()
     {
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
     }
-
-    //public void onSwitchCam() 
-    //{
-        //activeCamera.enabled = false;
-        //if (activeCamera == sideview)
-        //{
-            
-            //activeCamera = topview;
-        //}
-        //else
-        //{
-            //activeCamera = sideview;
-        //}
-        //activeCamera.enabled = true;
-    //}
 
     public void onPause()
     {
