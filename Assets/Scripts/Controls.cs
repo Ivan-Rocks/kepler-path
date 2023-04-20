@@ -1,3 +1,4 @@
+using Microsoft.MixedReality.Toolkit.SpatialManipulation;
 using Microsoft.MixedReality.Toolkit.UX;
 using System.Collections;
 using System.Collections.Generic;
@@ -47,6 +48,8 @@ public class Controls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ObjectManipulator objectManipulator = GameObject.Find("Simulation").GetComponent<ObjectManipulator>();
+        objectManipulator.enabled = !measuring;
         if (activeCamera!= null && paused)
         {
             Measure.GetComponent<PressableButton>().enabled = true;

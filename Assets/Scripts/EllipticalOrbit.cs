@@ -1,65 +1,75 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class EllipticalOrbit : MonoBehaviour
 {
     public GameObject controls;
-    public GameObject Attractor;
-    //public bool paused = false;
-    //public GameObject ImaginaryFocus;
+    public GameObject Attractor; 
     public float apoapsis;
     public float periapsis;
     public float argumentOfPeriapsis = 0;
     public float inclination = 0;
+    public int interpolations; //how many interpolations per orbit
+    private GameObject Simulation;
     private LineRenderer orbit;
-    private Vector3[] positions = new Vector3[361];
+    private Vector3[] positions;
     public int degree = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+        Simulation = GameObject.Find("Simulation");
+        if (interpolations < 360)
+            interpolations = 360;
+        positions = new Vector3[interpolations+1];
         orbit= GetComponent<LineRenderer>();
         apoapsis = Mathf.Abs(Attractor.transform.position.x - GameObject.Find("B1").transform.position.x);
         periapsis = Mathf.Abs(Attractor.transform.position.x - GameObject.Find("A1").transform.position.x);
         GameObject.Find("A1").transform.position = new Vector3(periapsis, 0, 0);
         GameObject.Find("B1").transform.position = new Vector3(-apoapsis, 0, 0);
         GameObject.Find("Fictional Focus").transform.position = new Vector3(periapsis - apoapsis, 0, 0);
-        orbit.positionCount= 361;
-        //Vector3[] positions = new Vector3[361];
-        for (int i = 0; i <= 360; i++)
-        {
-            positions[i] = ComputePointOnOrbit(apoapsis, periapsis, argumentOfPeriapsis, inclination, (float)i / 360);
-            //print(positions[i]);
-        }
+        orbit.positionCount= interpolations+1;
+        for (int i = 0; i <= interpolations; i++)
+            positions[i] = ComputePointOnOrbit(apoapsis, periapsis, 
+            argumentOfPeriapsis, inclination, (float)i / interpolations);
         //orbit.SetPositions(positions);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector3[] pos = new Vector3[361];
-        Quaternion system_rotation = GameObject.Find("Simulation").transform.rotation;
-        for (int i=0; i<=360; i++)
+        //Adjust Orbit
+        Vector3[] pos = new Vector3[interpolations+1];
+        Quaternion system_rotation = Simulation.transform.rotation;
+        Vector3 scale = Simulation.transform.localScale;
+        Vector3 offset = Simulation.transform.position;
+        for (int i=0; i<=interpolations; i++)
         {
-            pos[i] = system_rotation *positions[i] + Attractor.transform.position;
+            pos[i] = UpdatePosition(positions[i], system_rotation, scale, offset);
         }
-        print(positions[5]);
-        print(pos[5]);
+        print("updated" + pos[0]);
+        print("attractor"+Attractor.transform.position);
         orbit.SetPositions(pos);
-
+        //Calculate current planet position
         bool paused = controls.GetComponent<Controls>().paused; 
         if (!paused)
-        {
             degree++;
-        }
         if (degree > 360)
             degree -= 360;
         float t = (float)degree / 360;
-        transform.position = Attractor.transform.position + system_rotation * ComputePointOnOrbit(apoapsis, periapsis, argumentOfPeriapsis, inclination, t);
-
+        Vector3 planet_pos = ComputePointOnOrbit(apoapsis, periapsis, argumentOfPeriapsis, inclination, t);
+        transform.position = UpdatePosition(planet_pos, system_rotation, scale, offset);
     }
 
+    public Vector3 UpdatePosition(Vector3 x, Quaternion rotation, Vector3 scale, Vector3 offset)
+    {
+        Matrix4x4 scaleMatrix = Matrix4x4.Scale(scale);
+        Vector3 updated = rotation * scaleMatrix.MultiplyPoint(x) + offset;
+        return updated;
+    }
 
     /// <summary> Computes a position on the orbit for a given value of t ranging between 0 and 1 </summary>
     public static Vector3 ComputePointOnOrbit(float apoapsis, float periapsis, float argumentOfPeriapsis, float inclination, float t)

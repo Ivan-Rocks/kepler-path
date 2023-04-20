@@ -38,8 +38,8 @@ public class MeasuringTool : MonoBehaviour
         print("record");
         GameObject prefabInstance = Instantiate(prefab, panel);
         entry_manager entry = prefabInstance.GetComponent<entry_manager>();
-        entry.start = start.name.ToString();
-        entry.end = end.name.ToString();
+        entry.startObj = start;
+        entry.endObj = end;
         entry.distance = distance.ToString();
         entry.degree = k.degree;
         //print(start.name);
@@ -100,6 +100,7 @@ public class MeasuringTool : MonoBehaviour
                     record_status++;
                     print("second" + end.name);
                     distance = (start.transform.position - end.transform.position).magnitude;
+                    distance /= GameObject.Find("Simulation").transform.localScale.x;
                     distanceText.text = distance.ToString("f3");
                 }
             }

@@ -6,8 +6,10 @@ using UnityEngine.UI;
 
 public class entry_manager : MonoBehaviour
 {
-    public string start;
-    public string end;
+    public GameObject startObj;
+    public GameObject endObj;
+    private string start;
+    private string end;
     public string distance;
     //Related 
     public int degree;
@@ -21,9 +23,11 @@ public class entry_manager : MonoBehaviour
     private TextMeshProUGUI endText;
     private TextMeshProUGUI distanceText;
     //Dotted Line
-    //private LineRenderer line;
+    private LineRenderer lineRend;
     void Start()
     {
+        start = startObj.name.ToString();
+        end = endObj.name.ToString();
         k = GameObject.Find("Planet").GetComponent<EllipticalOrbit>();
         Attractor = GameObject.Find("Sun");
         prefabInstance = Instantiate(ghost_prefab, Attractor.transform);
@@ -46,22 +50,47 @@ public class entry_manager : MonoBehaviour
         Transform deleteTransform = gameObject.transform.Find("Delete");
         Button deleteButton = deleteTransform.gameObject.GetComponent<Button>();
         deleteButton.onClick.AddListener(OnDelete);
+        //dotted line
+        lineRend = GetComponent<LineRenderer>();
+        float width = lineRend.startWidth;
+        lineRend.material.mainTextureScale = new Vector2(1f / width, 1.0f);
+        lineRend.positionCount = 0;
     }
 
     public void onShow()
     {
         print("show");
-        if ((start=="planet"||end=="planet") && !visible)
+        if (!visible)
         {
-            Vector3 pos = EllipticalOrbit.ComputePointOnOrbit(k.apoapsis,k.periapsis,
-                k.argumentOfPeriapsis,k.inclination,(float)degree/360);
-            Quaternion system_rotation = GameObject.Find("Simulation").transform.rotation;
-            pos = system_rotation * pos + Attractor.transform.position;
-            prefabInstance.transform.position = pos;
-            prefabInstance.SetActive(true);
-            print(pos);
+            if (start == "Planet" || end == "Planet")
+            {
+                Vector3 pos = EllipticalOrbit.ComputePointOnOrbit(k.apoapsis, k.periapsis,
+                k.argumentOfPeriapsis, k.inclination, (float)degree / 360);
+                Quaternion system_rotation = GameObject.Find("Simulation").transform.rotation;
+                pos = system_rotation * pos + Attractor.transform.position;
+                prefabInstance.transform.position = pos;
+                prefabInstance.SetActive(true);
+                //print(pos);
+                if (start == "Planet")
+                {
+                    lineRend.positionCount = 2;
+                    lineRend.SetPosition(0, pos);
+                    lineRend.SetPosition(1, endObj.transform.position);
+                } else
+                {
+                    lineRend.positionCount = 2;
+                    lineRend.SetPosition(0, startObj.transform.position);
+                    lineRend.SetPosition(1, pos);
+                }
+            } else
+            {
+                lineRend.positionCount = 2;
+                lineRend.SetPosition(0, startObj.transform.position);
+                lineRend.SetPosition(1, endObj.transform.position);
+            }
         } else
         {
+            lineRend.positionCount = 0;
             prefabInstance.SetActive(false);
         }
         visible = !visible;
