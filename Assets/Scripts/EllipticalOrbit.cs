@@ -50,8 +50,6 @@ public class EllipticalOrbit : MonoBehaviour
         {
             pos[i] = UpdatePosition(positions[i], system_rotation, scale, offset);
         }
-        print("updated" + pos[0]);
-        print("attractor"+Attractor.transform.position);
         orbit.SetPositions(pos);
         //Calculate current planet position
         bool paused = controls.GetComponent<Controls>().paused; 

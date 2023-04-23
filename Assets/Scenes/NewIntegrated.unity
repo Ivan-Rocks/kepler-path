@@ -760,6 +760,7 @@ MonoBehaviour:
   periapsis: 3
   argumentOfPeriapsis: 0
   inclination: 0
+  interpolations: 0
   degree: 0
 --- !u!1 &435669113 stripped
 GameObject:

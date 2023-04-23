@@ -6,11 +6,12 @@ using UnityEngine.UI;
 
 public class entry_manager : MonoBehaviour
 {
+    //Self Attributes
     public GameObject startObj;
     public GameObject endObj;
     private string start;
     private string end;
-    public string distance;
+    public float distance;
     //Related 
     public int degree;
     private bool visible = false;
@@ -18,6 +19,7 @@ public class entry_manager : MonoBehaviour
     public GameObject ghost_prefab;
     private GameObject Attractor;
     private EllipticalOrbit k;
+    private GameObject panel;
     //UI Elements
     private TextMeshProUGUI startText;
     private TextMeshProUGUI endText;
@@ -32,6 +34,7 @@ public class entry_manager : MonoBehaviour
         Attractor = GameObject.Find("Sun");
         prefabInstance = Instantiate(ghost_prefab, Attractor.transform);
         prefabInstance.SetActive(false);
+        panel = GameObject.Find("Observation Panel");
         //setup
         //three texts
         Transform startTransform = gameObject.transform.Find("Point A");
@@ -42,7 +45,7 @@ public class entry_manager : MonoBehaviour
         endText.text = end;
         Transform distanceTransform = gameObject.transform.Find("Distance");
         distanceText = distanceTransform.gameObject.GetComponent<TextMeshProUGUI>();
-        distanceText.text = distance;
+        distanceText.text = distance.ToString();
         //two buttons
         Transform showTransform = gameObject.transform.Find("Show");
         Button showButton = showTransform.gameObject.GetComponent<Button>();
@@ -52,8 +55,8 @@ public class entry_manager : MonoBehaviour
         deleteButton.onClick.AddListener(OnDelete);
         //dotted line
         lineRend = GetComponent<LineRenderer>();
-        float width = lineRend.startWidth;
-        lineRend.material.mainTextureScale = new Vector2(1f / width, 1.0f);
+        lineRend.material.mainTextureScale = new Vector2((int)distance,
+            1);
         lineRend.positionCount = 0;
     }
 

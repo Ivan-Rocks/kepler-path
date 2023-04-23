@@ -2,6 +2,7 @@ using Microsoft.MixedReality.Toolkit.UX;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.UI;
@@ -40,7 +41,7 @@ public class MeasuringTool : MonoBehaviour
         entry_manager entry = prefabInstance.GetComponent<entry_manager>();
         entry.startObj = start;
         entry.endObj = end;
-        entry.distance = distance.ToString();
+        entry.distance = distance;
         entry.degree = k.degree;
         //print(start.name);
         //print(end.name);
@@ -70,6 +71,16 @@ public class MeasuringTool : MonoBehaviour
         record_btn.GetComponent<PressableButton>().enabled = false;
     }
 
+    public bool isLegalPress(GameObject obj)
+    {
+        if (obj == null)
+            return false;
+        if (obj.name == "Sun" || obj.name == "A1" || obj.name == "B1" || 
+            obj.name == "Planet" || obj.name == "Fictional Focus")
+            return true;
+        return false;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -82,7 +93,8 @@ public class MeasuringTool : MonoBehaviour
             {
                 Ray ray = Camera.current.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
-                if (Physics.Raycast(ray, out hit, 100))
+                if (Physics.Raycast(ray, out hit, 100) && 
+                    isLegalPress(hit.transform.gameObject))
                 {
                     start = hit.transform.gameObject;
                     record_status++;
@@ -94,9 +106,12 @@ public class MeasuringTool : MonoBehaviour
             {
                 Ray ray = Camera.current.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
-                if (Physics.Raycast(ray, out hit, 100) && !hit.transform.gameObject.Equals(start))
+                if (Physics.Raycast(ray, out hit, 100) && 
+                    !hit.transform.gameObject.Equals(start) && 
+                    isLegalPress(hit.transform.gameObject))
                 {
                     end = hit.transform.gameObject;
+                    if (isLegalPress(end))
                     record_status++;
                     print("second" + end.name);
                     distance = (start.transform.position - end.transform.position).magnitude;

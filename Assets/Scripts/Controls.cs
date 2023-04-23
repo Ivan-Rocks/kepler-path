@@ -63,6 +63,12 @@ public class Controls : MonoBehaviour
     {
         if (ObservationPanel.activeSelf)
         {
+            GameObject entries = ObservationPanel.transform.Find("Scroll/Panel").gameObject;
+            for (int i=0;i<entries.transform.childCount; i++)
+            {
+                GameObject entry = entries.transform.GetChild(i).gameObject;
+                entry.GetComponent<entry_manager>().onShow();
+            }
             ObservationPanel.SetActive(false);
         } else
         {
