@@ -1,6 +1,5 @@
 using JetBrains.Annotations;
 using Microsoft.MixedReality.Toolkit.UX;
-using SimpleKeplerOrbits;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
