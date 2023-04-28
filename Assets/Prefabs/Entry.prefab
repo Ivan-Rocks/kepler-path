@@ -99,7 +99,7 @@ MonoBehaviour:
   endObj: {fileID: 0}
   distance: 0
   degree: 0
-  prefabInstance: {fileID: 5868269513810792788}
+  prefabInstance: {fileID: 0}
   ghost_prefab: {fileID: 2950490065037111657, guid: 362aba2c66e17d54f9843ea7ab236042, type: 3}
 --- !u!120 &-1286045701657750649
 LineRenderer:
