@@ -22,7 +22,7 @@ public class MeasuringTool : MonoBehaviour
     private int record_status = 0;
     private GameObject start;
     private GameObject end;
-    public GameObject prefab;
+    public GameObject entry_prefab;
     public Transform panel;
 
     // Start is called before the first frame update
@@ -37,7 +37,7 @@ public class MeasuringTool : MonoBehaviour
     public void onRecord()
     {
         print("record");
-        GameObject prefabInstance = Instantiate(prefab, panel);
+        GameObject prefabInstance = Instantiate(entry_prefab, panel);
         entry_manager entry = prefabInstance.GetComponent<entry_manager>();
         entry.startObj = start;
         entry.endObj = end;
