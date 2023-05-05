@@ -21,9 +21,9 @@ public class entry_manager : MonoBehaviour
     private EllipticalOrbit k;
     private GameObject panel;
     //UI Elements
-    private TextMeshProUGUI startText;
-    private TextMeshProUGUI endText;
-    private TextMeshProUGUI distanceText;
+    public TextMeshProUGUI startText;
+    public TextMeshProUGUI endText;
+    public TextMeshProUGUI distanceText;
     //Dotted Line
     private LineRenderer lineRend;
     void Start()
