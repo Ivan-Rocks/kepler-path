@@ -25,6 +25,11 @@ public class MeasuringTool : MonoBehaviour
     public GameObject entry_prefab;
     public Transform panel;
 
+    //temporary place for texts
+    public TextMeshProUGUI obja;
+    public TextMeshProUGUI objb;
+    public TextMeshProUGUI dist;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,12 +42,15 @@ public class MeasuringTool : MonoBehaviour
     public void onRecord()
     {
         print("record");
-        GameObject prefabInstance = Instantiate(entry_prefab, panel);
+        obja.text = start.name;
+        objb.text = end.name;
+        dist.text = distance.ToString();
+        /*GameObject prefabInstance = Instantiate(entry_prefab, panel);
         entry_manager entry = prefabInstance.GetComponent<entry_manager>();
         entry.startObj = start;
         entry.endObj = end;
         entry.distance = distance;
-        entry.degree = k.degree;
+        entry.degree = k.degree;*/
         //print(start.name);
         //print(end.name);
         //print(distance.ToString());
