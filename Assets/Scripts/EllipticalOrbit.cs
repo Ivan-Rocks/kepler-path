@@ -7,7 +7,10 @@ using UnityEngine.UIElements;
 public class EllipticalOrbit : MonoBehaviour
 {
     public GameObject controls;
-    public GameObject Attractor; 
+    public GameObject Attractor;
+    public GameObject periObj;
+    public GameObject apoObj;
+    public GameObject fictObj;
     public float apoapsis;
     public float periapsis;
     public float argumentOfPeriapsis = 0;
@@ -26,11 +29,11 @@ public class EllipticalOrbit : MonoBehaviour
             interpolations = 360;
         positions = new Vector3[interpolations+1];
         orbit= GetComponent<LineRenderer>();
-        apoapsis = Mathf.Abs(Attractor.transform.position.x - GameObject.Find("B1").transform.position.x);
-        periapsis = Mathf.Abs(Attractor.transform.position.x - GameObject.Find("A1").transform.position.x);
-        GameObject.Find("A1").transform.position = new Vector3(periapsis, 0, 0);
-        GameObject.Find("B1").transform.position = new Vector3(-apoapsis, 0, 0);
-        GameObject.Find("Fictional Focus").transform.position = new Vector3(periapsis - apoapsis, 0, 0);
+        apoapsis = Mathf.Abs(Attractor.transform.position.x - apoObj.transform.position.x);
+        periapsis = Mathf.Abs(Attractor.transform.position.x - periObj.transform.position.x);
+        periObj.transform.position = new Vector3(periapsis, 0, 0);
+        apoObj.transform.position = new Vector3(-apoapsis, 0, 0);
+        fictObj.transform.position = new Vector3(periapsis - apoapsis, 0, 0);
         orbit.positionCount= interpolations+1;
         for (int i = 0; i <= interpolations; i++)
             positions[i] = ComputePointOnOrbit(apoapsis, periapsis, 
