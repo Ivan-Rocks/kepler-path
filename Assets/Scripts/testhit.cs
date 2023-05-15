@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class testhit : MonoBehaviour
 {
+    public void f()
+    {
+        print("hi");
+    }
+
     // Start is called before the first frame update
     void Start()
     {
