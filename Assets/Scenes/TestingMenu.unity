@@ -5736,6 +5736,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controls: {fileID: 1380906884}
   Attractor: {fileID: 463860447}
+  periObj: {fileID: 1563088357}
+  apoObj: {fileID: 919540038}
+  fictObj: {fileID: 62247717}
   apoapsis: 11
   periapsis: 3
   argumentOfPeriapsis: 0
@@ -5759,6 +5762,7 @@ GameObject:
   - component: {fileID: 463860450}
   - component: {fileID: 463860449}
   - component: {fileID: 463860448}
+  - component: {fileID: 463860452}
   m_Layer: 0
   m_Name: Sun
   m_TagString: Untagged
@@ -5846,6 +5850,19 @@ Transform:
   m_Father: {fileID: 1211542081}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &463860452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 463860447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cf52377a7434ae4e90148a0e565522f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  right: {fileID: 603633008}
 --- !u!1001 &567145370
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6037,6 +6054,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6b351a67ceb69140b199996bbbea156, type: 3}
+--- !u!1 &603633008 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6056176063914695530, guid: 4d7e2f87fefe0ba468719b15288b46e7, type: 3}
+  m_PrefabInstance: {fileID: 2124241283}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &608278383
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9149,6 +9171,14 @@ PrefabInstance:
     - target: {fileID: 2351505567455720334, guid: 4d7e2f87fefe0ba468719b15288b46e7, type: 3}
       propertyPath: m_TagString
       value: MainCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 7115113329451106245, guid: 4d7e2f87fefe0ba468719b15288b46e7, type: 3}
+      propertyPath: m_MaxRaycastDistance
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8988800969130450167, guid: 4d7e2f87fefe0ba468719b15288b46e7, type: 3}
+      propertyPath: m_MaxRaycastDistance
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d7e2f87fefe0ba468719b15288b46e7, type: 3}
