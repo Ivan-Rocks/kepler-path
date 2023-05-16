@@ -41,7 +41,7 @@ public class testhit : MonoBehaviour
         {
             Vector3 rayDirection = x.forward;
             RaycastHit hit;
-            if (Physics.Raycast(x.position, rayDirection, out hit, 30))
+            if (Physics.Raycast(x.position, rayDirection, out hit, 50))
             {
                 // An object is hit along the raycast path
                 GameObject hitObject = hit.collider.gameObject;

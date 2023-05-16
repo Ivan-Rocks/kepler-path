@@ -1,3 +1,4 @@
+using Microsoft.MixedReality.Toolkit.Input;
 using Microsoft.MixedReality.Toolkit.UX;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ public class MeasuringTool : MonoBehaviour
 {
     public GameObject controls;
     public GameObject planet;
+    public GameObject hand;
     public TextMeshProUGUI distanceText;
     private EllipticalOrbit k;
     private LineRenderer lineRend;
@@ -92,35 +94,34 @@ public class MeasuringTool : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Camera.current != null && controls.GetComponent<Controls>().measuring)
+        if (controls.GetComponent<Controls>().measuring)
         {
-            Camera cam = Camera.current.GetComponent<Camera>();
+            Transform x = hand.GetComponent<MRTKRayInteractor>().rayOriginTransform;
             reset_btn.GetComponent<PressableButton>().enabled = true;
             //First Press
-            if (Input.GetMouseButton(0) && record_status == 0)
+            if (hand.GetComponent<MRTKRayInteractor>().isSelectActive && x != null && record_status == 0)
             {
-                Ray ray = Camera.current.ScreenPointToRay(Input.mousePosition);
+                Vector3 rayDirection = x.forward;
                 RaycastHit hit;
-                if (Physics.Raycast(ray, out hit, 100) && 
-                    isLegalPress(hit.transform.gameObject))
+                if (Physics.Raycast(x.position, rayDirection, out hit, 50) && isLegalPress(hit.collider.gameObject))
                 {
-                    start = hit.transform.gameObject;
+                    start = hit.collider.gameObject;
                     record_status++;
                     print("first" + start.name);
                 }
             }
             //Second Press
-            if (Input.GetMouseButton(0) && record_status == 1)
+            if (hand.GetComponent<MRTKRayInteractor>().isSelectActive && x != null && record_status == 1)
             {
-                Ray ray = Camera.current.ScreenPointToRay(Input.mousePosition);
+                Vector3 rayDirection = x.forward;
                 RaycastHit hit;
-                if (Physics.Raycast(ray, out hit, 100) && 
-                    !hit.transform.gameObject.Equals(start) && 
-                    isLegalPress(hit.transform.gameObject))
+                if (Physics.Raycast(x.position, rayDirection, out hit, 50) &&
+                    !hit.collider.gameObject.Equals(start) && 
+                    isLegalPress(hit.collider.gameObject))
                 {
-                    end = hit.transform.gameObject;
+                    end = hit.collider.gameObject;
                     if (isLegalPress(end))
-                    record_status++;
+                        record_status++;
                     print("second" + end.name);
                     distance = (start.transform.position - end.transform.position).magnitude;
                     distance /= GameObject.Find("Simulation").transform.localScale.x;
