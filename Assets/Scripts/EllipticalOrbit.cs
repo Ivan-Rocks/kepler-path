@@ -8,6 +8,7 @@ public class EllipticalOrbit : MonoBehaviour
 {
     public GameObject controls;
     public GameObject Attractor;
+    public GameObject Planet;
     public GameObject periObj;
     public GameObject apoObj;
     public GameObject fictObj;
@@ -46,9 +47,9 @@ public class EllipticalOrbit : MonoBehaviour
     {
         //Adjust Orbit
         Vector3[] pos = new Vector3[interpolations+1];
-        Quaternion system_rotation = Simulation.transform.rotation;
-        Vector3 scale = Simulation.transform.localScale;
-        Vector3 offset = Simulation.transform.position;
+        Quaternion system_rotation = gameobject.transform.rotation;
+        Vector3 scale = gameobject.transform.localScale;
+        Vector3 offset = gameobject.transform.position;
         for (int i=0; i<=interpolations; i++)
         {
             pos[i] = UpdatePosition(positions[i], system_rotation, scale, offset);
