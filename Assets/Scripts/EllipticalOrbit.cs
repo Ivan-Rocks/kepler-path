@@ -1,37 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
+using System;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class EllipticalOrbit : MonoBehaviour
 {
-    public GameObject controls;
     public GameObject Attractor;
     public GameObject Planet;
     public GameObject periObj;
     public GameObject apoObj;
     public GameObject fictObj;
+    public int interpolations; //how many interpolations per orbit
     public float apoapsis;
     public float periapsis;
-    public float argumentOfPeriapsis = 0;
-    public float inclination = 0;
-    public int interpolations; //how many interpolations per orbit
-    private GameObject Simulation;
+    [NonSerialized] public float argumentOfPeriapsis = 0;
+    [NonSerialized] public float inclination = 0;
     private LineRenderer orbit;
     private Vector3[] positions;
-    public int degree = 0;
+    private int degree = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        Simulation = GameObject.Find("Simulation");
         if (interpolations < 360)
             interpolations = 360;
         positions = new Vector3[interpolations+1];
-        orbit= GetComponent<LineRenderer>();
-        apoapsis = Mathf.Abs(Attractor.transform.position.x - apoObj.transform.position.x);
-        periapsis = Mathf.Abs(Attractor.transform.position.x - periObj.transform.position.x);
+        orbit= GameObject.Find("Orbit").GetComponent<LineRenderer>();
         periObj.transform.position = new Vector3(periapsis, 0, 0);
         apoObj.transform.position = new Vector3(-apoapsis, 0, 0);
         fictObj.transform.position = new Vector3(periapsis - apoapsis, 0, 0);
@@ -47,23 +39,23 @@ public class EllipticalOrbit : MonoBehaviour
     {
         //Adjust Orbit
         Vector3[] pos = new Vector3[interpolations+1];
-        Quaternion system_rotation = gameobject.transform.rotation;
-        Vector3 scale = gameobject.transform.localScale;
-        Vector3 offset = gameobject.transform.position;
+        Quaternion system_rotation = gameObject.transform.rotation;
+        Vector3 scale = gameObject.transform.localScale;
+        Vector3 offset = gameObject.transform.position;
         for (int i=0; i<=interpolations; i++)
         {
             pos[i] = UpdatePosition(positions[i], system_rotation, scale, offset);
         }
         orbit.SetPositions(pos);
         //Calculate current planet position
-        bool paused = controls.GetComponent<Controls>().paused; 
+        bool paused = gameObject.GetComponent<Controls>().paused; 
         if (!paused)
             degree++;
         if (degree > 360)
             degree -= 360;
         float t = (float)degree / 360;
         Vector3 planet_pos = ComputePointOnOrbit(apoapsis, periapsis, argumentOfPeriapsis, inclination, t);
-        transform.position = UpdatePosition(planet_pos, system_rotation, scale, offset);
+        Planet.transform.position = UpdatePosition(planet_pos, system_rotation, scale, offset);
     }
 
     public Vector3 UpdatePosition(Vector3 x, Quaternion rotation, Vector3 scale, Vector3 offset)

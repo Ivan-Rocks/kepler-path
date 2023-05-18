@@ -11,51 +11,37 @@ using UnityEngine.UIElements;
 
 public class MeasuringTool : MonoBehaviour
 {
-    public GameObject controls;
     public GameObject planet;
     public GameObject hand;
     public TextMeshProUGUI distanceText;
     private EllipticalOrbit k;
     private LineRenderer lineRend;
     public float distance;
-    public GameObject record_btn;
-    public GameObject reset_btn;
-    public GameObject cancel_btn;
+    public GameObject Record;
+    public GameObject Reset;
+    public GameObject Cancel;
     private int record_status = 0;
     private GameObject start;
     private GameObject end;
-    public GameObject entry_prefab;
-    public Transform panel;
-
-    //temporary place for texts
-    public TextMeshProUGUI obja;
-    public TextMeshProUGUI objb;
-    public TextMeshProUGUI dist;
 
     // Start is called before the first frame update
     void Start()
     {
-        record_btn.GetComponent<PressableButton>().enabled = false;
+        //bind buttons
+        Record.GetComponent<PressableButton>().OnClicked.AddListener(onRecord);
+        Reset.GetComponent<PressableButton>().OnClicked.AddListener(onReset);
+        Cancel.GetComponent<PressableButton>().OnClicked.AddListener(onCancel);
+        //initialize settings
+        Record.GetComponent<PressableButton>().enabled = false;
         k = planet.GetComponent<EllipticalOrbit>();
-        lineRend = GetComponent<LineRenderer>();
+        lineRend = planet.GetComponent<LineRenderer>();
         lineRend.positionCount = 0;
     }
 
     public void onRecord()
     {
         print("record");
-        obja.text = start.name;
-        objb.text = end.name;
-        dist.text = distance.ToString();
-        /*GameObject prefabInstance = Instantiate(entry_prefab, panel);
-        entry_manager entry = prefabInstance.GetComponent<entry_manager>();
-        entry.startObj = start;
-        entry.endObj = end;
-        entry.distance = distance;
-        entry.degree = k.degree;*/
-        //print(start.name);
-        //print(end.name);
-        //print(distance.ToString());
+        gameObject.GetComponent<entry_manager>().createEntry(start, end, distance.ToString("F3"));
     }
     public void onReset()
     {
@@ -66,7 +52,7 @@ public class MeasuringTool : MonoBehaviour
         distanceText.text = "";
         start = null;
         end = null;
-        record_btn.GetComponent<PressableButton>().enabled = false;
+        Record.GetComponent<PressableButton>().enabled = false;
     }
 
     public void onCancel()
@@ -76,9 +62,10 @@ public class MeasuringTool : MonoBehaviour
         lineRend.positionCount = 0;
         lineRend.positionCount = 2;
         distanceText.text = "";
+        distance = 0;
         start = null;
         end = null;
-        record_btn.GetComponent<PressableButton>().enabled = false;
+        Record.GetComponent<PressableButton>().enabled = false;
     }
 
     public bool isLegalPress(GameObject obj)
@@ -94,10 +81,10 @@ public class MeasuringTool : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (controls.GetComponent<Controls>().measuring)
+        if (gameObject.GetComponent<Controls>().measuring)
         {
             Transform x = hand.GetComponent<MRTKRayInteractor>().rayOriginTransform;
-            reset_btn.GetComponent<PressableButton>().enabled = true;
+            Reset.GetComponent<PressableButton>().enabled = true;
             //First Press
             if (hand.GetComponent<MRTKRayInteractor>().isSelectActive && x != null && record_status == 0)
             {
@@ -132,9 +119,11 @@ public class MeasuringTool : MonoBehaviour
             if (start != null && end != null && record_status == 2)
             {
                 lineRend.positionCount = 2;
+                lineRend.startWidth = gameObject.transform.localScale.x/10;
+                lineRend.endWidth = gameObject.transform.localScale.x / 10;
                 lineRend.SetPosition(0, start.transform.position);
                 lineRend.SetPosition(1, end.transform.position);
-                record_btn.GetComponent<PressableButton>().enabled = true;
+                Record.GetComponent<PressableButton>().enabled = true;
             }
         }
     }

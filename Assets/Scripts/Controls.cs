@@ -1,25 +1,22 @@
 using Microsoft.MixedReality.Toolkit.SpatialManipulation;
 using Microsoft.MixedReality.Toolkit.UX;
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Controls : MonoBehaviour
 {
-    public bool paused = false;
-    public bool measuring = false;
+    [NonSerialized] public bool paused = false;
+    [NonSerialized] public bool measuring = false;
     //Buttons
     public GameObject ObservationPanel;
-    public GameObject Log;
     public GameObject Reload;
-    //public GameObject SwitchCam;
+    public GameObject Log;
     public GameObject Pause;
     public GameObject Measure;
     public GameObject Record;
     public GameObject Reset;
     public GameObject Cancel;
-    public GameObject Simulation;
     public GameObject[] transparent_objects = { };
 
     // Start is called before the first frame update
@@ -46,7 +43,7 @@ public class Controls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ObjectManipulator objectManipulator = GameObject.Find("Simulation").GetComponent<ObjectManipulator>();
+        ObjectManipulator objectManipulator = gameObject.GetComponent<ObjectManipulator>();
         objectManipulator.enabled = !measuring;
         Measure.GetComponent<PressableButton>().enabled = paused;
     }
@@ -54,20 +51,6 @@ public class Controls : MonoBehaviour
     public void onShowLog()
     {
         ObservationPanel.SetActive(!ObservationPanel.activeSelf);
-        /*
-        if (ObservationPanel.activeSelf)
-        {
-            GameObject entries = ObservationPanel.transform.Find("Scroll/Panel").gameObject;
-            for (int i=0;i<entries.transform.childCount; i++)
-            {
-                GameObject entry = entries.transform.GetChild(i).gameObject;
-                entry.GetComponent<entry_manager>().onShow();
-            }
-            ObservationPanel.SetActive(false);
-        } else
-        {
-            ObservationPanel.SetActive(true);
-        }*/
     }
     public void onReload()
     {
