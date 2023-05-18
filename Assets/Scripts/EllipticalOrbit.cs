@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class EllipticalOrbit : MonoBehaviour
 {
@@ -15,7 +16,10 @@ public class EllipticalOrbit : MonoBehaviour
     [NonSerialized] public float inclination = 0;
     private LineRenderer orbit;
     private Vector3[] positions;
-    private int degree = 0;
+    [NonSerialized] public int degree = 0;
+    private Quaternion system_rotation;
+    private Vector3 scale;
+    private Vector3 offset;
 
     // Start is called before the first frame update
     void Start()
@@ -39,9 +43,9 @@ public class EllipticalOrbit : MonoBehaviour
     {
         //Adjust Orbit
         Vector3[] pos = new Vector3[interpolations+1];
-        Quaternion system_rotation = gameObject.transform.rotation;
-        Vector3 scale = gameObject.transform.localScale;
-        Vector3 offset = gameObject.transform.position;
+        system_rotation = gameObject.transform.rotation;
+        scale = gameObject.transform.localScale;
+        offset = gameObject.transform.position;
         for (int i=0; i<=interpolations; i++)
         {
             pos[i] = UpdatePosition(positions[i], system_rotation, scale, offset);
@@ -56,6 +60,12 @@ public class EllipticalOrbit : MonoBehaviour
         float t = (float)degree / 360;
         Vector3 planet_pos = ComputePointOnOrbit(apoapsis, periapsis, argumentOfPeriapsis, inclination, t);
         Planet.transform.position = UpdatePosition(planet_pos, system_rotation, scale, offset);
+    }
+
+    public Vector3 getGhostPosition(float t)
+    {
+        Vector3 p = ComputePointOnOrbit(apoapsis, periapsis, argumentOfPeriapsis, inclination, t);
+        return UpdatePosition(p, system_rotation, scale, offset);
     }
 
     public Vector3 UpdatePosition(Vector3 x, Quaternion rotation, Vector3 scale, Vector3 offset)

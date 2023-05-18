@@ -41,7 +41,9 @@ public class MeasuringTool : MonoBehaviour
     public void onRecord()
     {
         print("record");
-        gameObject.GetComponent<entry_manager>().createEntry(start, end, distance.ToString("F3"));
+
+        gameObject.GetComponent<entry_manager>().createEntry(start, end, distance.ToString("F3")
+            , (float)gameObject.GetComponent<EllipticalOrbit>().degree/360);
     }
     public void onReset()
     {
@@ -66,6 +68,7 @@ public class MeasuringTool : MonoBehaviour
         start = null;
         end = null;
         Record.GetComponent<PressableButton>().enabled = false;
+        gameObject.GetComponent<entry_manager>().hide();
     }
 
     public bool isLegalPress(GameObject obj)
@@ -90,7 +93,7 @@ public class MeasuringTool : MonoBehaviour
             {
                 Vector3 rayDirection = x.forward;
                 RaycastHit hit;
-                if (Physics.Raycast(x.position, rayDirection, out hit, 50) && isLegalPress(hit.collider.gameObject))
+                if (Physics.Raycast(x.position, rayDirection, out hit, 150) && isLegalPress(hit.collider.gameObject))
                 {
                     start = hit.collider.gameObject;
                     record_status++;
@@ -102,7 +105,7 @@ public class MeasuringTool : MonoBehaviour
             {
                 Vector3 rayDirection = x.forward;
                 RaycastHit hit;
-                if (Physics.Raycast(x.position, rayDirection, out hit, 50) &&
+                if (Physics.Raycast(x.position, rayDirection, out hit, 150) &&
                     !hit.collider.gameObject.Equals(start) && 
                     isLegalPress(hit.collider.gameObject))
                 {
