@@ -13,7 +13,6 @@ public class MeasuringTool : MonoBehaviour
 {
     public GameObject planet;
     public GameObject hand;
-    public TextMeshProUGUI distanceText;
     private EllipticalOrbit k;
     private LineRenderer lineRend;
     public float distance;
@@ -51,7 +50,6 @@ public class MeasuringTool : MonoBehaviour
         record_status = 0;
         lineRend.positionCount = 0;
         lineRend.positionCount = 2;
-        distanceText.text = "";
         start = null;
         end = null;
         Record.GetComponent<PressableButton>().enabled = false;
@@ -63,7 +61,6 @@ public class MeasuringTool : MonoBehaviour
         record_status = 0;
         lineRend.positionCount = 0;
         lineRend.positionCount = 2;
-        distanceText.text = "";
         distance = 0;
         start = null;
         end = null;
@@ -115,7 +112,6 @@ public class MeasuringTool : MonoBehaviour
                     print("second" + end.name);
                     distance = (start.transform.position - end.transform.position).magnitude;
                     distance /= GameObject.Find("Simulation").transform.localScale.x;
-                    distanceText.text = distance.ToString("f3");
                 }
             }
             //Can record
