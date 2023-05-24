@@ -76,7 +76,7 @@ public class MeasuringTool : MonoBehaviour
         if (obj == null)
             return false;
         if (obj.name == "Sun" || obj.name == "A1" || obj.name == "B1" || 
-            obj.name == "Planet" || obj.name == "Fictional Focus")
+            obj.name == "Planet" || obj.name == "Focus")
             return true;
         return false;
     }

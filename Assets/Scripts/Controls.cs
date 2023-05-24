@@ -17,6 +17,7 @@ public class Controls : MonoBehaviour
     public GameObject Record;
     public GameObject Reset;
     public GameObject Cancel;
+    public GameObject Simulation;
     public GameObject[] transparent_objects = { };
 
     // Start is called before the first frame update
@@ -82,6 +83,8 @@ public class Controls : MonoBehaviour
         //Activate transparent objects
         for (int i = 0; i < transparent_objects.Length; i++)
             transparent_objects[i].SetActive(true);
+        //Set box collider inactive when measuring
+        Simulation.GetComponent<BoxCollider>().enabled=false;
     }
 
     public void onCancel()
@@ -105,5 +108,7 @@ public class Controls : MonoBehaviour
         //Deactivate transparent objects
         for (int i = 0; i < transparent_objects.Length; i++)
             transparent_objects[i].SetActive(false);
+        //Set box collider inactive when measuring
+        Simulation.GetComponent<BoxCollider>().enabled = true;
     }
 }
