@@ -910,7 +910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e5a39a3835d7974283c1955c768b626, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textColor: {r: 0.82052845, g: 0.8207547, b: 0.081301175, a: 0.003921569}
+  textColor: {r: 0.25949237, g: 0.9339623, b: 0.057271298, a: 0.003921569}
   positionOffsetSpeed: 2
   colorDecaySpeed: 0.005
 --- !u!1 &466128758
