@@ -94,6 +94,8 @@ public class MeasuringTool : MonoBehaviour
                 {
                     start = hit.collider.gameObject;
                     record_status++;
+                    GameObject notice = GameObject.Find("Selection Notice");
+                    notice.GetComponent<SelectionNotice>().setText(start);
                     print("first" + start.name);
                 }
             }
@@ -108,10 +110,14 @@ public class MeasuringTool : MonoBehaviour
                 {
                     end = hit.collider.gameObject;
                     if (isLegalPress(end))
+                    {
                         record_status++;
-                    print("second" + end.name);
-                    distance = (start.transform.position - end.transform.position).magnitude;
-                    distance /= GameObject.Find("Simulation").transform.localScale.x;
+                        print("second" + end.name);
+                        distance = (start.transform.position - end.transform.position).magnitude;
+                        distance /= GameObject.Find("Simulation").transform.localScale.x;
+                        GameObject notice = GameObject.Find("Selection Notice");
+                        notice.GetComponent<SelectionNotice>().setText(end);
+                    }
                 }
             }
             //Can record
