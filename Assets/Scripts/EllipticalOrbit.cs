@@ -50,6 +50,8 @@ public class EllipticalOrbit : MonoBehaviour
         {
             pos[i] = UpdatePosition(positions[i], system_rotation, scale, offset);
         }
+        orbit.startWidth = gameObject.transform.localScale.x / 10;
+        orbit.endWidth = gameObject.transform.localScale.x / 10;
         orbit.SetPositions(pos);
         //Calculate current planet position
         bool paused = gameObject.GetComponent<Controls>().paused; 
