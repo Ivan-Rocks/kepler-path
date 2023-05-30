@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SimulationHandMenuFinal.unity
-    guid: 5770367cdd5558e4c8761ff20c981292
+    path: Assets/Scenes/Final5_29_2023_demo.unity
+    guid: 5ef4eabaa811a6945992e56f92d71d4f
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 0f23af3cb32dc7b45897a1eae7bca303, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: da5ac6bd804bc734f88a64ae53eb6081, type: 2}
