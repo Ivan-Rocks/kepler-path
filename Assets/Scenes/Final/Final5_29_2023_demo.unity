@@ -5090,15 +5090,16 @@ MonoBehaviour:
   Reset: {fileID: 1958678764}
   Cancel: {fileID: 171724892}
   Simulation: {fileID: 1496244614}
-  Togglebutton1: {fileID: 505784668}
-  Togglebutton2: {fileID: 1122115285}
-  Togglebutton3: {fileID: 896212785}
-  Togglebutton4: {fileID: 1597708608}
   transparent_objects:
   - {fileID: 309921919}
   - {fileID: 1534630596}
   - {fileID: 1375701554}
   - {fileID: 536610071}
+  transparent_toggles:
+  - {fileID: 505784668}
+  - {fileID: 1122115285}
+  - {fileID: 896212785}
+  - {fileID: 1597708608}
 --- !u!114 &1496244626
 MonoBehaviour:
   m_ObjectHideFlags: 0
