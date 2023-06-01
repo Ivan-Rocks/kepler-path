@@ -20,12 +20,9 @@ public class Controls : MonoBehaviour
     public GameObject Reset;
     public GameObject Cancel;
     public GameObject Simulation;
-    public GameObject Togglebutton1;
-    public GameObject Togglebutton2;
-    public GameObject Togglebutton3;
-    public GameObject Togglebutton4;
 
     public GameObject[] transparent_objects = { };
+    public GameObject[] transparent_toggles = { };
 
     // Start is called before the first frame update
     void Start()
@@ -100,6 +97,10 @@ public class Controls : MonoBehaviour
     public void onCancel()
     {
         print("playing mode");
+        //De-toggle all the toggle buttons
+        for (int i=0; i < transparent_toggles.Length; i++)
+            if (transparent_toggles[i].GetComponent<PressableButton>().IsToggled)
+                transparent_toggles[i].GetComponent<PressableButton>().ForceSetToggled(false, false);
         //Cancel lower row
         Log.gameObject.SetActive(false);
         Record.gameObject.SetActive(false);

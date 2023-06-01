@@ -1153,11 +1153,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7559821338322850059, guid: a44ab13a2495b67439123020af3f921b, type: 3}
   m_PrefabInstance: {fileID: 1928455993}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &613306959 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1480275740911385624, guid: a44ab13a2495b67439123020af3f921b, type: 3}
-  m_PrefabInstance: {fileID: 1928455993}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &697897416 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1343711391233009843, guid: a44ab13a2495b67439123020af3f921b, type: 3}
@@ -1375,16 +1370,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff4e3b9019304b5aaec5664de0778d21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1103093288 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6416561593006825463, guid: a44ab13a2495b67439123020af3f921b, type: 3}
-  m_PrefabInstance: {fileID: 1928455993}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1111405496 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9067511815114914311, guid: a44ab13a2495b67439123020af3f921b, type: 3}
-  m_PrefabInstance: {fileID: 1928455993}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1233342682 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8597460131679306387, guid: a44ab13a2495b67439123020af3f921b, type: 3}
@@ -1988,15 +1973,12 @@ MonoBehaviour:
   Reset: {fileID: 609917863}
   Cancel: {fileID: 758682702}
   Simulation: {fileID: 1496244614}
-  Togglebutton1: {fileID: 1103093288}
-  Togglebutton2: {fileID: 613306959}
-  Togglebutton3: {fileID: 1639821624}
-  Togglebutton4: {fileID: 1111405496}
   transparent_objects:
   - {fileID: 309921919}
   - {fileID: 1534630596}
   - {fileID: 1375701554}
   - {fileID: 536610071}
+  transparent_toggles: []
 --- !u!114 &1496244626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2410,11 +2392,6 @@ Skybox:
   m_GameObject: {fileID: 1552875823}
   m_Enabled: 1
   m_CustomSkybox: {fileID: 2100000, guid: 860a66ca4259b384f9ec01b687f71c3c, type: 2}
---- !u!1 &1639821624 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1630593534190771847, guid: a44ab13a2495b67439123020af3f921b, type: 3}
-  m_PrefabInstance: {fileID: 1928455993}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1659582559
 GameObject:
   m_ObjectHideFlags: 0
