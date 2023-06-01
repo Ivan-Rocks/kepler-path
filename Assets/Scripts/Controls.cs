@@ -9,8 +9,10 @@ public class Controls : MonoBehaviour
     [NonSerialized] public bool paused = false;
     [NonSerialized] public bool measuring = false;
     //Buttons
-    public GameObject ObservationPanel;
+    public GameObject RadarPanel;
+    public GameObject ObsPanel;
     public GameObject Reload;
+    public GameObject Observe;
     public GameObject Log;
     public GameObject Pause;
     public GameObject Measure;
@@ -18,7 +20,9 @@ public class Controls : MonoBehaviour
     public GameObject Reset;
     public GameObject Cancel;
     public GameObject Simulation;
+
     public GameObject[] transparent_objects = { };
+    public GameObject[] transparent_toggles = { };
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +36,7 @@ public class Controls : MonoBehaviour
         //Set Measuring realted buttons
         Measure.GetComponent<PressableButton>().enabled= false;
         Log.SetActive(false);
-        ObservationPanel.SetActive(false);
+        RadarPanel.SetActive(false);
         Record.gameObject.SetActive(false);
         Reset.gameObject.SetActive(false);
         Cancel.gameObject.SetActive(false);
@@ -51,7 +55,7 @@ public class Controls : MonoBehaviour
 
     public void onShowLog()
     {
-        ObservationPanel.SetActive(!ObservationPanel.activeSelf);
+        RadarPanel.SetActive(!RadarPanel.activeSelf);
     }
     public void onReload()
     {
@@ -74,11 +78,14 @@ public class Controls : MonoBehaviour
         Record.gameObject.SetActive(true);
         Reset.gameObject.SetActive(true);
         Cancel.gameObject.SetActive(true);
-        ObservationPanel.gameObject.SetActive(true);
+        RadarPanel.gameObject.SetActive(true);
         //Cancel lower row
         Record.GetComponent<PressableButton>().enabled=false;
         Reset.GetComponent<PressableButton>().enabled=true;
-        Cancel.GetComponent<PressableButton>().enabled=true;
+        Cancel.GetComponent<PressableButton>().enabled = true;
+        Observe.GetComponent<PressableButton>().enabled = false;
+        //deactive obspanel
+        ObsPanel.gameObject.SetActive(false);
         measuring = true;
         //Activate transparent objects
         for (int i = 0; i < transparent_objects.Length; i++)
@@ -90,12 +97,16 @@ public class Controls : MonoBehaviour
     public void onCancel()
     {
         print("playing mode");
+        //De-toggle all the toggle buttons
+        for (int i=0; i < transparent_toggles.Length; i++)
+            if (transparent_toggles[i].GetComponent<PressableButton>().IsToggled)
+                transparent_toggles[i].GetComponent<PressableButton>().ForceSetToggled(false, false);
         //Cancel lower row
         Log.gameObject.SetActive(false);
         Record.gameObject.SetActive(false);
         Reset.gameObject.SetActive(false);
         Cancel.gameObject.SetActive(false);
-        ObservationPanel.SetActive(false);
+        RadarPanel.SetActive(false);
         measuring = false;
         //Activate Upper row
         Measure.GetComponent<PressableButton>().enabled = false;
@@ -105,6 +116,7 @@ public class Controls : MonoBehaviour
         //SwitchCam.GetComponent<PressableButton>().enabled = true;
         Pause.GetComponent<PressableButton>().enabled = true;
         Measure.GetComponent<PressableButton>().enabled = false;
+        Observe.GetComponent<PressableButton>().enabled = true;
         //Deactivate transparent objects
         for (int i = 0; i < transparent_objects.Length; i++)
             transparent_objects[i].SetActive(false);

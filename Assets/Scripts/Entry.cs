@@ -75,6 +75,8 @@ public class Entry : MonoBehaviour
             instance.SetActive(true);
         }
         line.positionCount = 2;
+        line.startWidth = GameObject.Find("Simulation").transform.localScale.x / 10;
+        line.endWidth = GameObject.Find("Simulation").transform.localScale.x / 10;
         line.SetPosition(0, startpos);
         line.SetPosition(1, endpos);
     }
