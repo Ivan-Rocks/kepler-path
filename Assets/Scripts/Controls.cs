@@ -34,7 +34,10 @@ public class Controls : MonoBehaviour
         Measure.GetComponent<PressableButton>().OnClicked.AddListener(onMeasure);
         Cancel.GetComponent<PressableButton>().OnClicked.AddListener(onCancel);
         //Set Measuring realted buttons
-        Measure.GetComponent<PressableButton>().enabled= false;
+        Measure.SetActive(false);
+        Pause.GetComponent<PressableButton>().enabled= false;
+        Observe.SetActive(false);
+        Reload.GetComponent<PressableButton>().enabled= false;
         Log.SetActive(false);
         RadarPanel.SetActive(false);
         Record.gameObject.SetActive(false);
@@ -122,5 +125,10 @@ public class Controls : MonoBehaviour
             transparent_objects[i].SetActive(false);
         //Set box collider inactive when measuring
         Simulation.GetComponent<BoxCollider>().enabled = true;
+    }
+
+    public void enterPlayMode()
+    {
+        Pause.GetComponent <PressableButton>().enabled = true;
     }
 }
