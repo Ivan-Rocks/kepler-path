@@ -33,7 +33,10 @@ public class Controls : MonoBehaviour
         Pause.GetComponent<PressableButton>().OnClicked.AddListener(onPause);
         Measure.GetComponent<PressableButton>().OnClicked.AddListener(onMeasure);
         Cancel.GetComponent<PressableButton>().OnClicked.AddListener(onCancel);
-        //Set Measuring realted buttons
+        //Initializing components
+        Simulation.GetComponent<ObjectManipulator>().enabled = false;
+        print(Simulation.GetComponent<ObjectManipulator>().enabled);
+        print(Simulation.GetComponent<ObjectManipulator>().enabled);
         Measure.SetActive(false);
         Pause.GetComponent<PressableButton>().enabled= false;
         Observe.SetActive(false);
@@ -51,8 +54,8 @@ public class Controls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ObjectManipulator objectManipulator = gameObject.GetComponent<ObjectManipulator>();
-        objectManipulator.enabled = !measuring;
+        //ObjectManipulator objectManipulator = gameObject.GetComponent<ObjectManipulator>();
+        //objectManipulator.enabled = !measuring;
         Measure.GetComponent<PressableButton>().enabled = paused;
     }
 
@@ -127,8 +130,34 @@ public class Controls : MonoBehaviour
         Simulation.GetComponent<BoxCollider>().enabled = true;
     }
 
+
     public void enterPlayMode()
     {
         Pause.GetComponent <PressableButton>().enabled = true;
+    }
+    public void enterInteractionMode()
+    {
+        gameObject.GetComponent<ObjectManipulator>().enabled = true;
+    }
+
+    public bool first_manipulation_detected = false;
+    public void detectFirstManipulation()
+    {
+        first_manipulation_detected=true;
+        print("hi");
+    }
+
+    public void enterObserveMode()
+    {
+        Observe.SetActive(true);
+    }
+
+    public bool selectAllToggles()
+    {
+        for (int i = 0; i < transparent_toggles.Length; i++)
+            if (!transparent_toggles[i].GetComponent<PressableButton>().IsToggled)
+                return false;
+        ObsPanel.SetActive(false);
+        return true;
     }
 }
