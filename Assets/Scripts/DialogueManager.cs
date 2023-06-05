@@ -10,11 +10,11 @@ using Unity.VisualScripting;
 public class DialogueManager : MonoBehaviour
 {
     public GameObject Simulation;
+    public GameObject Continue;
     public int phase = 0;
     public int total_phases=0;
     public string csvFilePath = "Assets/Scripts/Dialogues.csv";
     public GameObject Dialogue;
-    public GameObject ContinueButton;
     public TextMeshProUGUI header;
     public TextMeshProUGUI text;
     //Strings
