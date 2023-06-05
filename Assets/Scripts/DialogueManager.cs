@@ -10,11 +10,11 @@ using Unity.VisualScripting;
 public class DialogueManager : MonoBehaviour
 {
     public GameObject Simulation;
+    public GameObject Continue;
     public int phase = 0;
     public int total_phases=0;
     public string csvFilePath = "Assets/Scripts/Dialogues.csv";
     public GameObject Dialogue;
-    public GameObject ContinueButton;
     public TextMeshProUGUI header;
     public TextMeshProUGUI text;
     //Strings
@@ -24,7 +24,6 @@ public class DialogueManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        print(Simulation.GetComponent<Controls>().paused);
         ReadCSVFile();
         //ContinueButton.GetComponent<PressableButton>().OnClicked.AddListener(onContinue);
         setDialogue();
@@ -38,15 +37,14 @@ public class DialogueManager : MonoBehaviour
         {
             total_phases++;
             string line = reader.ReadLine();
-            string[] values = line.Split(',');
-            print(values.Length);
+            string[] values = line.Split(';');
             //int x = int.Parse(values[0]);
             headers.Add(values[1]);
             texts.Add(values[2]);
         }
-
+        print(total_phases);
         reader.Close();
-        print(headers);
+        //print(headers);
     }
 
     public void setDialogue()
@@ -60,9 +58,23 @@ public class DialogueManager : MonoBehaviour
     public void onContinue()
     {
         //if we reach a state and the action has not been finished
-        if (phase == 2 && !Simulation.GetComponent<Controls>().paused)
+        //we make the action button clickable, if it has been done, it will call back and 
+        if (phase ==3 && !Simulation.GetComponent<Controls>().first_manipulation_detected)
+        {
+            print("hi");
+            Simulation.GetComponent<Controls>().enterInteractionMode();
+            Dialogue.SetActive(false);
+            return;
+        }
+        if (phase == 5 && !Simulation.GetComponent<Controls>().paused)
         {
             Simulation.GetComponent<Controls>().enterPlayMode();
+            Dialogue.SetActive(false);
+            return;
+        }
+        if (phase ==8 && !Simulation.GetComponent<Controls>().selectAllToggles())
+        {
+            Simulation.GetComponent<Controls>().enterObserveMode();
             Dialogue.SetActive(false);
             return;
         }
@@ -79,7 +91,15 @@ public class DialogueManager : MonoBehaviour
         //have to constantly check for updates on paused or other features to make sure we go to the next step
         //it automatically changes to onContinue with a status that current task is finished -> e.g. .paused
         //so the if statement on top can be bypassed
-        if (phase==2 && Simulation.GetComponent<Controls>().paused)
+        if (phase == 3 && Simulation.GetComponent<Controls>().first_manipulation_detected)
+        {
+            onContinue();
+        }
+        if (phase==5 && Simulation.GetComponent<Controls>().paused)
+        {
+            onContinue();
+        }
+        if (phase==8 && Simulation.GetComponent<Controls>().selectAllToggles())
         {
             onContinue();
         }
