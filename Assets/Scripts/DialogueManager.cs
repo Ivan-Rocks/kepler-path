@@ -24,7 +24,6 @@ public class DialogueManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        print(Simulation.GetComponent<Controls>().paused);
         ReadCSVFile();
         //ContinueButton.GetComponent<PressableButton>().OnClicked.AddListener(onContinue);
         setDialogue();
@@ -39,14 +38,13 @@ public class DialogueManager : MonoBehaviour
             total_phases++;
             string line = reader.ReadLine();
             string[] values = line.Split(',');
-            print(values.Length);
             //int x = int.Parse(values[0]);
             headers.Add(values[1]);
             texts.Add(values[2]);
         }
-
+        print(total_phases);
         reader.Close();
-        print(headers);
+        //print(headers);
     }
 
     public void setDialogue()
@@ -59,7 +57,9 @@ public class DialogueManager : MonoBehaviour
 
     public void onContinue()
     {
+        print("hi");
         //if we reach a state and the action has not been finished
+        //we make the action button clickable, if it has been done, it will call back and 
         if (phase == 2 && !Simulation.GetComponent<Controls>().paused)
         {
             Simulation.GetComponent<Controls>().enterPlayMode();
