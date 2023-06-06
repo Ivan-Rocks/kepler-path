@@ -5370,6 +5370,7 @@ MonoBehaviour:
   Record: {fileID: 1840557889}
   Reset: {fileID: 1958678764}
   Cancel: {fileID: 171724892}
+  record_status: 0
 --- !u!114 &1496244625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5404,6 +5405,7 @@ MonoBehaviour:
   - {fileID: 896212785}
   - {fileID: 1597708608}
   first_manipulation_detected: 0
+  first_measurement_detected: 0
 --- !u!114 &1496244626
 MonoBehaviour:
   m_ObjectHideFlags: 0

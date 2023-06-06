@@ -19,7 +19,7 @@ public class MeasuringTool : MonoBehaviour
     public GameObject Record;
     public GameObject Reset;
     public GameObject Cancel;
-    private int record_status = 0;
+    public int record_status = 0;
     private GameObject start;
     private GameObject end;
 

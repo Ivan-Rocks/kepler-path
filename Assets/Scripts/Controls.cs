@@ -33,6 +33,7 @@ public class Controls : MonoBehaviour
         Pause.GetComponent<PressableButton>().OnClicked.AddListener(onPause);
         Measure.GetComponent<PressableButton>().OnClicked.AddListener(onMeasure);
         Cancel.GetComponent<PressableButton>().OnClicked.AddListener(onCancel);
+        Record.GetComponent<PressableButton>().OnClicked.AddListener(detectFirstRecord);
         //Initializing components
         Simulation.GetComponent<ObjectManipulator>().enabled = false;
         print(Simulation.GetComponent<ObjectManipulator>().enabled);
@@ -54,9 +55,17 @@ public class Controls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //ObjectManipulator objectManipulator = gameObject.GetComponent<ObjectManipulator>();
-        //objectManipulator.enabled = !measuring;
-        Measure.GetComponent<PressableButton>().enabled = paused;
+        if (GameObject.Find("Dialogue Manager").GetComponent<DialogueManager>().phase >=9)
+        {
+            ObjectManipulator objectManipulator = gameObject.GetComponent<ObjectManipulator>();
+            objectManipulator.enabled = !measuring;
+            Measure.GetComponent<PressableButton>().enabled = paused;
+        }
+        if (GameObject.Find("Dialogue Manager").GetComponent<DialogueManager>().phase ==10 && 
+            gameObject.GetComponent<MeasuringTool>().record_status==2)
+        {
+            detectFirstMeasurement();
+        }
     }
 
     public void onShowLog()
@@ -144,12 +153,16 @@ public class Controls : MonoBehaviour
     public void detectFirstManipulation()
     {
         first_manipulation_detected=true;
-        print("hi");
     }
 
     public void enterObserveMode()
     {
         Observe.SetActive(true);
+    }
+
+    public void enterMeasuringMode()
+    {
+        Measure.SetActive(true);
     }
 
     public bool selectAllToggles()
@@ -159,5 +172,17 @@ public class Controls : MonoBehaviour
                 return false;
         ObsPanel.SetActive(false);
         return true;
+    }
+
+    public bool first_measurement_detected = false;
+    public void detectFirstMeasurement()
+    {
+        first_measurement_detected = true;
+    }
+
+    public bool first_record_detected = false;
+    public void detectFirstRecord()
+    {
+        first_record_detected = true;
     }
 }

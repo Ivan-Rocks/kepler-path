@@ -6,6 +6,7 @@ using UnityEngine;
 using System.IO;
 using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 using Unity.VisualScripting;
+using Microsoft.MixedReality.Toolkit.SpatialManipulation;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -61,7 +62,6 @@ public class DialogueManager : MonoBehaviour
         //we make the action button clickable, if it has been done, it will call back and 
         if (phase ==3 && !Simulation.GetComponent<Controls>().first_manipulation_detected)
         {
-            print("hi");
             Simulation.GetComponent<Controls>().enterInteractionMode();
             Dialogue.SetActive(false);
             return;
@@ -75,6 +75,22 @@ public class DialogueManager : MonoBehaviour
         if (phase ==8 && !Simulation.GetComponent<Controls>().selectAllToggles())
         {
             Simulation.GetComponent<Controls>().enterObserveMode();
+            Dialogue.SetActive(false);
+            return;
+        }
+        if (phase ==9 && !Simulation.GetComponent<Controls>().measuring)
+        {
+            Simulation.GetComponent<Controls>().enterMeasuringMode();
+            Dialogue.SetActive(false);
+            return;
+        }
+        if (phase==10 && !Simulation.GetComponent<Controls>().first_measurement_detected)
+        {
+            Dialogue.SetActive(false);
+            return;
+        }
+        if(phase==11 && !Simulation.GetComponent<Controls>().first_record_detected)
+        {
             Dialogue.SetActive(false);
             return;
         }
@@ -102,6 +118,18 @@ public class DialogueManager : MonoBehaviour
         if (phase==8 && Simulation.GetComponent<Controls>().selectAllToggles())
         {
             onContinue();
+        }
+        if (phase==9 && Simulation.GetComponent<Controls>().measuring)
+        {
+            onContinue();
+        }
+        if (phase==10 && Simulation.GetComponent<Controls>().first_measurement_detected)
+        {
+            onContinue();
+        }
+        if(phase==11 && Simulation.GetComponent<Controls>().first_record_detected)
+        {
+            Dialogue.SetActive(false);
         }
     }
 }
