@@ -11,9 +11,8 @@ using Microsoft.MixedReality.Toolkit.SpatialManipulation;
 public class DialogueManager : MonoBehaviour
 {
     public GameObject Simulation;
-    public GameObject Continue;
     public int phase = 0;
-    public int total_phases=0;
+    public int total_phases=12;
     public string csvFilePath = "Assets/Scripts/Dialogues.csv";
     public GameObject Dialogue;
     public TextMeshProUGUI header;
@@ -21,12 +20,12 @@ public class DialogueManager : MonoBehaviour
     //Strings
     public List<string> headers = new List<string>();
     public List<string> texts = new List<string>();
-
+    public DialogPool dialogPool;
     // Start is called before the first frame update
     void Start()
     {
         ReadCSVFile();
-        //ContinueButton.GetComponent<PressableButton>().OnClicked.AddListener(onContinue);
+        dialogPool = gameObject.AddComponent<DialogPool>();
         setDialogue();
     }
 
@@ -51,9 +50,11 @@ public class DialogueManager : MonoBehaviour
     public void setDialogue()
     {
         print(phase);
-        Dialogue.SetActive(true);
-        header.text = headers[phase];
-        text.text = texts[phase];
+        dialogPool.Get()
+            .SetHeader("header")
+            .SetBody("text")
+            .SetPositive("Continue", (args) => { onContinue(); })
+            .Show();
     }
 
     public void onContinue()
@@ -63,41 +64,35 @@ public class DialogueManager : MonoBehaviour
         if (phase ==3 && !Simulation.GetComponent<Controls>().first_manipulation_detected)
         {
             Simulation.GetComponent<Controls>().enterInteractionMode();
-            Dialogue.SetActive(false);
             return;
         }
         if (phase == 5 && !Simulation.GetComponent<Controls>().paused)
         {
             Simulation.GetComponent<Controls>().enterPlayMode();
-            Dialogue.SetActive(false);
             return;
         }
         if (phase ==8 && !Simulation.GetComponent<Controls>().selectAllToggles())
         {
             Simulation.GetComponent<Controls>().enterObserveMode();
-            Dialogue.SetActive(false);
             return;
         }
         if (phase ==9 && !Simulation.GetComponent<Controls>().measuring)
         {
             Simulation.GetComponent<Controls>().enterMeasuringMode();
-            Dialogue.SetActive(false);
             return;
         }
         if (phase==10 && !Simulation.GetComponent<Controls>().first_measurement_detected)
         {
-            Dialogue.SetActive(false);
             return;
         }
         if(phase==11 && !Simulation.GetComponent<Controls>().first_record_detected)
         {
-            Dialogue.SetActive(false);
             return;
         }
         //automatically goes to the next state
         if (phase < total_phases - 1)
             phase++;
-        Dialogue.SetActive(false);
+        //Dialogue.SetActive(false);
         setDialogue();
     }
 
@@ -126,10 +121,6 @@ public class DialogueManager : MonoBehaviour
         if (phase==10 && Simulation.GetComponent<Controls>().first_measurement_detected)
         {
             onContinue();
-        }
-        if(phase==11 && Simulation.GetComponent<Controls>().first_record_detected)
-        {
-            Dialogue.SetActive(false);
         }
     }
 }

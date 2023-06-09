@@ -36,8 +36,6 @@ public class Controls : MonoBehaviour
         Record.GetComponent<PressableButton>().OnClicked.AddListener(detectFirstRecord);
         //Initializing components
         Simulation.GetComponent<ObjectManipulator>().enabled = false;
-        print(Simulation.GetComponent<ObjectManipulator>().enabled);
-        print(Simulation.GetComponent<ObjectManipulator>().enabled);
         Measure.SetActive(false);
         Pause.GetComponent<PressableButton>().enabled= false;
         Observe.SetActive(false);
