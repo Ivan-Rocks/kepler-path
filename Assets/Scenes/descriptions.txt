@@ -1,0 +1,10 @@
+Final-5.29
+Pretty has all the functions we need. Added popping text whenever there are measuring clicks. However, toggles are not working fine.
+Final-6.1
+Fixed the toggle issue in 5.29 version. Need to implement and switch to hand-menu
+
+Testing-Scene With Dialogues
+Based on Final6.1 and added dialogues. Dialogues are working fine but everything is hard coded (API commandes, DialogPool, read CSV 
+would not work on Hololens) Dialogue texts might be modified in the future. Might need to think of a better way to organize phases and controls. The controlling script here is called ControlsWithDialogues. Archived because current developing state might not need dialogues. 
+Issue: APIs not working on Hololens
+Will UPDATE when hand-menu is done.

@@ -4,7 +4,7 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Controls : MonoBehaviour
+public class ControlsWithDialogue : MonoBehaviour
 {
     [NonSerialized] public bool paused = false;
     [NonSerialized] public bool measuring = false;
@@ -33,8 +33,13 @@ public class Controls : MonoBehaviour
         Pause.GetComponent<PressableButton>().OnClicked.AddListener(onPause);
         Measure.GetComponent<PressableButton>().OnClicked.AddListener(onMeasure);
         Cancel.GetComponent<PressableButton>().OnClicked.AddListener(onCancel);
-        //Set Measuring realted buttons
-        Measure.GetComponent<PressableButton>().enabled = false;
+        Record.GetComponent<PressableButton>().OnClicked.AddListener(detectFirstRecord);
+        //Initializing components
+        Simulation.GetComponent<ObjectManipulator>().enabled = false;
+        Measure.SetActive(false);
+        Pause.GetComponent<PressableButton>().enabled= false;
+        Observe.SetActive(false);
+        Reload.GetComponent<PressableButton>().enabled= false;
         Log.SetActive(false);
         RadarPanel.SetActive(false);
         Record.gameObject.SetActive(false);
@@ -48,9 +53,17 @@ public class Controls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ObjectManipulator objectManipulator = gameObject.GetComponent<ObjectManipulator>();
-        objectManipulator.enabled = !measuring;
-        Measure.GetComponent<PressableButton>().enabled = paused;
+        if (GameObject.Find("Dialogue Manager").GetComponent<DialogueManager>().phase >=9)
+        {
+            ObjectManipulator objectManipulator = gameObject.GetComponent<ObjectManipulator>();
+            objectManipulator.enabled = !measuring;
+            Measure.GetComponent<PressableButton>().enabled = paused;
+        }
+        if (GameObject.Find("Dialogue Manager").GetComponent<DialogueManager>().phase ==10 && 
+            gameObject.GetComponent<MeasuringTool>().record_status==2)
+        {
+            detectFirstMeasurement();
+        }
     }
 
     public void onShowLog()
@@ -80,8 +93,8 @@ public class Controls : MonoBehaviour
         Cancel.gameObject.SetActive(true);
         RadarPanel.gameObject.SetActive(true);
         //Cancel lower row
-        Record.GetComponent<PressableButton>().enabled = false;
-        Reset.GetComponent<PressableButton>().enabled = true;
+        Record.GetComponent<PressableButton>().enabled=false;
+        Reset.GetComponent<PressableButton>().enabled=true;
         Cancel.GetComponent<PressableButton>().enabled = true;
         Observe.GetComponent<PressableButton>().enabled = false;
         //deactive obspanel
@@ -91,14 +104,14 @@ public class Controls : MonoBehaviour
         for (int i = 0; i < transparent_objects.Length; i++)
             transparent_objects[i].SetActive(true);
         //Set box collider inactive when measuring
-        Simulation.GetComponent<BoxCollider>().enabled = false;
+        Simulation.GetComponent<BoxCollider>().enabled=false;
     }
 
     public void onCancel()
     {
         print("playing mode");
         //De-toggle all the toggle buttons
-        for (int i = 0; i < transparent_toggles.Length; i++)
+        for (int i=0; i < transparent_toggles.Length; i++)
             if (transparent_toggles[i].GetComponent<PressableButton>().IsToggled)
                 transparent_toggles[i].GetComponent<PressableButton>().ForceSetToggled(false, false);
         //Cancel lower row
@@ -122,5 +135,52 @@ public class Controls : MonoBehaviour
             transparent_objects[i].SetActive(false);
         //Set box collider inactive when measuring
         Simulation.GetComponent<BoxCollider>().enabled = true;
+    }
+
+
+    public void enterPlayMode()
+    {
+        Pause.GetComponent <PressableButton>().enabled = true;
+    }
+    public void enterInteractionMode()
+    {
+        gameObject.GetComponent<ObjectManipulator>().enabled = true;
+    }
+
+    public bool first_manipulation_detected = false;
+    public void detectFirstManipulation()
+    {
+        first_manipulation_detected=true;
+    }
+
+    public void enterObserveMode()
+    {
+        Observe.SetActive(true);
+    }
+
+    public void enterMeasuringMode()
+    {
+        Measure.SetActive(true);
+    }
+
+    public bool selectAllToggles()
+    {
+        for (int i = 0; i < transparent_toggles.Length; i++)
+            if (!transparent_toggles[i].GetComponent<PressableButton>().IsToggled)
+                return false;
+        ObsPanel.SetActive(false);
+        return true;
+    }
+
+    public bool first_measurement_detected = false;
+    public void detectFirstMeasurement()
+    {
+        first_measurement_detected = true;
+    }
+
+    public bool first_record_detected = false;
+    public void detectFirstRecord()
+    {
+        first_record_detected = true;
     }
 }
