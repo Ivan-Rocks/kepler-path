@@ -58,36 +58,36 @@ public class DialogueManager : MonoBehaviour
     {
         //if we reach a state and the action has not been finished
         //we make the action button clickable, if it has been done, it will call back and 
-        if (phase ==3 && !Simulation.GetComponent<Controls>().first_manipulation_detected)
+        if (phase ==3 && !Simulation.GetComponent<ControlsWithDialogue>().first_manipulation_detected)
         {
-            Simulation.GetComponent<Controls>().enterInteractionMode();
+            Simulation.GetComponent<ControlsWithDialogue>().enterInteractionMode();
             Dialogue.SetActive(false);
             return;
         }
-        if (phase == 5 && !Simulation.GetComponent<Controls>().paused)
+        if (phase == 5 && !Simulation.GetComponent<ControlsWithDialogue>().paused)
         {
-            Simulation.GetComponent<Controls>().enterPlayMode();
+            Simulation.GetComponent<ControlsWithDialogue>().enterPlayMode();
             Dialogue.SetActive(false);
             return;
         }
-        if (phase ==8 && !Simulation.GetComponent<Controls>().selectAllToggles())
+        if (phase ==8 && !Simulation.GetComponent<ControlsWithDialogue>().selectAllToggles())
         {
-            Simulation.GetComponent<Controls>().enterObserveMode();
+            Simulation.GetComponent<ControlsWithDialogue>().enterObserveMode();
             Dialogue.SetActive(false);
             return;
         }
-        if (phase ==9 && !Simulation.GetComponent<Controls>().measuring)
+        if (phase ==9 && !Simulation.GetComponent<ControlsWithDialogue>().measuring)
         {
-            Simulation.GetComponent<Controls>().enterMeasuringMode();
+            Simulation.GetComponent<ControlsWithDialogue>().enterMeasuringMode();
             Dialogue.SetActive(false);
             return;
         }
-        if (phase==10 && !Simulation.GetComponent<Controls>().first_measurement_detected)
+        if (phase==10 && !Simulation.GetComponent<ControlsWithDialogue>().first_measurement_detected)
         {
             Dialogue.SetActive(false);
             return;
         }
-        if(phase==11 && !Simulation.GetComponent<Controls>().first_record_detected)
+        if(phase==11 && !Simulation.GetComponent<ControlsWithDialogue>().first_record_detected)
         {
             Dialogue.SetActive(false);
             return;
@@ -105,23 +105,23 @@ public class DialogueManager : MonoBehaviour
         //have to constantly check for updates on paused or other features to make sure we go to the next step
         //it automatically changes to onContinue with a status that current task is finished -> e.g. .paused
         //so the if statement on top can be bypassed
-        if (phase == 3 && Simulation.GetComponent<Controls>().first_manipulation_detected)
+        if (phase == 3 && Simulation.GetComponent<ControlsWithDialogue>().first_manipulation_detected)
         {
             onContinue();
         }
-        if (phase==5 && Simulation.GetComponent<Controls>().paused)
+        if (phase==5 && Simulation.GetComponent<ControlsWithDialogue>().paused)
         {
             onContinue();
         }
-        if (phase==8 && Simulation.GetComponent<Controls>().selectAllToggles())
+        if (phase==8 && Simulation.GetComponent<ControlsWithDialogue>().selectAllToggles())
         {
             onContinue();
         }
-        if (phase==9 && Simulation.GetComponent<Controls>().measuring)
+        if (phase==9 && Simulation.GetComponent<ControlsWithDialogue>().measuring)
         {
             onContinue();
         }
-        if (phase==10 && Simulation.GetComponent<Controls>().first_measurement_detected)
+        if (phase==10 && Simulation.GetComponent<ControlsWithDialogue>().first_measurement_detected)
         {
             onContinue();
         }
