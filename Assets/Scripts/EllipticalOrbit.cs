@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class EllipticalOrbit : MonoBehaviour
@@ -54,7 +55,11 @@ public class EllipticalOrbit : MonoBehaviour
         orbit.endWidth = gameObject.transform.localScale.x / 10;
         orbit.SetPositions(pos);
         //Calculate current planet position
-        bool paused = gameObject.GetComponent<Controls>().paused; 
+        bool paused;
+        if (SceneManager.GetActiveScene().name.Contains("Dialogue"))
+            paused = gameObject.GetComponent<ControlsWithDialogue>().paused; 
+        else
+            paused = gameObject.GetComponent<Controls>().paused;
         if (!paused)
             degree++;
         if (degree > 360)

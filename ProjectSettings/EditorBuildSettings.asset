@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/StartNew.unity
-    guid: c4ac2931ce931644ca24b8b2edea2fed
+    path: Assets/Scenes/Testing Hand Menu.unity
+    guid: ac7d91d2fea14754d855f936d718806b
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 0f23af3cb32dc7b45897a1eae7bca303, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: da5ac6bd804bc734f88a64ae53eb6081, type: 2}

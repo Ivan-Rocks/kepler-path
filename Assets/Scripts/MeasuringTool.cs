@@ -6,6 +6,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
@@ -81,7 +82,12 @@ public class MeasuringTool : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.GetComponent<Controls>().measuring)
+        bool measuring;
+        if (SceneManager.GetActiveScene().name.Contains("Dialogue"))
+            measuring = gameObject.GetComponent<ControlsWithDialogue>().measuring;
+        else
+            measuring = gameObject.GetComponent<Controls>().measuring;
+        if (measuring)
         {
             Transform x = hand.GetComponent<MRTKRayInteractor>().rayOriginTransform;
             Reset.GetComponent<PressableButton>().enabled = true;

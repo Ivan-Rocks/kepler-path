@@ -9,6 +9,7 @@ public class Controls : MonoBehaviour
     [NonSerialized] public bool paused = false;
     [NonSerialized] public bool measuring = false;
     //Buttons
+    public GameObject MenuContent;
     public GameObject RadarPanel;
     public GameObject ObsPanel;
     public GameObject Reload;
@@ -50,6 +51,14 @@ public class Controls : MonoBehaviour
     {
         ObjectManipulator objectManipulator = gameObject.GetComponent<ObjectManipulator>();
         objectManipulator.enabled = !measuring;
+        if (RadarPanel.activeSelf && !MenuContent.activeSelf)
+        {
+            RadarPanel.SetActive(false);
+        }
+        if (ObsPanel.activeSelf && !MenuContent.activeSelf)
+        {
+            ObsPanel.SetActive(false);
+        }
         Measure.GetComponent<PressableButton>().enabled = paused;
     }
 
