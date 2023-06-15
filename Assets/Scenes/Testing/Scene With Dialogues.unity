@@ -3878,7 +3878,6 @@ MonoBehaviour:
   - Now you are in measuring mode, try to select two objects with your right hand
     ray.
   - Now you have made your measurement, you can hit record or reset lines.
-  dialogPool: {fileID: 0}
 --- !u!4 &1071405016
 Transform:
   m_ObjectHideFlags: 0
