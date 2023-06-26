@@ -11,8 +11,6 @@ using UnityEngine;
 public class DataLogging : MonoBehaviour
 {
     public GameObject Simulation;
-    public GameObject leftHand;
-    public GameObject rightHand;
     //Recording related variable
     [SerializeField] private int lambda;
     private float recording_threshold;
@@ -78,6 +76,7 @@ public class DataLogging : MonoBehaviour
         {
             lastrecord = Time.time;
         }
+        //Simulation
         if (recoding_simulation)
         {
             String[] elements = new String[] { Time.time.ToString(), 
@@ -87,8 +86,7 @@ public class DataLogging : MonoBehaviour
             //get it to str and write to csv
         }
         //Hands CSV
-        print(leftHand==null);
-
+        
         /* Player.csv
         // Retrieve the player's position and rotation
         Vector3 playerPosition = CameraCache.Main.transform.position;
