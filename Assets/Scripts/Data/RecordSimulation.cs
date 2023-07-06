@@ -8,7 +8,7 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class DataLogging : MonoBehaviour
+public class RecordSimulation : MonoBehaviour
 {
     public GameObject Simulation;
     //Recording related variable
@@ -30,6 +30,7 @@ public class DataLogging : MonoBehaviour
         lastrecord = Time.time;
         recording_threshold = (float)1 / lambda;
         filePath = Application.dataPath + "/Generated Data/Simulation.csv";
+        //filePath = "Internal Storage/HoloOrbitsData/Simulation.csv";
         ClearCsvFile(filePath);
         writer = new StreamWriter(filePath, true);
         writer.WriteLine("id,time,position,rotation,scale");
@@ -37,7 +38,8 @@ public class DataLogging : MonoBehaviour
 
     private void OnDestroy()
     {
-        writer.Close(); // Close the StreamWriter when the application is closed
+        writer.Close();
+        writer.Dispose();
     }
 
     public void ClearCsvFile(string filePath)
@@ -62,7 +64,7 @@ public class DataLogging : MonoBehaviour
         message = unsignedHashCode.ToString() + delimiter;
         foreach (String temp in s) 
             message += temp + delimiter;
-        print(message);
+        //print(message);
         writer.WriteLine(message);
     }
 
@@ -82,18 +84,7 @@ public class DataLogging : MonoBehaviour
             String[] elements = new String[] { Time.time.ToString(), 
                 Simulation.transform.position.ToString(), Simulation.transform.localScale.ToString(), Simulation.transform.rotation.ToString()};
             write_to_CSV(elements);
-            //print(Simulation.transform.position +" "+ Simulation.transform.localScale +" "+Simulation.transform.rotation);
-            //get it to str and write to csv
         }
-        //Hands CSV
-        
-        /* Player.csv
-        // Retrieve the player's position and rotation
-        Vector3 playerPosition = CameraCache.Main.transform.position;
-        Quaternion playerRotation = CameraCache.Main.transform.rotation;
-        // Log the player's position and rotation or use them as needed
-        Debug.Log("Player Position: " + playerPosition);
-        Debug.Log("Player Rotation: " + playerRotation.eulerAngles);*/
 
     }
 }
