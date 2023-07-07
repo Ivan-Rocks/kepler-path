@@ -9,6 +9,7 @@ using UnityEngine;
 public class RecordActions : MonoBehaviour
 {
     public GameObject Simulation;
+    public Controls controls;
     private string filePath;
     private string delimiter = ","; // Delimiter to separate values in the CSV file
     private StreamWriter action_writer;
@@ -16,6 +17,7 @@ public class RecordActions : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        controls = Simulation.GetComponent<Controls>();
         filePath = Application.dataPath + "/Generated Data/Actions.csv";
         //filePath = "Internal Storage/HoloOrbitsData/Simulation.csv";
         ClearCsvFile(filePath);
@@ -56,7 +58,7 @@ public class RecordActions : MonoBehaviour
     
     public void recordPause()
     {
-        if(Simulation.GetComponent<Controls>().paused)
+        if (controls.paused)
         {
             String[] elements = new String[] { Time.time.ToString(), "Button Press", "Pause"};
             write_to_CSV(elements);
@@ -65,6 +67,63 @@ public class RecordActions : MonoBehaviour
             String[] elements = new String[] { Time.time.ToString(), "Button Press", "Play" };
             write_to_CSV(elements);
         }
+    }
+
+    public void recordLog()
+    {
+        if (controls.RadarPanel.activeSelf)
+        {
+            String[] elements = new String[] { Time.time.ToString(), "Button Press", "Open Log" };
+            write_to_CSV(elements);
+        } else
+        {
+            String[] elements = new String[] { Time.time.ToString(), "Button Press", "Close Log" };
+            write_to_CSV(elements);
+        }
+    }
+
+    public void recordMeasure()
+    {
+        String[] elements = new String[] { Time.time.ToString(), "Button Press", "Measure" };
+        write_to_CSV(elements);
+    }
+
+    public void recordRecord()
+    {
+        String[] elements = new String[] { Time.time.ToString(), "Button Press", "Record" };
+        write_to_CSV(elements);
+    }
+
+    public void recordReset()
+    {
+        String[] elements = new String[] { Time.time.ToString(), "Button Press", "Reset" };
+        write_to_CSV(elements);
+    }
+
+    public void recordReturn()
+    {
+        String[] elements = new String[] { Time.time.ToString(), "Button Press", "Return" };
+        write_to_CSV(elements);
+    }
+
+    public void recordObserve()
+    {
+        if (controls.ObsPanel.activeSelf)
+        {
+            String[] elements = new String[] { Time.time.ToString(), "Button Press", "Open Log" };
+            write_to_CSV(elements);
+        }
+        else
+        {
+            String[] elements = new String[] { Time.time.ToString(), "Button Press", "Close Log" };
+            write_to_CSV(elements);
+        }
+    }
+
+    public void recordToggles(String t)
+    {
+        String[] elements = new String[] { Time.time.ToString(), "Toggle Press", t };
+        write_to_CSV(elements);
     }
 
     public  void recordHit(GameObject obj)
