@@ -44,9 +44,13 @@ public class RecordActions : MonoBehaviour
         int id = s.GetHashCode();
         uint unsignedHashCode = unchecked((uint)id);
         message = unsignedHashCode.ToString() + delimiter;
+        //UTC Time
+        System.DateTime utcTime = System.DateTime.UtcNow;
+        string formattedTime = utcTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
+        message += "UTC-"+formattedTime + delimiter;
         foreach (String temp in s)
             message += temp + delimiter;
-        print(message);
+        //print(message);
         action_writer.WriteLine(message);
     }
 
@@ -60,11 +64,11 @@ public class RecordActions : MonoBehaviour
     {
         if (controls.paused)
         {
-            String[] elements = new String[] { Time.time.ToString(), "Button Press", "Pause"};
+            String[] elements = new String[] {"Button Press", "Play"};
             write_to_CSV(elements);
         } else
         {
-            String[] elements = new String[] { Time.time.ToString(), "Button Press", "Play" };
+            String[] elements = new String[] {"Button Press", "Pause" };
             write_to_CSV(elements);
         }
     }
@@ -73,36 +77,36 @@ public class RecordActions : MonoBehaviour
     {
         if (controls.RadarPanel.activeSelf)
         {
-            String[] elements = new String[] { Time.time.ToString(), "Button Press", "Open Log" };
+            String[] elements = new String[] { "Button Press", "Open Log" };
             write_to_CSV(elements);
         } else
         {
-            String[] elements = new String[] { Time.time.ToString(), "Button Press", "Close Log" };
+            String[] elements = new String[] { "Button Press", "Close Log" };
             write_to_CSV(elements);
         }
     }
 
     public void recordMeasure()
     {
-        String[] elements = new String[] { Time.time.ToString(), "Button Press", "Measure" };
+        String[] elements = new String[] { "Button Press", "Measure" };
         write_to_CSV(elements);
     }
 
     public void recordRecord()
     {
-        String[] elements = new String[] { Time.time.ToString(), "Button Press", "Record" };
+        String[] elements = new String[] { "Button Press", "Record" };
         write_to_CSV(elements);
     }
 
     public void recordReset()
     {
-        String[] elements = new String[] { Time.time.ToString(), "Button Press", "Reset" };
+        String[] elements = new String[] { "Button Press", "Reset" };
         write_to_CSV(elements);
     }
 
     public void recordReturn()
     {
-        String[] elements = new String[] { Time.time.ToString(), "Button Press", "Return" };
+        String[] elements = new String[] { "Button Press", "Return" };
         write_to_CSV(elements);
     }
 
@@ -110,25 +114,25 @@ public class RecordActions : MonoBehaviour
     {
         if (controls.ObsPanel.activeSelf)
         {
-            String[] elements = new String[] { Time.time.ToString(), "Button Press", "Open Log" };
+            String[] elements = new String[] { "Button Press", "Open Observe" };
             write_to_CSV(elements);
         }
         else
         {
-            String[] elements = new String[] { Time.time.ToString(), "Button Press", "Close Log" };
+            String[] elements = new String[] { "Button Press", "Close Observe" };
             write_to_CSV(elements);
         }
     }
 
     public void recordToggles(String t)
     {
-        String[] elements = new String[] { Time.time.ToString(), "Toggle Press", t };
+        String[] elements = new String[] { "Toggle Press", t };
         write_to_CSV(elements);
     }
 
     public  void recordHit(GameObject obj)
     {
-        String[] elements = new String[] { Time.time.ToString(), "Made a measurement", "CLicked on "+obj.name};
+        String[] elements = new String[] { "Made a measurement", "CLicked on "+obj.name};
         write_to_CSV(elements);
     }
 }

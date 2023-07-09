@@ -10,6 +10,7 @@ using UnityEngine.XR;
 public class RecordLeftHand : MonoBehaviour
 {
     public GameObject leftHand;
+    private TrackedHandJoint trackedJoint = TrackedHandJoint.IndexTip;
     [SerializeField] private int lambda;
     private float recording_threshold;
     private float lastrecord;

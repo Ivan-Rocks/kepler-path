@@ -49,6 +49,10 @@ public class RecordPlayer : MonoBehaviour
         int id = s.GetHashCode();
         uint unsignedHashCode = unchecked((uint)id);
         message = unsignedHashCode.ToString() + delimiter;
+        //UTC Time
+        System.DateTime utcTime = System.DateTime.UtcNow;
+        string formattedTime = utcTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
+        message += "UTC-" + formattedTime + delimiter;
         foreach (String temp in s)
             message += temp + delimiter;
         //print(message);
@@ -69,7 +73,7 @@ public class RecordPlayer : MonoBehaviour
         //Player
         if (Camera.current!= null)
         {
-            String[] elements = new String[] { Time.time.ToString(), Camera.current.transform.position.ToString(),
+            String[] elements = new String[] { Camera.current.transform.position.ToString(),
             Camera.current.transform.rotation.ToString(), Camera.current.transform.forward.ToString()};
             write_to_CSV(elements);
         }

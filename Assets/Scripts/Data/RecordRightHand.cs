@@ -9,6 +9,7 @@ using UnityEngine.XR;
 
 public class RecordRightHand : MonoBehaviour
 {
+    public GameObject rightHand;
     [SerializeField] private int lambda;
     private float recording_threshold;
     private float lastrecord;
@@ -68,31 +69,6 @@ public class RecordRightHand : MonoBehaviour
         {
             lastrecord = Time.time;
         }
-        if (HandJointUtils.TryGetJointPose(TrackedHandJoint.Palm, Handedness.Right, out MixedRealityPose palmPose))
-        {
-            print("hi");
-            // Get hand position
-            Vector3 handPosition = palmPose.Position;
-
-            // Get hand rotation
-            Quaternion handRotation = palmPose.Rotation;
-
-            // Get hand forward vector
-            Vector3 handForward = palmPose.Forward;
-
-            print(handPosition);
-        }
-        //Left Hand
-        /*
-        if (leftHand != null)
-        {
-            Transform x = leftHand.GetComponent<MRTKRayInteractor>().rayOriginTransform;
-            print(x.position);
-            print(x.forward);
-            String[] elements = new String[] { x.position.ToString(),
-                x.rotation.ToString(), x.forward.ToString()};
-            write_to_CSV(elements);
-            print(elements);
-        }*/
+        print(rightHand.transform.position);
     }
 }

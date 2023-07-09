@@ -62,7 +62,11 @@ public class RecordSimulation : MonoBehaviour
         int id = s.GetHashCode();
         uint unsignedHashCode = unchecked((uint)id);
         message = unsignedHashCode.ToString() + delimiter;
-        foreach (String temp in s) 
+        //UTC Time
+        System.DateTime utcTime = System.DateTime.UtcNow;
+        string formattedTime = utcTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
+        message += "UTC-" + formattedTime + delimiter;
+        foreach (String temp in s)
             message += temp + delimiter;
         //print(message);
         writer.WriteLine(message);
@@ -81,8 +85,10 @@ public class RecordSimulation : MonoBehaviour
         //Simulation
         if (recoding_simulation)
         {
-            String[] elements = new String[] { Time.time.ToString(), 
-                Simulation.transform.position.ToString(), Simulation.transform.localScale.ToString(), Simulation.transform.rotation.ToString()};
+            String[] elements = new String[] { 
+                Simulation.transform.position.ToString(), 
+                Simulation.transform.localScale.ToString(), 
+                Simulation.transform.rotation.ToString()};
             write_to_CSV(elements);
         }
 
