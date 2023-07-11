@@ -84,7 +84,7 @@ public class ControlsWithDialogue : MonoBehaviour
     public void onMeasure()
     {
         print("measuring mode");
-        Pause.gameObject.SetActive(false);
+        Pause.gameObject.SetActive(true);
         Measure.gameObject.SetActive(false);
         //Activate lower row
         Log.gameObject.SetActive(true);

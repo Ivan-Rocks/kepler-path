@@ -1,12 +1,12 @@
-0;Roger:;Welcome to HoloOrbits! I am Roger. I will be your space guide and will help you make your first observation.
-1;Roger:;Through this simulation I will help you measure the orbit of this exoplanet around this dwarf-star.
-2;Roger:;My goal is to help you get through this simulation so that you can help your research team send radar transmissions from different locations/objects in real space enviornments.
+0;Roger:;Welcome to HoloOrbits! I am Roger. I will be your space guide and will help you make your first observation.,,
+1;Roger:;Through this simulation I will help you measure the orbit of this exoplanet around this dwarf-star.,,
+2;Roger:;My goal is to help you get through this simulation so that you can help your research team send radar transmissions from different locations/objects in real space enviornments.,,
 3;Roger:;Please take a minute to explore the enviroment and to get use to your hand-rays that will allow you to move,  rotate,  or scale the system (exoplanet and dwarf-star) in your perferred viewing angle.
-4;Roger:;Once you explored and established  your perferred viewing angle. Please raise your hand and direct your palm in your field of view. This will activate the palm menu.
-5;Roger:;Once you are ready to move hit the pause button to enter the next stage of making an observation.
-6;Roger:;Now that you have paused the simulation  you are almost ready to make some observations!
-7;Roger:;There are few more step that you need to complete.
-8;Roger:;It is necesary that you get to know some of the key points that will help you understand how to measure ellipses! Please select the observe button to enter the observe mode.
-9;Roger:;Now that you have observed all the different points that will help you measure an ellispse, please hit the measure button to enter measuring mode!
-10;Roger:;Now you are in measuring mode, try to select two objects with your right hand ray.
-11;Roger:;Now you have made your measurement, you can hit record or reset lines.
+"4;Roger:;Once you explored and established  your perferred viewing angle. You now have unlocked a special science menu. Try and grab the menu, and bring it with you towards the planets that you will be exploring.",,
+5;Roger:;Once you are ready to move hit the pause button to enter the next stage of making an observation.,,
+6;Roger:;Now that you have paused the simulation  you are almost ready to make some observations!,,
+7;Roger:;There are few more step that you need to complete.,,
+8;Roger:;It is necesary that you get to know some of the key points that will help you understand how to measure ellipses! Please select the observe button to enter the observe mode.,,
+9;Roger:;Now that you have observed all the different points that will help you measure an ellispse, please hit the measure button to enter measuring mode!,
+10;Roger:;Now you are in measuring mode, try to select two objects with your right hand ray.,
+11;Roger:;Now you have made your measurement, you can hit record or reset lines.,
