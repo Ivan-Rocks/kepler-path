@@ -3875,8 +3875,9 @@ MonoBehaviour:
   Header: {fileID: 1044719366}
   MainText: {fileID: 504539846}
   phase: 0
-  total_phases: 12
+  total_phases: 13
   headers:
+  - 'Roger:'
   - 'Roger:'
   - 'Roger:'
   - 'Roger:'
@@ -3900,9 +3901,9 @@ MonoBehaviour:
   - Please take a minute to explore the enviroment and to get use to your hand-rays
     that will allow you to move,  rotate,  or scale the system (exoplanet and dwarf-star)
     in your perferred viewing angle.
-  - Once you explored and established  your perferred viewing angle. Please raise
-    your hand and direct your palm in your field of view. This will activate the
-    palm menu.
+  - 4;Roger:;Once you explored and established  your perferred viewing angle. You
+    now have unlocked a special science menu. Try and grab the menu, and bring it
+    with you towards the planets that you will be exploring.
   - Once you are ready to move hit the pause button to enter the next stage of making
     an observation.
   - Now that you have paused the simulation  you are almost ready to make some observations!
@@ -3915,6 +3916,8 @@ MonoBehaviour:
   - Now you are in measuring mode, try to select two objects with your right hand
     ray.
   - Now you have made your measurement, you can hit record or reset lines.
+  - Now that you've made your first observation, please wait for / work with your
+    partner to solve this mystery planets orbit!
 --- !u!4 &1071405016
 Transform:
   m_ObjectHideFlags: 0
