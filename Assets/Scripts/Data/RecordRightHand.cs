@@ -69,6 +69,6 @@ public class RecordRightHand : MonoBehaviour
         {
             lastrecord = Time.time;
         }
-        print(rightHand.transform.position);
+        //print(rightHand.transform.position);
     }
 }

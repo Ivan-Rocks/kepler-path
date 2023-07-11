@@ -1,1 +1,8 @@
-id,time,Action,Message
+id,time,Scene,Action,Event,Description
+2518637858,UTC-2023-07-11 02:41:18.890,Play,Button Press,Pause,
+3300990580,UTC-2023-07-11 02:41:19.800,Play,Button Press,Measure Mode,
+1057611762,UTC-2023-07-11 02:41:21.240,Measure,Object Selected ,Planet,
+2133946200,UTC-2023-07-11 02:41:22.679,Measure,Object Selected ,Sun,
+2777381928,UTC-2023-07-11 02:41:25.281,Measure,Distance Recorded,10.9286AU,10.9286,
+600517158,UTC-2023-07-11 02:41:26.585,Measure,Data Selected ,Show Entry:Planet to Sun, distance:10.929 at radian0.4527778,
+3612660644,UTC-2023-07-11 02:41:27.220,Measure,Data Selected ,Hide Entry:Planet to Sun,distance:10.929 at radian0.4527778,

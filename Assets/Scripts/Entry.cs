@@ -10,6 +10,7 @@ public class Entry : MonoBehaviour
     [NonSerialized] public string distance;
     [NonSerialized] public float t;
     [NonSerialized] public bool status=false;//false for not shown on holograph
+    [NonSerialized] public GameObject Data;
     public GameObject startText;
     public GameObject endText;
     public GameObject distText;
@@ -19,6 +20,8 @@ public class Entry : MonoBehaviour
     void Start()
     {
         gameObject.GetComponent<PressableButton>().OnClicked.AddListener(onStatusChanged);
+        Data = GameObject.Find("Data");
+        gameObject.GetComponent<PressableButton>().OnClicked.AddListener(()=> Data.GetComponent<RecordActions>().recordDataSelection(status, start,end,distance,t));
     }
 
     public void Initialize(GameObject start, GameObject end, string distance, float t)

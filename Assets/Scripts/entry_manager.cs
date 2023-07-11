@@ -17,7 +17,7 @@ public class entry_manager : MonoBehaviour
 
     public void createEntry(GameObject start, GameObject end, string distance, float t)
     {
-        print(start.name+distance);
+        //print(start.name+distance);
         GameObject instance = Instantiate(prefab, entry_panel.transform);
         instance.GetComponent<Entry>().Initialize(start, end, distance, t);
         entries.Add(instance);
