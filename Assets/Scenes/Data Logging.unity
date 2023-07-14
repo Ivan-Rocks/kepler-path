@@ -8990,7 +8990,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Simulation: {fileID: 1496244614}
-  controls: {fileID: 0}
 --- !u!114 &1401643412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16411,7 +16410,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 381969322861459380, guid: 6d114d8c9f4193b45b685f408022743e, type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 381969322861459380, guid: 6d114d8c9f4193b45b685f408022743e, type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.size

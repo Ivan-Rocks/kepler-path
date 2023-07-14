@@ -9,7 +9,7 @@ using UnityEngine;
 public class RecordActions : MonoBehaviour
 {
     public GameObject Simulation;
-    public Controls controls;
+    private ControlsWithDialogue controls;
     private string filePath;
     private string delimiter = ","; // Delimiter to separate values in the CSV file
     private StreamWriter action_writer;
@@ -17,7 +17,7 @@ public class RecordActions : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        controls = Simulation.GetComponent<Controls>();
+        controls = Simulation.GetComponent<ControlsWithDialogue>();
         filePath = Application.dataPath + "/Generated Data/Actions.csv";
         //filePath = "Internal Storage/HoloOrbitsData/Simulation.csv";
         ClearCsvFile(filePath);
@@ -71,7 +71,7 @@ public class RecordActions : MonoBehaviour
                 mode = "Play";
             }
         }
-        print(mode);
+        //print(mode);
     }
     
     public void recordPause()

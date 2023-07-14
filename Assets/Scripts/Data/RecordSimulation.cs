@@ -68,13 +68,14 @@ public class RecordSimulation : MonoBehaviour
         message += "UTC-" + formattedTime + delimiter;
         foreach (String temp in s)
             message += temp + delimiter;
-        //print(message);
+        print(message);
         writer.WriteLine(message);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        print(recoding_simulation);
         if (Time.time - lastrecord < recording_threshold)
         {
             return;

@@ -23,7 +23,7 @@ public class MeasuringTool : MonoBehaviour
     public int record_status = 0;
     private GameObject start;
     private GameObject end;
-    //public GameObject Data;
+    public GameObject Data;
 
     // Start is called before the first frame update
     void Start()
@@ -104,7 +104,7 @@ public class MeasuringTool : MonoBehaviour
                     GameObject notice = GameObject.Find("Selection Notice");
                     notice.GetComponent<SelectionNotice>().setText(start);
                     print("first" + start.name);
-                    //Data.GetComponent<RecordActions>().recordHit(start);
+                    Data.GetComponent<RecordActions>().recordHit(start);
                 }
             }
             //Second Press
@@ -125,7 +125,7 @@ public class MeasuringTool : MonoBehaviour
                         distance /= GameObject.Find("Simulation").transform.localScale.x;
                         GameObject notice = GameObject.Find("Selection Notice");
                         notice.GetComponent<SelectionNotice>().setText(end);
-                        //Data.GetComponent<RecordActions>().recordHit(end);
+                        Data.GetComponent<RecordActions>().recordHit(end);
                     }
                 }
             }
