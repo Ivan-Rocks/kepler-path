@@ -66,7 +66,7 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        if (phase == 4)
+        if (phase == 4 && !MainMenu.activeSelf)
         {
             MainMenu.SetActive(true);
             return;
@@ -118,7 +118,7 @@ public class DialogueManager : MonoBehaviour
             onContinue();
         }
 
-        if (phase == 4)
+        if (phase == 4 && MainMenu.activeSelf)
         {
             onContinue();
         }
