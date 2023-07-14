@@ -10,6 +10,7 @@ using Microsoft.MixedReality.Toolkit.SpatialManipulation;
 
 public class DialogueManager : MonoBehaviour
 {
+    public GameObject MainMenu;
     public GameObject Simulation;
     public GameObject Dialogue;
     public GameObject Header;
@@ -64,6 +65,13 @@ public class DialogueManager : MonoBehaviour
             Dialogue.SetActive(false);
             return;
         }
+
+        if (phase == 4)
+        {
+            MainMenu.SetActive(true);
+            return;
+        }
+
         if (phase == 5 && !Simulation.GetComponent<ControlsWithDialogue>().paused)
         {
             Simulation.GetComponent<ControlsWithDialogue>().enterPlayMode();
@@ -109,6 +117,12 @@ public class DialogueManager : MonoBehaviour
         {
             onContinue();
         }
+
+        if (phase == 4)
+        {
+            onContinue();
+        }
+
         if (phase==5 && Simulation.GetComponent<ControlsWithDialogue>().paused)
         {
             onContinue();

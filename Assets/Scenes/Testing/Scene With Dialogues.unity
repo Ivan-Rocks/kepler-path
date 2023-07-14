@@ -192,15 +192,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 791738712976538213, guid: f443144a6d408c34bb8a7d70a73644c4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 3.25
       objectReference: {fileID: 0}
     - target: {fileID: 791738712976538213, guid: f443144a6d408c34bb8a7d70a73644c4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.95
       objectReference: {fileID: 0}
     - target: {fileID: 791738712976538213, guid: f443144a6d408c34bb8a7d70a73644c4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -2.75
       objectReference: {fileID: 0}
     - target: {fileID: 791738712976538213, guid: f443144a6d408c34bb8a7d70a73644c4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -441,6 +441,26 @@ PrefabInstance:
     - target: {fileID: 5379716786649469289, guid: f443144a6d408c34bb8a7d70a73644c4, type: 3}
       propertyPath: currentIconName
       value: Icon 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 5453643585072226201, guid: f443144a6d408c34bb8a7d70a73644c4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5453643585072226201, guid: f443144a6d408c34bb8a7d70a73644c4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 5453643585072226201, guid: f443144a6d408c34bb8a7d70a73644c4, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5453643585072226201, guid: f443144a6d408c34bb8a7d70a73644c4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5453643585072226201, guid: f443144a6d408c34bb8a7d70a73644c4, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6356742320691537317, guid: f443144a6d408c34bb8a7d70a73644c4, type: 3}
       propertyPath: m_text
@@ -3901,9 +3921,9 @@ MonoBehaviour:
   - Please take a minute to explore the enviroment and to get use to your hand-rays
     that will allow you to move,  rotate,  or scale the system (exoplanet and dwarf-star)
     in your perferred viewing angle.
-  - 4;Roger:;Once you explored and established  your perferred viewing angle. You
-    now have unlocked a special science menu. Try and grab the menu, and bring it
-    with you towards the planets that you will be exploring.
+  - Once you explored and established  your perferred viewing angle. You now have
+    unlocked a special science menu. Try and grab the menu, and bring it with you
+    towards the planets that you will be exploring.
   - Once you are ready to move hit the pause button to enter the next stage of making
     an observation.
   - Now that you have paused the simulation  you are almost ready to make some observations!
