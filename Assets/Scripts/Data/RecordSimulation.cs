@@ -11,6 +11,7 @@ using UnityEngine;
 public class RecordSimulation : MonoBehaviour
 {
     public GameObject Simulation;
+    public GameObject test;
     //Recording related variable
     [SerializeField] private int lambda;
     private float recording_threshold;
@@ -29,10 +30,14 @@ public class RecordSimulation : MonoBehaviour
         }
         lastrecord = Time.time;
         recording_threshold = (float)1 / lambda;
-        filePath = Application.dataPath + "/Generated Data/Simulation.csv";
+        //filePath = Application.persistentDataPath + "/Generated Data/Simulation.csv";
+        String startTimeDate = utcTime.ToString("yyyy-MM-dd HH:mm:ss"); // Ivan -- this is what Luc
+        filePath = Path.Combine(Application.persistentDataPath, startTimeDate + "Simulation.csv"); // Ivan -- this is what Luc
+
         //filePath = "Internal Storage/HoloOrbitsData/Simulation.csv";
         ClearCsvFile(filePath);
         writer = new StreamWriter(filePath, true);
+        Console.WriteLine(writer); // Ivan -- this is what Luc
         writer.WriteLine("id,time,position,rotation,scale");
     }
 
@@ -70,6 +75,7 @@ public class RecordSimulation : MonoBehaviour
             message += temp + delimiter;
         print(message);
         writer.WriteLine(message);
+        writer.Flush();
     }
 
     // Update is called once per frame

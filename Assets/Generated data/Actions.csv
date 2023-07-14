@@ -1,8 +1,1 @@
 id,time,Scene,Action,Event,Description
-5907838,UTC-2023-07-14 01:57:55.231,Play,Button Press,Pause,
-285901048,UTC-2023-07-14 01:58:08.565,Play,Button Press,Open Observe Mode,
-284568408,UTC-2023-07-14 01:58:21.257,Play,Button Press,Measure Mode,
-4246536500,UTC-2023-07-14 01:58:24.749,Measure,Object Selected ,Sun,
-9988400,UTC-2023-07-14 01:58:27.087,Measure,Object Selected ,Planet,
-1846481400,UTC-2023-07-14 01:58:34.593,Measure,Distance Recorded,9.016613AU,9.016613,
-874047926,UTC-2023-07-14 01:58:39.140,Measure,Return,Return to Play Mode,
