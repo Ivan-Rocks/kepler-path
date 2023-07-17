@@ -74,7 +74,7 @@ public class MeasuringTool : MonoBehaviour
     {
         if (obj == null)
             return false;
-        if (obj.name == "Star" || obj.name == "Perihelion" || obj.name == "Aphelion" || 
+        if (obj.name == "Red Dwarf" || obj.name == "Perihelion" || obj.name == "Aphelion" || 
             obj.name == "Exoplanet" || obj.name == "Focus")
             return true;
         return false;
