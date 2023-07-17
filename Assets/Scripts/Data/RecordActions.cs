@@ -18,12 +18,24 @@ public class RecordActions : MonoBehaviour
     void Start()
     {
         controls = Simulation.GetComponent<ControlsWithDialogue>();
-        filePath = Application.dataPath + "/Generated Data/Actions.csv";
+        double unixTime = GetUnixTimestamp(DateTime.UtcNow);
+        print("Current Unix time: " + unixTime);
+        System.DateTime utcTime = System.DateTime.UtcNow;
+        string formattedTime = utcTime.ToString("yyyy.MM.dd-HH_mm_ss");
+        print("Current Unix time: " + formattedTime);
+        filePath = Path.Combine(Application.persistentDataPath, formattedTime + "_Actions.csv");
         //filePath = "Internal Storage/HoloOrbitsData/Simulation.csv";
         ClearCsvFile(filePath);
         action_writer = new StreamWriter(filePath, true);
         action_writer.WriteLine("id,time,Scene,Action,Event,Description");
     }
+
+    private double GetUnixTimestamp(DateTime dateTime)
+    {
+        TimeSpan timeSpan = dateTime - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        return timeSpan.TotalSeconds;
+    }
+
     private void OnDestroy()
     {
         action_writer.Close();
@@ -47,7 +59,9 @@ public class RecordActions : MonoBehaviour
         //UTC Time
         System.DateTime utcTime = System.DateTime.UtcNow;
         string formattedTime = utcTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
-        
+        //Unix Time
+        double unixTime = GetUnixTimestamp(DateTime.UtcNow);
+        message += "unix-" + unixTime.ToString() + delimiter;
         message += "UTC-" + formattedTime + delimiter + mode + delimiter;
         foreach (String temp in s)
             message += temp + delimiter;
