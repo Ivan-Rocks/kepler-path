@@ -22,11 +22,26 @@ public class RecordPlayer : MonoBehaviour
         }
         lastrecord = Time.time;
         recording_threshold = (float)1 / lambda;
-        filePath = Application.dataPath + "/Generated Data/Player.csv";
+        double unixTime = GetUnixTimestamp(DateTime.UtcNow);
+        print("Current Unix time: " + unixTime);
+        //filePath = Application.persistentDataPath + "/Generated Data/Simulation.csv";
+        //String startTimeDate = utcTime.ToString("yyyy-MM-dd HH:mm:ss.fff"); // Ivan -- this is what Luc utcTime.ToString("yyyy-MM-dd HH:mm:ss.fff")
+        //filePath = Path.Combine(Application.persistentDataPath, startTimeDate + "_Simulation.csv"); // Ivan -- this is what Luc
+        System.DateTime utcTime = System.DateTime.UtcNow;
+        string formattedTime = utcTime.ToString("yyyy.MM.dd-HH_mm_ss");
+        print("Current Unix time: " + formattedTime);
+        //filePath = Path.Combine(Application.persistentDataPath, formattedTime + "_Simulation.csv"); // Ivan -- this is what Luc
+        filePath = Path.Combine(Application.persistentDataPath, formattedTime + "_Player.csv");
         //filePath = "Internal Storage/HoloOrbitsData/Simulation.csv";
         ClearCsvFile(filePath);
         player_writer = new StreamWriter(filePath, true);
         player_writer.WriteLine("id,time,position,rotation,pointer");
+    }
+
+    private double GetUnixTimestamp(DateTime dateTime)
+    {
+        TimeSpan timeSpan = dateTime - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        return timeSpan.TotalSeconds;
     }
 
     private void OnDestroy()
@@ -52,6 +67,9 @@ public class RecordPlayer : MonoBehaviour
         //UTC Time
         System.DateTime utcTime = System.DateTime.UtcNow;
         string formattedTime = utcTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
+        //Unix Time
+        double unixTime = GetUnixTimestamp(DateTime.UtcNow);
+        message += "unix-" + unixTime.ToString() + delimiter;
         message += "UTC-" + formattedTime + delimiter;
         foreach (String temp in s)
             message += temp + delimiter;

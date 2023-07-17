@@ -39,7 +39,7 @@ public class RecordSimulation : MonoBehaviour
         string formattedTime = utcTime.ToString("yyyy.MM.dd-HH_mm_ss");
         print("Current Unix time: " + formattedTime);
         //filePath = Path.Combine(Application.persistentDataPath, formattedTime + "_Simulation.csv"); // Ivan -- this is what Luc
-        filePath = Path.Combine(Application.persistentDataPath, formattedTime + "Simulation.csv");
+        filePath = Path.Combine(Application.persistentDataPath, formattedTime + "_Simulation.csv");
         //filePath = "Internal Storage/HoloOrbitsData/Simulation.csv";
         ClearCsvFile(filePath);
         writer = new StreamWriter(filePath, true);
