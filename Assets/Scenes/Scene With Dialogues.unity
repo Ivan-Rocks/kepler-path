@@ -752,7 +752,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8110664055982005406, guid: f443144a6d408c34bb8a7d70a73644c4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 116
       objectReference: {fileID: 0}
     - target: {fileID: 8110664055982005406, guid: f443144a6d408c34bb8a7d70a73644c4, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3416,7 +3416,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Simulation: {fileID: 1496244614}
-  test: {fileID: 0}
   lambda: 5
 --- !u!4 &893032096
 Transform:
@@ -4112,9 +4111,10 @@ MonoBehaviour:
     palm menu.
   - 'Once you are ready to move, hit the pause button to enter the next stage of
     making an observation. '
-  - 'Now that you have paused the simulation, you are almost ready to make some observations!
-    To get started, please first select the observe button to enter the observe mode. '
-  - There are few more step that you need to complete.
+  - Now that you have paused the simulation, you are almost ready to make some observations!
+  - There are few more step that you need to complete. To get started, please first
+    select the observe button. Please toggle the different components of orbiting
+    systems.
   - 'It is necesary that you get to know some of the key points that will help you
     understand the exo-planetary system and further complete your task! Please toggle
     each element listed in the panel to learn more about them. '

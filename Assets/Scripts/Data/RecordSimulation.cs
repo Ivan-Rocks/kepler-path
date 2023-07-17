@@ -11,7 +11,6 @@ using UnityEngine;
 public class RecordSimulation : MonoBehaviour
 {
     public GameObject Simulation;
-    public GameObject test;
     //Recording related variable
     [SerializeField] private int lambda;
     private float recording_threshold;

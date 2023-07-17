@@ -59,16 +59,10 @@ public class DialogueManager : MonoBehaviour
     {
         //if we reach a state and the action has not been finished
         //we make the action button clickable, if it has been done, it will call back and 
-        if (phase ==3 && !Simulation.GetComponent<ControlsWithDialogue>().first_manipulation_detected)
+        if (phase == 3 && !Simulation.GetComponent<ControlsWithDialogue>().first_manipulation_detected)
         {
             Simulation.GetComponent<ControlsWithDialogue>().enterInteractionMode();
             Dialogue.SetActive(false);
-            return;
-        }
-
-        if (phase == 4 && !MainMenu.activeSelf)
-        {
-            MainMenu.SetActive(true);
             return;
         }
 
@@ -78,12 +72,14 @@ public class DialogueManager : MonoBehaviour
             Dialogue.SetActive(false);
             return;
         }
-        if (phase ==8 && !Simulation.GetComponent<ControlsWithDialogue>().selectAllToggles())
+
+        if (phase == 7 && !Simulation.GetComponent<ControlsWithDialogue>().selectAllToggles())
         {
             Simulation.GetComponent<ControlsWithDialogue>().enterObserveMode();
             Dialogue.SetActive(false);
             return;
         }
+
         if (phase ==9 && !Simulation.GetComponent<ControlsWithDialogue>().measuring)
         {
             Simulation.GetComponent<ControlsWithDialogue>().enterMeasuringMode();
@@ -118,7 +114,7 @@ public class DialogueManager : MonoBehaviour
             onContinue();
         }
 
-        if (phase == 4 && MainMenu.activeSelf)
+        if (phase == 4)
         {
             onContinue();
         }
@@ -127,7 +123,7 @@ public class DialogueManager : MonoBehaviour
         {
             onContinue();
         }
-        if (phase==8 && Simulation.GetComponent<ControlsWithDialogue>().selectAllToggles())
+        if (phase==7 && Simulation.GetComponent<ControlsWithDialogue>().selectAllToggles())
         {
             onContinue();
         }
