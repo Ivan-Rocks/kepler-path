@@ -53,13 +53,13 @@ public class ControlsWithDialogue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameObject.Find("Dialogue Manager").GetComponent<DialogueManager>().phase >=9)
+        if (GameObject.Find("Dialogue Manager").GetComponent<DialogueManager>().phase >=8)
         {
             ObjectManipulator objectManipulator = gameObject.GetComponent<ObjectManipulator>();
             objectManipulator.enabled = !measuring;
             Measure.GetComponent<PressableButton>().enabled = paused;
         }
-        if (GameObject.Find("Dialogue Manager").GetComponent<DialogueManager>().phase ==10 && 
+        if (GameObject.Find("Dialogue Manager").GetComponent<DialogueManager>().phase ==9 && 
             gameObject.GetComponent<MeasuringTool>().record_status==2)
         {
             detectFirstMeasurement();

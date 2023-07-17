@@ -2926,8 +2926,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textColor: {r: 0.82052845, g: 0.8207547, b: 0.081301175, a: 0.003921569}
-  positionOffsetSpeed: 2
-  colorDecaySpeed: 0.005
+  positionOffsetSpeed: 10
+  colorDecaySpeed: 0.0005
 --- !u!114 &604175631
 MonoBehaviour:
   m_ObjectHideFlags: 0

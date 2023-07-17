@@ -86,18 +86,18 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        if (phase ==8 && !Simulation.GetComponent<ControlsWithDialogue>().measuring)
+        if (phase == 8 && !Simulation.GetComponent<ControlsWithDialogue>().measuring)
         {
             Simulation.GetComponent<ControlsWithDialogue>().enterMeasuringMode();
             Dialogue.SetActive(false);
             return;
         }
-        if (phase==9 && !Simulation.GetComponent<ControlsWithDialogue>().first_measurement_detected)
+        if (phase== 9 && !Simulation.GetComponent<ControlsWithDialogue>().first_measurement_detected)
         {
             Dialogue.SetActive(false);
             return;
         }
-        if(phase==10 && !Simulation.GetComponent<ControlsWithDialogue>().first_record_detected)
+        if(phase== 10 && !Simulation.GetComponent<ControlsWithDialogue>().first_record_detected)
         {
             Dialogue.SetActive(false);
             return;
@@ -125,19 +125,19 @@ public class DialogueManager : MonoBehaviour
             onContinue();
         }
 
-        if (phase==5 && Simulation.GetComponent<ControlsWithDialogue>().paused)
+        if (phase == 5 && Simulation.GetComponent<ControlsWithDialogue>().paused)
         {
             onContinue();
         }
-        if (phase==7 && Simulation.GetComponent<ControlsWithDialogue>().selectAllToggles())
+        if (phase == 7 && Simulation.GetComponent<ControlsWithDialogue>().selectAllToggles())
         {
             onContinue();
         }
-        if (phase==8 && Simulation.GetComponent<ControlsWithDialogue>().measuring)
+        if (phase == 8 && Simulation.GetComponent<ControlsWithDialogue>().measuring)
         {
             onContinue();
         }
-        if (phase==9 && Simulation.GetComponent<ControlsWithDialogue>().first_measurement_detected)
+        if (phase == 9 && Simulation.GetComponent<ControlsWithDialogue>().first_measurement_detected)
         {
             onContinue();
         }
