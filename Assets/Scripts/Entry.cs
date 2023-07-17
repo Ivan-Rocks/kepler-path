@@ -62,7 +62,7 @@ public class Entry : MonoBehaviour
     {
         Vector3 startpos = start.transform.position;
         Vector3 endpos = end.transform.position;
-        if (start.name == "Planet")
+        if (start.name == "Exoplanet")
         {
             print(t);
             startpos = GameObject.Find("Simulation").GetComponent<EllipticalOrbit>().getGhostPosition(t);
@@ -70,7 +70,7 @@ public class Entry : MonoBehaviour
             instance.transform.position = startpos;
             instance.SetActive(true);
         }
-        if (end.name == "Planet")
+        if (end.name == "Exoplanet")
         {
             endpos = GameObject.Find("Simulation").GetComponent<EllipticalOrbit>().getGhostPosition(t);
             instance = Instantiate(prefabGhost, GameObject.Find("Simulation").transform);

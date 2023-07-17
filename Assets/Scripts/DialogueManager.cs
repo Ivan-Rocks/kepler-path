@@ -59,15 +59,10 @@ public class DialogueManager : MonoBehaviour
     {
         //if we reach a state and the action has not been finished
         //we make the action button clickable, if it has been done, it will call back and 
-        if (phase == 3 && !Simulation.GetComponent<ControlsWithDialogue>().first_manipulation_detected)
+        if (phase == 3 && !Simulation.GetComponent<ControlsWithDialogue>().first_manipulation_detected && !MainMenu.activeSelf)
         {
             Simulation.GetComponent<ControlsWithDialogue>().enterInteractionMode();
             Dialogue.SetActive(false);
-            return;
-        }
-
-        if (phase == 3 && !MainMenu.activeSelf)
-        {
             MainMenu.SetActive(true);
             return;
         }
@@ -115,12 +110,7 @@ public class DialogueManager : MonoBehaviour
         //have to constantly check for updates on paused or other features to make sure we go to the next step
         //it automatically changes to onContinue with a status that current task is finished -> e.g. .paused
         //so the if statement on top can be bypassed
-        if (phase == 3 && Simulation.GetComponent<ControlsWithDialogue>().first_manipulation_detected)
-        {
-            onContinue();
-        }
-
-        if (phase == 3 && MainMenu.activeSelf)
+        if (phase == 3 && Simulation.GetComponent<ControlsWithDialogue>().first_manipulation_detected && MainMenu.activeSelf)
         {
             onContinue();
         }
