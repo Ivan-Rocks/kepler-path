@@ -30,9 +30,12 @@ public class RecordSimulation : MonoBehaviour
         lastrecord = Time.time;
         recording_threshold = (float)1 / lambda;
         //filePath = Application.persistentDataPath + "/Generated Data/Simulation.csv";
-        //String startTimeDate = utcTime.ToString("yyyy-MM-dd HH:mm:ss"); // Ivan -- this is what Luc
-        //filePath = Path.Combine(Application.persistentDataPath, startTimeDate + "Simulation.csv"); // Ivan -- this is what Luc
-        filePath = Path.Combine(Application.persistentDataPath, "Simulation.csv");
+        //String startTimeDate = utcTime.ToString("yyyy-MM-dd HH:mm:ss.fff"); // Ivan -- this is what Luc utcTime.ToString("yyyy-MM-dd HH:mm:ss.fff")
+        //filePath = Path.Combine(Application.persistentDataPath, startTimeDate + "_Simulation.csv"); // Ivan -- this is what Luc
+        System.DateTime utcTime = System.DateTime.UtcNow;
+        string formattedTime = utcTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
+        filePath = Path.Combine(Application.persistentDataPath, formattedTime + "_Simulation.csv"); // Ivan -- this is what Luc
+        //filePath = Path.Combine(Application.persistentDataPath, "Simulation.csv");
         //filePath = "Internal Storage/HoloOrbitsData/Simulation.csv";
         ClearCsvFile(filePath);
         writer = new StreamWriter(filePath, true);
