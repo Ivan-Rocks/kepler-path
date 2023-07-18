@@ -25,6 +25,7 @@ public class RecordActions : MonoBehaviour
         string formattedTime = utcTime.ToString("yyyy.MM.dd-HH_mm_ss");
         print("Current UTC time: " + formattedTime);
         filePath = Path.Combine(Application.persistentDataPath, formattedTime + "_Actions.csv");
+        print(filePath);
         //filePath = "Internal Storage/HoloOrbitsData/Simulation.csv";
         action_writer = new StreamWriter(filePath, true);
         action_writer.WriteLine("id,time,Scene,Action,Event,Description");
@@ -65,7 +66,7 @@ public class RecordActions : MonoBehaviour
         message += "UTC-" + formattedTime + delimiter + mode + delimiter;
         foreach (String temp in s)
             message += temp + delimiter;
-        //print(message);
+        print(message);
         action_writer.WriteLine(message);
     }
 
@@ -182,5 +183,11 @@ public class RecordActions : MonoBehaviour
                 "Hide Entry:"+start.name+" to "+end.name+",distance:"+distance+" at radian"+t.ToString()};
             write_to_CSV(elements);
         }
+    }
+
+    public void recordContinue()
+    {
+        String[] elements = new String[] { "Pressed Continue Button"};
+        write_to_CSV(elements);
     }
 }
