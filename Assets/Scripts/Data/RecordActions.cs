@@ -18,14 +18,14 @@ public class RecordActions : MonoBehaviour
     void Start()
     {
         controls = Simulation.GetComponent<ControlsWithDialogue>();
+        print(controls == null);
         double unixTime = GetUnixTimestamp(DateTime.UtcNow);
         print("Current Unix time: " + unixTime);
         System.DateTime utcTime = System.DateTime.UtcNow;
         string formattedTime = utcTime.ToString("yyyy.MM.dd-HH_mm_ss");
-        print("Current Unix time: " + formattedTime);
+        print("Current UTC time: " + formattedTime);
         filePath = Path.Combine(Application.persistentDataPath, formattedTime + "_Actions.csv");
         //filePath = "Internal Storage/HoloOrbitsData/Simulation.csv";
-        ClearCsvFile(filePath);
         action_writer = new StreamWriter(filePath, true);
         action_writer.WriteLine("id,time,Scene,Action,Event,Description");
     }
@@ -85,7 +85,7 @@ public class RecordActions : MonoBehaviour
                 mode = "Play";
             }
         }
-        //print(mode);
+        print(mode);
     }
     
     public void recordPause()
