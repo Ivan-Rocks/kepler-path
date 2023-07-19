@@ -74,6 +74,7 @@ public class RecordPlayer : MonoBehaviour
             message += temp + delimiter;
         //print(message);
         player_writer.WriteLine(message);
+        player_writer.Flush();
     }
 
     // Update is called once per frame

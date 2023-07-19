@@ -20,14 +20,12 @@ public class RecordActions : MonoBehaviour
         controls = Simulation.GetComponent<ControlsWithDialogue>();
         print(controls == null);
         double unixTime = GetUnixTimestamp(DateTime.UtcNow);
-        print("Current Unix time: " + unixTime);
         System.DateTime utcTime = System.DateTime.UtcNow;
         string formattedTime = utcTime.ToString("yyyy.MM.dd-HH_mm_ss");
-        print("Current UTC time: " + formattedTime);
         filePath = Path.Combine(Application.persistentDataPath, formattedTime + "_Actions.csv");
         print(filePath);
-        //filePath = "Internal Storage/HoloOrbitsData/Simulation.csv";
         action_writer = new StreamWriter(filePath, true);
+        Console.WriteLine(action_writer); // Ivan -- this is what Luc
         action_writer.WriteLine("id,time,Scene,Action,Event,Description");
     }
 
@@ -68,6 +66,7 @@ public class RecordActions : MonoBehaviour
             message += temp + delimiter;
         print(message);
         action_writer.WriteLine(message);
+        action_writer.Flush();
     }
 
     // Update is called once per frame

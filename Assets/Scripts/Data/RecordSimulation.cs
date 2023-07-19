@@ -31,18 +31,10 @@ public class RecordSimulation : MonoBehaviour
         recording_threshold = (float)1 / lambda;
 
         double unixTime = GetUnixTimestamp(DateTime.UtcNow);
-        //print("Current Unix time: " + unixTime);
-        //filePath = Application.persistentDataPath + "/Generated Data/Simulation.csv";
-        //String startTimeDate = utcTime.ToString("yyyy-MM-dd HH:mm:ss.fff"); // Ivan -- this is what Luc utcTime.ToString("yyyy-MM-dd HH:mm:ss.fff")
-        //filePath = Path.Combine(Application.persistentDataPath, startTimeDate + "_Simulation.csv"); // Ivan -- this is what Luc
         System.DateTime utcTime = System.DateTime.UtcNow;
         string formattedTime = utcTime.ToString("yyyy.MM.dd-HH_mm_ss");
-       // print("Current Unix time: " + formattedTime);
-        //filePath = Path.Combine(Application.persistentDataPath, formattedTime + "_Simulation.csv"); // Ivan -- this is what Luc
         filePath = Path.Combine(Application.persistentDataPath, formattedTime + "_Simulation.csv");
-        //filePath = "Internal Storage/HoloOrbitsData/Simulation.csv";
         writer = new StreamWriter(filePath, true);
-        //Console.WriteLine(writer); // Ivan -- this is what Luc
         writer.WriteLine("id,time,position,rotation,scale");
     }
 
