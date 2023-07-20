@@ -4472,9 +4472,7 @@ MonoBehaviour:
     your task. Please select two objects to send a radar to measure the distance
     in between. '
   - "You selected the objects. Now select \u201CRecord\u201D to log the distance
-    data or \u201CReset lines\u201D if you need to make a change. To display previous
-    measurements, click on the data in the data panel to show, hide, or delete the
-    measurement."
+    data or \u201CReset lines\u201D if you need to make a change."
 --- !u!4 &1071405016
 Transform:
   m_ObjectHideFlags: 0
