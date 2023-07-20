@@ -64,7 +64,7 @@ public class RecordActions : MonoBehaviour
         message += "UTC-" + formattedTime + delimiter + mode + delimiter;
         foreach (String temp in s)
             message += temp + delimiter;
-        print(message);
+        //print(message);
         action_writer.WriteLine(message);
         action_writer.Flush();
     }

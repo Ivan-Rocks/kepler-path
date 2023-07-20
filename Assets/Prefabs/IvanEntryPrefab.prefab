@@ -980,6 +980,11 @@ MonoBehaviour:
   endText: {fileID: 8359701008978150615}
   distText: {fileID: 1985379347791988502}
   prefabGhost: {fileID: 2950490065037111657, guid: 362aba2c66e17d54f9843ea7ab236042, type: 3}
+  ButtonPrefab: {fileID: 6930810733556124559, guid: c702defd52aa70646bd3ad37a9c3805c, type: 3}
+  PromptButton: {fileID: 0}
+  Positive: {fileID: 0}
+  Negative: {fileID: 0}
+  Neutral: {fileID: 0}
 --- !u!114 &925999206749845219
 MonoBehaviour:
   m_ObjectHideFlags: 0
