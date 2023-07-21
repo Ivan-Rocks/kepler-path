@@ -42,6 +42,7 @@ public class MeasuringTool : MonoBehaviour
     public void onRecord()
     {
         print("record");
+
         gameObject.GetComponent<entry_manager>().createEntry(start, end, distance.ToString("F3")
             , (float)gameObject.GetComponent<EllipticalOrbit>().degree/360);
     }
@@ -78,7 +79,6 @@ public class MeasuringTool : MonoBehaviour
             return true;
         return false;
     }
-
 
     // Update is called once per frame
     void Update()
