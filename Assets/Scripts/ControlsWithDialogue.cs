@@ -20,6 +20,7 @@ public class ControlsWithDialogue : MonoBehaviour
     public GameObject Reset;
     public GameObject Cancel;
     public GameObject Simulation;
+    public bool Hololens_Mode;
 
     public GameObject[] transparent_objects = { };
     public GameObject[] transparent_toggles = { };

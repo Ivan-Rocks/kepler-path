@@ -88,7 +88,7 @@ public class MeasuringTool : MonoBehaviour
             measuring = gameObject.GetComponent<ControlsWithDialogue>().measuring;
         else
             measuring = gameObject.GetComponent<Controls>().measuring;
-        if (measuring)
+        if (measuring && gameObject.GetComponent<ControlsWithDialogue>().Hololens_Mode)
         {
             Transform x = hand.GetComponent<MRTKRayInteractor>().rayOriginTransform;
             Reset.GetComponent<PressableButton>().enabled = true;
@@ -136,6 +136,59 @@ public class MeasuringTool : MonoBehaviour
             {
                 lineRend.positionCount = 2;
                 lineRend.startWidth = gameObject.transform.localScale.x/10;
+                lineRend.endWidth = gameObject.transform.localScale.x / 10;
+                lineRend.SetPosition(0, start.transform.position);
+                lineRend.SetPosition(1, end.transform.position);
+                Record.GetComponent<PressableButton>().enabled = true;
+            }
+        }
+        if (measuring && !gameObject.GetComponent<ControlsWithDialogue>().Hololens_Mode)
+        {
+            Reset.GetComponent<PressableButton>().enabled = true;
+            //First Press
+            if (Input.GetMouseButtonDown(0) && record_status == 0)
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit) && isLegalPress(hit.collider.gameObject))
+                {
+                    start = hit.collider.gameObject;
+                    record_status++;
+                    start.GetComponent<AudioSource>().Play();
+                    GameObject notice = GameObject.Find("Selection Notice");
+                    notice.GetComponent<SelectionNotice>().setText(start);
+                    print("first" + start.name);
+                    Data.GetComponent<RecordActions>().recordHit(start);
+                }
+            }
+            //Second Press
+            if (Input.GetMouseButtonDown(0) && record_status == 1)
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit) &&
+                    !hit.collider.gameObject.Equals(start) &&
+                    isLegalPress(hit.collider.gameObject))
+                {
+                    end = hit.collider.gameObject;
+                    if (isLegalPress(end))
+                    {
+                        record_status++;
+                        end.GetComponent<AudioSource>().Play();
+                        print("second" + end.name);
+                        distance = (start.transform.position - end.transform.position).magnitude;
+                        distance /= GameObject.Find("Simulation").transform.localScale.x;
+                        GameObject notice = GameObject.Find("Selection Notice");
+                        notice.GetComponent<SelectionNotice>().setText(end);
+                        Data.GetComponent<RecordActions>().recordHit(end);
+                    }
+                }
+            }
+            //Can record
+            if (start != null && end != null && record_status == 2)
+            {
+                lineRend.positionCount = 2;
+                lineRend.startWidth = gameObject.transform.localScale.x / 10;
                 lineRend.endWidth = gameObject.transform.localScale.x / 10;
                 lineRend.SetPosition(0, start.transform.position);
                 lineRend.SetPosition(1, end.transform.position);
