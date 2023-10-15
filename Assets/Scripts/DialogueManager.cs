@@ -7,6 +7,8 @@ using System.IO;
 using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 using Unity.VisualScripting;
 using Microsoft.MixedReality.Toolkit.SpatialManipulation;
+using Microsoft.MixedReality.Toolkit.Utilities.Solvers;
+using Microsoft.MixedReality.Toolkit.SpatialManipulation.Editor;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -17,6 +19,7 @@ public class DialogueManager : MonoBehaviour
     public GameObject MainText;
     public int phase = 0;
     public int total_phases=12;
+    private bool hololens_mode;
     //public string csvFilePath = "Assets/Scripts/Dialogues.csv";
     //Strings
     public List<string> headers = new List<string>();
@@ -24,28 +27,14 @@ public class DialogueManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //ReadCSVFile();
         setDialogue();
-    }
-
-    /*
-    public void ReadCSVFile()
-    {
-        StreamReader reader = new StreamReader(csvFilePath);
-
-        while (!reader.EndOfStream)
+        hololens_mode = Simulation.GetComponent<ControlsWithDialogue>().Hololens_Mode;
+        if (!hololens_mode)
         {
-            total_phases++;
-            string line = reader.ReadLine();
-            string[] values = line.Split(';');
-            //int x = int.Parse(values[0]);
-            headers.Add(values[1]);
-            texts.Add(values[2]);
+            Dialogue.GetComponent<Microsoft.MixedReality.Toolkit.Utilities.Solvers.RadialView>().enabled = false;
+            Dialogue.GetComponent<Microsoft.MixedReality.Toolkit.Utilities.Solvers.SolverHandler>().enabled = false;
         }
-        print(total_phases);
-        reader.Close();
-        //print(headers);
-    }*/
+    }
 
     public void setDialogue()
     {
@@ -107,6 +96,15 @@ public class DialogueManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /* Fix the position of the Dialogue into a certain place.
+         * I can also set the rotation of the dialogue instance to be the same as camera, but I think I will leave the design issue to Jina.
+         */
+        if (Camera.main != null)
+        {
+            Vector3 offset = new Vector3(0, 0, 1); // Adjust the offset as needed
+            Vector3 newPosition = Camera.main.transform.position + Camera.main.transform.forward * offset.z;
+            Dialogue.transform.position = newPosition;
+        }
         //have to constantly check for updates on paused or other features to make sure we go to the next step
         //it automatically changes to onContinue with a status that current task is finished -> e.g. .paused
         //so the if statement on top can be bypassed

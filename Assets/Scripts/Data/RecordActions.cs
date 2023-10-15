@@ -85,7 +85,7 @@ public class RecordActions : MonoBehaviour
                 mode = "Play";
             }
         }
-        print(mode);
+        //print(mode);
     }
     
     public void recordPause()

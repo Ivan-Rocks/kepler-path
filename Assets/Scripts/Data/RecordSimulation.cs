@@ -87,7 +87,7 @@ public class RecordSimulation : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        print(recoding_simulation);
+        //print(recoding_simulation);
         if (Time.time - lastrecord < recording_threshold)
         {
             return;
