@@ -40,6 +40,18 @@ public class UIManipulation : MonoBehaviour
         print(value);
     }
 
+    /*
+     * Quaternion only takes [-180,180] degrees as argument
+     * Out of caution and userbility, the slider bound values will be [-179,179] and the user starts at 0
+     */
+    public void onSRotationSliderChanged()
+    {
+        float valueX = RotationSliderX.GetComponent<Slider>().value;
+        float valueY = RotationSliderY.GetComponent<Slider>().value;
+        float valueZ = RotationSliderZ.GetComponent<Slider>().value;
+        transform.rotation = Quaternion.Euler(valueX, valueY, valueZ);
+    }
+    
     // Update is called once per frame
     void Update()
     {
