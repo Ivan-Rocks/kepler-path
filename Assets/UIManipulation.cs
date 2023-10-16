@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class UIManipulation : MonoBehaviour
 {
+    public GameObject UIBarParent;
     public GameObject ShowButton;
     public GameObject ScaleSlider;
     public GameObject RotationSliderX;
@@ -17,10 +18,16 @@ public class UIManipulation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ScaleSlider.SetActive(show);
-        RotationSliderX.SetActive(show);
-        RotationSliderY.SetActive(show);
-        RotationSliderZ.SetActive(show);
+        if (gameObject.GetComponent<ControlsWithDialogue>().Hololens_Mode)
+        {
+            UIBarParent.SetActive(false);
+        } else
+        {
+            ScaleSlider.SetActive(show);
+            RotationSliderX.SetActive(show);
+            RotationSliderY.SetActive(show);
+            RotationSliderZ.SetActive(show);
+        }
     }
 
     public void onShowButtonPressed()
