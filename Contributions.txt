@@ -1,0 +1,9 @@
+Ivan Zhang: Simulation and Spatial Measuring Design, Project Code Implementation, Data Collecion System Design
+Chris Palaguachi: Project Setup, Project Iteration , HoloLen end Testing, UI Design, MRTK Components Design
+
+
+For CS415 Project:
+Jianchen Hong: 
+Yuzhuo Wang: Design Documents
+Yifan Zhang: 
+Yuming Zhang: Project Management
