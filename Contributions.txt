@@ -4,6 +4,6 @@ Chris Palaguachi: Project Setup, Project Iteration , HoloLen end Testing, UI Des
 
 For CS415 Project:
 Jianchen Hong: 
-Yuzhuo Wang: Design Documents
+Yuzhuo Wang: Design Documents, Database Setting, Server Building, Data Collection, Project testing
 Yifan Zhang: 
 Yuming Zhang: Project Management
