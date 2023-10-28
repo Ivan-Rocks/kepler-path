@@ -1,18 +1,21 @@
 mergeInto(LibraryManager.library, {
 
   GetJSON: function (path, objectName, callback, fallback) {
-
-    var parsedPath = Pointer_stringify(path);
-    var parsedObjectName = Pointer_stringify(objectName)
-    var parsedCallback = Pointer_stringify(callback)
-    var parsedFallback = Pointer_stringify(fallback)
-    //window.alert("Firebase init works!");
+    console.log("can access function")
+    var parsedPath = UTF8ToString(path);
+    var parsedObjectName = UTF8ToString(objectName)
+    var parsedCallback = UTF8ToString(callback)
+    var parsedFallback = UTF8ToString(fallback)
+    console.log(parsedPath, parsedObjectName, parsedCallback, parsed)
+    window.alert("Firebase init works!");
     try {
+        console.log("successfull");
         firebase.database().ref(parsedPath).once('value').then(function(snapshot) {
-        unityInstance.Module.SendMessage(parsedObjectName, parsedCallback, JSON.stringify(snapshot.val));
+        window.unityInstance.SendMessage(parsedObjectName, parsedCallback, JSON.stringify(snapshot.val));
     });
     } catch (error) {
-        unityInstance.Module.SendMessage(parsedObjectName, parsedFallback, error.message);
+      console.log("failed");
+        window.unityInstance.SendMessage(parsedObjectName, parsedFallback, error.message);
     }
   },
 
