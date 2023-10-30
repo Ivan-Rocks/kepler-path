@@ -38,7 +38,10 @@
       ref(window.database, 'User/Ivan').once('value').then(snapshot => {
         console.log(snapshot.val());
       });*/
-      const reference = ref(database, 'Users/');
-      set(reference, {username: 'Ivan', password:123456});
-      console.log("made it to the end of index.html")
+      //Example Set
+      set(ref(database, 'Users/Ivan'), {username: 'Ivan', password:12345678});
+      set(ref(database, 'Users/Barry'), {username: 'Chris', password:123456});
+      console.log("made it to the end of index.html");
+      //Example Get
+      get(ref(database,'Users/Chris')).then(snapshot => {console.log(snapshot.val())})
     </script>
