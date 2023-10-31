@@ -137,8 +137,14 @@
       const firebaseApp = initializeApp(firebaseConfig);
       console.log(firebaseApp.name);
       const database = getDatabase(firebaseApp);
+      
+      // Make Variables Global
       window.firebaseApp = firebaseApp;
       window.database = database;
+      window.ref = ref;
+      window.get = get;
+      window.set = set;
+
       
       script.onload = () => {
         createUnityInstance(canvas, config, (progress) => {
