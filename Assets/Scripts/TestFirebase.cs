@@ -9,9 +9,8 @@ public class TestFirebase : MonoBehaviour
 {
     public TextMeshProUGUI text;
 
-    [DllImport("__Internal")]
-    public static extern void GetJSON(string path, string objectName, string callback, string fallback);
-    public static extern void SetJSON(string path, string objectName, string callback, string fallback);
+    [DllImport("__Internal")] public static extern void GetJSON(string path, string objectName, string callback, string fallback);
+    [DllImport("__Internal")] public static extern void SetJSON(string path, string objectName, string callback, string fallback);
 
     private void Start()
     {
