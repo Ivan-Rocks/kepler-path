@@ -8,7 +8,6 @@ using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 using Unity.VisualScripting;
 using Microsoft.MixedReality.Toolkit.SpatialManipulation;
 using Microsoft.MixedReality.Toolkit.Utilities.Solvers;
-using Microsoft.MixedReality.Toolkit.SpatialManipulation.Editor;
 
 public class DialogueManager : MonoBehaviour
 {
