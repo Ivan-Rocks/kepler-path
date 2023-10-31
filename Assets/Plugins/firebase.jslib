@@ -8,7 +8,7 @@ mergeInto(LibraryManager.library, {
     var parsedFallback = UTF8ToString(fallback);
     try {
         console.log(window.unityInstance);
-        ref(window.database, parsedPath).once('value').then(function(snapshot) {
+        window.get(window.ref(database, parsedPath)).then(function(snapshot) {
           window.unityInstance.SendMessage(parsedObjectName, parsedCallback, JSON.stringify(snapshot.val()));
         });
     } catch (error) {
