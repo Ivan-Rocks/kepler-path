@@ -11,10 +11,12 @@ public class TestFirebase : MonoBehaviour
 
     [DllImport("__Internal")]
     public static extern void GetJSON(string path, string objectName, string callback, string fallback);
+    public static extern void SetJSON(string path, string objectName, string callback, string fallback);
 
     private void Start()
     {
-        GetJSON("Users/Ivan", gameObject.name, "OnRequestSuccess", "OnRequestFailed");
+        //GetJSON("Users/Ivan", gameObject.name, "OnRequestSuccess", "OnRequestFailed");
+        SetJSON("Users/Ivan2", gameObject.name, "OnRequestSuccess", "OnRequestFailed");
     }
 
     private void OnRequestSuccess(string data)
