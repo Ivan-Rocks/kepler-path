@@ -34,7 +34,7 @@ ExportedObj/
 .consulo/
 *.csproj
 *.unityproj
-# *.sln If you ignore sln, when you clone to other places, you wont get object member lists.
+*.sln
 *.suo
 *.tmp
 *.user
