@@ -74,7 +74,7 @@ public class UIManipulation : MonoBehaviour
     public void IncreaseRotation()
     {
         currentAngleX += angleStep;
-        if (currentAngleX >= 360) currentAngleX = 360;
+        if (currentAngleX >= 180) currentAngleX = 179;
         RotateObjectToAngle(currentAngleX);
     }
 
@@ -82,7 +82,7 @@ public class UIManipulation : MonoBehaviour
     public void DecreaseRotation()
     {
         currentAngleX -= angleStep;
-        if (currentAngleX < 0) currentAngleX = 0; 
+        if (currentAngleX < -180) currentAngleX = -180; 
         RotateObjectToAngle(currentAngleX);
     }
 
