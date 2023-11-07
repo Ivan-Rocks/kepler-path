@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 using System.IO;
 using UnityEditor;
 using static System.Net.Mime.MediaTypeNames;
+using UnityEngine.SceneManagement;
 
 public class Login : MonoBehaviour
 {
@@ -23,19 +24,21 @@ public class Login : MonoBehaviour
 
     public void ConfirmLogin()
     {
-        username = "Users/" + inputText.GetComponent<TMP_InputField>().text;
-        print(username);
+        username = inputText.GetComponent<TMP_InputField>().text;
         FirebaseLogin(username, gameObject.name, "OnLoginSuccess", "OnLoginFailed");
     }
 
     public void OnLoginSuccess()
     {
-        showText.text = "new username, success";
+        print("success");
+        SceneManager.LoadScene("Research-version-2(Dialogue)");
+        //showText.text = "new username, success";
     }
 
     public void OnLoginFailed()
     {
-        showText.text = "username taken, failed";
+        print("failed");
+        //showText.text = "username taken, failed";
     }
 
     // Update is called once per frame
