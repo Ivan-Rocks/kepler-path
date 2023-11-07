@@ -1,7 +1,6 @@
 mergeInto(LibraryManager.library, {
 
   GetJSON: function (path, objectName, callback, fallback) {
-    window.alert("init");
     var parsedPath = UTF8ToString(path);
     var parsedObjectName = UTF8ToString(objectName);
     var parsedCallback = UTF8ToString(callback);
@@ -17,7 +16,6 @@ mergeInto(LibraryManager.library, {
   },
 
   SetJSON: function (path, objectName, callback, fallback) {
-    window.alert("init");
     var parsedPath = UTF8ToString(path);
     var parsedObjectName = UTF8ToString(objectName);
     var parsedCallback = UTF8ToString(callback);
@@ -31,4 +29,19 @@ mergeInto(LibraryManager.library, {
     }
   },
 
+  Login: function (path, objectName, callback, fallback) {
+    window.alert("Login");
+    var parsedPath = UTF8ToString(path);
+    var parsedObjectName = UTF8ToString(objectName);
+    var parsedCallback = UTF8ToString(callback);
+    var parsedFallback = UTF8ToString(fallback);
+    try {
+        window.get(window.ref(window.database, parsedPath)).then(function(snapshot) {
+          window.unityInstance.SendMessage(parsedObjectName, parsedCallback, JSON.stringify(snapshot.val()));
+        });
+    } catch (error) {
+        window.alert(unityInstance);
+        window.unityInstance.SendMessage(parsedObjectName, parsedFallback, error.message);
+    }
+  },
 });

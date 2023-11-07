@@ -3,13 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Runtime.InteropServices;
+using System.IO;
+using UnityEditor;
+using static System.Net.Mime.MediaTypeNames;
 
 public class Login : MonoBehaviour
 {
     public string username;
-    public GameObject text;
+    public GameObject inputText;
+    public TextMeshProUGUI showText;
+    [DllImport("__Internal")] public static extern void FirebaseLogin(string path, string objectName, string callback, string fallback);
 
-        // Start is called before the first frame update
+    // Start is called before the first frame update
     void Start()
     {
         
@@ -17,8 +23,19 @@ public class Login : MonoBehaviour
 
     public void ConfirmLogin()
     {
-        username = text.GetComponent<TMP_InputField>().text;
+        username = "Users/" + inputText.GetComponent<TMP_InputField>().text;
         print(username);
+        FirebaseLogin(username, gameObject.name, "OnLoginSuccess", "OnLoginFailed");
+    }
+
+    public void OnLoginSuccess()
+    {
+        showText.text = "new username, success";
+    }
+
+    public void OnLoginFailed()
+    {
+        showText.text = "username taken, failed";
     }
 
     // Update is called once per frame
