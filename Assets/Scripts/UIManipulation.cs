@@ -10,8 +10,13 @@ public class UIManipulation : MonoBehaviour
     public GameObject ShowButton;
     public GameObject ScaleSlider;
     public GameObject RotationSliderX;
-    public GameObject RotationSliderY;
-    public GameObject RotationSliderZ;
+    /*public GameObject RotationSliderY;
+    public GameObject RotationSliderZ;*/
+    public GameObject IncreaseRotationButton; 
+    public GameObject DecreaseRotationButton; 
+    public float currentAngleX = 0.0f; 
+    public float angleStep = 45.0f; // rotation step
+    public GameObject objectToRotate; 
 
     private bool show = false;
 
@@ -26,8 +31,10 @@ public class UIManipulation : MonoBehaviour
         {
             ScaleSlider.SetActive(show);
             RotationSliderX.SetActive(show);
-            RotationSliderY.SetActive(show);
-            RotationSliderZ.SetActive(show);
+            /*RotationSliderY.SetActive(show);
+            RotationSliderZ.SetActive(show);*/
+            IncreaseRotationButton.SetActive(show); 
+            DecreaseRotationButton.SetActive(show);
         }
     }
 
@@ -36,8 +43,10 @@ public class UIManipulation : MonoBehaviour
         show  = !show;
         ScaleSlider.SetActive(show);
         RotationSliderX.SetActive(show);
-        RotationSliderY.SetActive(show);
-        RotationSliderZ.SetActive(show);
+        /*RotationSliderY.SetActive(show);
+        RotationSliderZ.SetActive(show);*/
+        IncreaseRotationButton.SetActive(show); 
+        DecreaseRotationButton.SetActive(show);
     }
 
     public void onScaleSliderChanged()
@@ -45,7 +54,7 @@ public class UIManipulation : MonoBehaviour
         float value = ScaleSlider.GetComponent<Slider>().value;
         Vector3 newScale = new Vector3(value, value, value);
         gameObject.transform.localScale = newScale;
-        print(value);
+        //print(value);
     }
 
     /*
@@ -55,9 +64,34 @@ public class UIManipulation : MonoBehaviour
     public void onSRotationSliderChanged()
     {
         float valueX = RotationSliderX.GetComponent<Slider>().value;
-        float valueY = RotationSliderY.GetComponent<Slider>().value;
-        float valueZ = RotationSliderZ.GetComponent<Slider>().value;
-        transform.rotation = Quaternion.Euler(valueX, valueY, valueZ);
+        /*float valueY = RotationSliderY.GetComponent<Slider>().value;
+        float valueZ = RotationSliderZ.GetComponent<Slider>().value;*/
+        transform.rotation = Quaternion.Euler(valueX, 0, 0);
+    }
+
+
+    // Increase x rotation angle 
+    public void IncreaseRotation()
+    {
+        currentAngleX += angleStep;
+        if (currentAngleX >= 360) currentAngleX = 360;
+        RotateObjectToAngle(currentAngleX);
+    }
+
+    // Decrease x rotation angle 
+    public void DecreaseRotation()
+    {
+        currentAngleX -= angleStep;
+        if (currentAngleX < 0) currentAngleX = 0; 
+        RotateObjectToAngle(currentAngleX);
+    }
+
+
+    private void RotateObjectToAngle(float angle)
+    {
+        transform.rotation = Quaternion.Euler(currentAngleX, 0, 0);
+        print(currentAngleX);
+
     }
     
     // Update is called once per frame
