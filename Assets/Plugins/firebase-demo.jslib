@@ -7,7 +7,6 @@ mergeInto(LibraryManager.library, {
     var parsedCallback = UTF8ToString(callback);
     var parsedFallback = UTF8ToString(fallback);
     try {
-        window.alert(unityInstance);
         window.get(window.ref(window.database, parsedPath)).then(function(snapshot) {
           window.unityInstance.SendMessage(parsedObjectName, parsedCallback, JSON.stringify(snapshot.val()));
         });
@@ -24,7 +23,6 @@ mergeInto(LibraryManager.library, {
     var parsedCallback = UTF8ToString(callback);
     var parsedFallback = UTF8ToString(fallback);
     try {
-        console.log(window.unityInstance);
         window.set(window.ref(database, parsedPath), {username: 'Ivan2', password:123456}).then(function() {
           window.unityInstance.SendMessage(parsedObjectName, parsedCallback, parsedFallback);
         });

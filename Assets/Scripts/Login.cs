@@ -6,9 +6,10 @@ using UnityEngine.UI;
 
 public class Login : MonoBehaviour
 {
-    public GameObject username;
+    public string username;
+    public GameObject text;
 
-    // Start is called before the first frame update
+        // Start is called before the first frame update
     void Start()
     {
         
@@ -16,7 +17,8 @@ public class Login : MonoBehaviour
 
     public void ConfirmLogin()
     {
-        print("hi");
+        username = text.GetComponent<TMP_InputField>().text;
+        print(username);
     }
 
     // Update is called once per frame

@@ -15,7 +15,7 @@ public class TestFirebase : MonoBehaviour
     private void Start()
     {
         GetJSON("Users/Ivan", gameObject.name, "OnRequestSuccess", "OnRequestFailed");
-        //SetJSON("Users/Ivan3", gameObject.name, "OnRequestSuccess", "OnRequestFailed");
+        SetJSON("Users/Ivan3", gameObject.name, "OnRequestSuccess", "OnRequestFailed");
     }
 
     private void OnRequestSuccess(string data)
