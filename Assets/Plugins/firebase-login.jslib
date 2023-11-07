@@ -4,13 +4,17 @@ mergeInto(LibraryManager.library, {
     var parsedObjectName = UTF8ToString(objectName);
     var parsedCallback = UTF8ToString(callback);
     var parsedFallback = UTF8ToString(fallback);
-    try {
-        window.get(window.ref(window.database, parsedPath)).then(function(snapshot) {
-          window.unityInstance.SendMessage(parsedObjectName, parsedCallback, JSON.stringify(snapshot.val()));
-        });
-    } catch (error) {
-        window.alert(unityInstance);
-        window.unityInstance.SendMessage(parsedObjectName, parsedFallback, error.message);
-    }
+    const pathRef = ref(database, parsedPath);
+    get(pathRef)
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          console.log("Path exists, data: ", snapshot.val());
+        }  else {
+          console.log("Path does not exist");
+        }
+      })
+    .catch((error) => {
+      console.error("Error reading data: ", error);
+    });
   },
 });

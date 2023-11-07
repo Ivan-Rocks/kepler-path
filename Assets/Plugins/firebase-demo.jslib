@@ -6,12 +6,12 @@ mergeInto(LibraryManager.library, {
     var parsedCallback = UTF8ToString(callback);
     var parsedFallback = UTF8ToString(fallback);
     try {
-        window.get(window.ref(window.database, parsedPath)).then(function(snapshot) {
-          window.unityInstance.SendMessage(parsedObjectName, parsedCallback, JSON.stringify(snapshot.val()));
+        get(ref(database, parsedPath)).then(function(snapshot) {
+          unityInstance.SendMessage(parsedObjectName, parsedCallback, JSON.stringify(snapshot.val()));
         });
     } catch (error) {
         window.alert(unityInstance);
-        window.unityInstance.SendMessage(parsedObjectName, parsedFallback, error.message);
+        unityInstance.SendMessage(parsedObjectName, parsedFallback, error.message);
     }
   },
 
@@ -21,27 +21,12 @@ mergeInto(LibraryManager.library, {
     var parsedCallback = UTF8ToString(callback);
     var parsedFallback = UTF8ToString(fallback);
     try {
-        window.set(window.ref(database, parsedPath), {username: 'Ivan2', password:123456}).then(function() {
-          window.unityInstance.SendMessage(parsedObjectName, parsedCallback, parsedFallback);
+        set(ref(database, parsedPath), {username: 'Ivan2', password:123456}).then(function() {
+        unityInstance.SendMessage(parsedObjectName, parsedCallback, parsedFallback);
         });
     } catch (error) {
-        window.unityInstance.SendMessage(parsedObjectName, parsedFallback, error.message);
+        unityInstance.SendMessage(parsedObjectName, parsedFallback, error.message);
     }
   },
 
-  Login: function (path, objectName, callback, fallback) {
-    window.alert("Login");
-    var parsedPath = UTF8ToString(path);
-    var parsedObjectName = UTF8ToString(objectName);
-    var parsedCallback = UTF8ToString(callback);
-    var parsedFallback = UTF8ToString(fallback);
-    try {
-        window.get(window.ref(window.database, parsedPath)).then(function(snapshot) {
-          window.unityInstance.SendMessage(parsedObjectName, parsedCallback, JSON.stringify(snapshot.val()));
-        });
-    } catch (error) {
-        window.alert(unityInstance);
-        window.unityInstance.SendMessage(parsedObjectName, parsedFallback, error.message);
-    }
-  },
 });
