@@ -8,13 +8,13 @@ mergeInto(LibraryManager.library, {
     get(pathRef)
       .then((snapshot) => {
         if (snapshot.exists()) {
-          window.alert("Username taken, please name another one");
-          unityInstance.SendMessage(parsedObjectName, parsedFallback, "TBD");
-        } else {
           window.alert("Welcome to HoloOrbits!");
-          set(pathRef, {username: parsedPath, password:123456}).then(function() {
-            unityInstance.SendMessage(parsedObjectName, parsedCallback, "TBD");
-          });
+          window.instanceID = (snapshot.size+1);
+          window.instancePath = "Users/" + parsedPath + "/Instance" + (snapshot.size+1).toString() + "/";
+          set(ref(database, instancePath), {Actions: "", Simulation: ""});
+          unityInstance.SendMessage(parsedObjectName, parsedCallback, "TBD");
+        } else {
+          window.alert("No such Username");
         }
       })
     .catch((error) => {

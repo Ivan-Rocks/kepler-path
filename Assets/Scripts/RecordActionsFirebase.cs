@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class RecordActions : MonoBehaviour
+public class RecordActionsFirebase : MonoBehaviour
 {
     public GameObject Simulation;
     private ControlsWithDialogue controls;
@@ -25,11 +25,6 @@ public class RecordActions : MonoBehaviour
         double unixTime = GetUnixTimestamp(DateTime.UtcNow);
         System.DateTime utcTime = System.DateTime.UtcNow;
         string formattedTime = utcTime.ToString("yyyy.MM.dd-HH_mm_ss");
-        filePath = Path.Combine(Application.persistentDataPath, formattedTime + "_Actions.csv");
-        print(filePath);
-        action_writer = new StreamWriter(filePath, true);
-        Console.WriteLine(action_writer); // Ivan -- this is what Luc
-        action_writer.WriteLine("id,time,Scene,Action,Event,Description");
     }
 
     private double GetUnixTimestamp(DateTime dateTime)
@@ -38,20 +33,8 @@ public class RecordActions : MonoBehaviour
         return timeSpan.TotalSeconds;
     }
 
-    private void OnDestroy()
-    {
-        action_writer.Close();
-        action_writer.Dispose();
-    }
 
-    public void ClearCsvFile(string filePath)
-    {
-        // Open the file in write mode and overwrite the content with an empty string
-        using (StreamWriter streamWriter = new StreamWriter(filePath))
-        {
-            streamWriter.Write(string.Empty);
-        }
-    }
+    
     public void write_to_CSV(String[] s)
     {
         String message = "";
@@ -68,10 +51,7 @@ public class RecordActions : MonoBehaviour
         foreach (String temp in s)
             message += temp + delimiter;
         print(message);
-        if (!controls.Hololens_Mode)
-            FirebaseLogActionData(message);
-        action_writer.WriteLine(message);
-        action_writer.Flush();
+        FirebaseLogActionData(message);
     }
 
     // Update is called once per frame
@@ -80,28 +60,31 @@ public class RecordActions : MonoBehaviour
         if (controls.ObsPanel.activeSelf)
         {
             mode = "Observe";
-        } else {
-           if (controls.measuring)
+        }
+        else
+        {
+            if (controls.measuring)
             {
                 mode = "Measure";
             }
-           else
+            else
             {
                 mode = "Play";
             }
         }
         //print(mode);
     }
-    
+
     public void recordPause()
     {
         if (controls.paused)
         {
-            String[] elements = new String[] {"Button Press", "Play"};
+            String[] elements = new String[] { "Button Press", "Play" };
             write_to_CSV(elements);
-        } else
+        }
+        else
         {
-            String[] elements = new String[] {"Button Press", "Pause"};
+            String[] elements = new String[] { "Button Press", "Pause" };
             write_to_CSV(elements);
         }
     }
@@ -112,7 +95,8 @@ public class RecordActions : MonoBehaviour
         {
             String[] elements = new String[] { "Button Press", "Open Log" };
             write_to_CSV(elements);
-        } else
+        }
+        else
         {
             String[] elements = new String[] { "Button Press", "Close Log" };
             write_to_CSV(elements);
@@ -130,8 +114,8 @@ public class RecordActions : MonoBehaviour
         //String[] elements = new String[] { "Button Press", "Record" };
         //write_to_CSV(elements);
         MeasuringTool measuringTool = Simulation.GetComponent<MeasuringTool>();
-        
-        String[] elements = new String[] { "Distance Recorded", measuringTool.distance.ToString()+"AU", measuringTool.distance.ToString() };
+
+        String[] elements = new String[] { "Distance Recorded", measuringTool.distance.ToString() + "AU", measuringTool.distance.ToString() };
         write_to_CSV(elements);
     }
 
@@ -168,9 +152,9 @@ public class RecordActions : MonoBehaviour
         write_to_CSV(elements);
     }
 
-    public  void recordHit(GameObject obj)
+    public void recordHit(GameObject obj)
     {
-        String[] elements = new String[] { "Object Selected " , obj.name};
+        String[] elements = new String[] { "Object Selected ", obj.name };
         write_to_CSV(elements);
     }
 
@@ -178,10 +162,11 @@ public class RecordActions : MonoBehaviour
     {
         if (status)
         {
-            String[] elements = new String[] { "Data Selected ", 
+            String[] elements = new String[] { "Data Selected ",
                 "Show Entry:"+start.name+" to "+end.name+", distance:"+distance+" at radian"+t.ToString()};
             write_to_CSV(elements);
-        } else
+        }
+        else
         {
             String[] elements = new String[] { "Data Selected ",
                 "Hide Entry:"+start.name+" to "+end.name+",distance:"+distance+" at radian"+t.ToString()};
@@ -191,7 +176,7 @@ public class RecordActions : MonoBehaviour
 
     public void recordContinue()
     {
-        String[] elements = new String[] { "Pressed Continue Button"};
+        String[] elements = new String[] { "Pressed Continue Button" };
         write_to_CSV(elements);
     }
 }
