@@ -6,11 +6,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class RecordSimulation : MonoBehaviour
 {
     public GameObject Simulation;
+    private ControlsWithDialogue controls;
     //Recording related variable
     [SerializeField] private int lambda;
     private float recording_threshold;
@@ -20,9 +22,13 @@ public class RecordSimulation : MonoBehaviour
     private string filePath; 
     private string delimiter = ","; // Delimiter to separate values in the CSV file
     private StreamWriter writer;
+
+    [DllImport("__Internal")] public static extern void FirebaseLogSimulationData(string message);
+
     // Start is called before the first frame update
     void Start()
     {
+        controls = Simulation.GetComponent<ControlsWithDialogue>();
         if (recording_threshold <= 0) 
         {
             recording_threshold = 5;
@@ -80,6 +86,8 @@ public class RecordSimulation : MonoBehaviour
         foreach (String temp in s)
             message += temp + delimiter;
         print(message);
+        if (!controls.Hololens_Mode)
+            FirebaseLogSimulationData(message);
         writer.WriteLine(message);
         writer.Flush();
     }

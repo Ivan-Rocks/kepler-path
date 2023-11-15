@@ -110,11 +110,11 @@ public class RecordActions : MonoBehaviour
     {
         if (controls.RadarPanel.activeSelf)
         {
-            String[] elements = new String[] { "Button Press", "Open Log" };
+            String[] elements = new String[] { "Button Press", "Close Log" };
             write_to_CSV(elements);
         } else
         {
-            String[] elements = new String[] { "Button Press", "Close Log" };
+            String[] elements = new String[] { "Button Press", "Open Log" };
             write_to_CSV(elements);
         }
     }
