@@ -5,9 +5,9 @@ mergeInto(LibraryManager.library, {
     get(pathRef)
       .then((snapshot) => {
         if (snapshot.exists()) {
-          count = snapshot.size+1;
+          let count = snapshot.size+1;
           path = instancePath+"Actions/";
-          push(ref(database, path), { id:count, message:parsedMessage});
+          update(ref(database, path), { [count] : parsedMessage});
         }
       })
     .catch((error) => {
@@ -20,9 +20,9 @@ mergeInto(LibraryManager.library, {
     get(pathRef)
       .then((snapshot) => {
         if (snapshot.exists()) {
-          count = snapshot.size+1;
+          let count = snapshot.size+1;
           path = instancePath+"Simulation/";
-          push(ref(database, path), { id:count, message:parsedMessage});
+          update(ref(database, path), { [count] : parsedMessage});
         }
       })
     .catch((error) => {
