@@ -68,7 +68,7 @@ public class RecordActions : MonoBehaviour
         foreach (String temp in s)
             message += temp + delimiter;
         print(message);
-        if (!controls.Hololens_Mode)
+        if (controls.CurrentMode == ControlsWithDialogue.GameMode.WebGL)
             FirebaseLogActionData(message);
         action_writer.WriteLine(message);
         action_writer.Flush();

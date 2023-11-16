@@ -25,7 +25,7 @@ public class UIManipulation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (gameObject.GetComponent<ControlsWithDialogue>().Hololens_Mode)
+        if (gameObject.GetComponent<ControlsWithDialogue>().CurrentMode == ControlsWithDialogue.GameMode.HoloLens)
         {
             UIBarParent.SetActive(false);
         } else

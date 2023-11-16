@@ -18,7 +18,7 @@ public class DialogueManager : MonoBehaviour
     public GameObject MainText;
     public int phase = 0;
     public int total_phases=12;
-    private bool hololens_mode;
+    private ControlsWithDialogue.GameMode mode;
     //public string csvFilePath = "Assets/Scripts/Dialogues.csv";
     //Strings
     public List<string> headers = new List<string>();
@@ -27,8 +27,8 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         setDialogue();
-        hololens_mode = Simulation.GetComponent<ControlsWithDialogue>().Hololens_Mode;
-        if (!hololens_mode)
+        mode = Simulation.GetComponent<ControlsWithDialogue>().CurrentMode;
+        if (mode != ControlsWithDialogue.GameMode.HoloLens)
         {
             Dialogue.GetComponent<Microsoft.MixedReality.Toolkit.Utilities.Solvers.RadialView>().enabled = false;
             Dialogue.GetComponent<Microsoft.MixedReality.Toolkit.Utilities.Solvers.SolverHandler>().enabled = false;

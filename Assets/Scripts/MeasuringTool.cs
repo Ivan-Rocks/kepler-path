@@ -88,7 +88,7 @@ public class MeasuringTool : MonoBehaviour
             measuring = gameObject.GetComponent<ControlsWithDialogue>().measuring;
         else
             measuring = gameObject.GetComponent<Controls>().measuring;
-        if (measuring && gameObject.GetComponent<ControlsWithDialogue>().Hololens_Mode)
+        if (measuring && gameObject.GetComponent<ControlsWithDialogue>().CurrentMode == ControlsWithDialogue.GameMode.HoloLens)
         {
             Transform x = hand.GetComponent<MRTKRayInteractor>().rayOriginTransform;
             Reset.GetComponent<PressableButton>().enabled = true;
@@ -142,7 +142,7 @@ public class MeasuringTool : MonoBehaviour
                 Record.GetComponent<PressableButton>().enabled = true;
             }
         }
-        if (measuring && !gameObject.GetComponent<ControlsWithDialogue>().Hololens_Mode)
+        if (measuring && gameObject.GetComponent<ControlsWithDialogue>().CurrentMode != ControlsWithDialogue.GameMode.HoloLens)
         {
             Reset.GetComponent<PressableButton>().enabled = true;
             //First Press
