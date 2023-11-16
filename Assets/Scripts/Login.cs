@@ -25,7 +25,10 @@ public class Login : MonoBehaviour
     public void ConfirmLogin()
     {
         username = inputText.GetComponent<TMP_InputField>().text;
-        FirebaseLogin(username, gameObject.name, "OnLoginSuccess", "OnLoginFailed");
+        if (username != "")
+        {
+            FirebaseLogin(username, gameObject.name, "OnLoginSuccess", "OnLoginFailed");
+        }
     }
 
     public void OnLoginSuccess()
