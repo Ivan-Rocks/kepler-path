@@ -11,7 +11,7 @@ mergeInto(LibraryManager.library, {
           window.alert("Welcome to HoloOrbits!");
           window.instanceID = (snapshot.size+1);
           window.instancePath = "Users/" + parsedPath + "/Instance" + (snapshot.size+1).toString() + "/";
-          set(ref(database, instancePath), {Actions: "", Simulation: ""});
+          set(ref(database, instancePath), {Actions: "", Simulation: "", Player:""});
           unityInstance.SendMessage(parsedObjectName, parsedCallback, "TBD");
         } else {
           window.alert("No such Username");

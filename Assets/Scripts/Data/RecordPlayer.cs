@@ -2,20 +2,25 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using static UnityEngine.InputSystem.HID.HID;
 
 public class RecordPlayer : MonoBehaviour
 {
+    public GameObject Simulation;
+    private ControlsWithDialogue controls;
     [SerializeField] private int lambda;
     private float recording_threshold;
     private float lastrecord;
     private string filePath;
     private string delimiter = ","; // Delimiter to separate values in the CSV file
     private StreamWriter player_writer;
+    [DllImport("__Internal")] public static extern void FirebaseLogPlayerData(string message);
     // Start is called before the first frame update
     void Start()
     {
+        controls = Simulation.GetComponent<ControlsWithDialogue>();
         if (recording_threshold <= 0)
         {
             recording_threshold = 5;
@@ -72,9 +77,19 @@ public class RecordPlayer : MonoBehaviour
         message += "UTC-" + formattedTime + delimiter;
         foreach (String temp in s)
             message += temp + delimiter;
-        //print(message);
+        print(message);
+        if (controls.CurrentMode == ControlsWithDialogue.GameMode.WebGL)
+            FirebaseLogPlayerData(message);
         player_writer.WriteLine(message);
         player_writer.Flush();
+    }
+
+    public bool ConditionSatisfied()
+    {
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) ||
+            Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.E) || Input.GetMouseButton(1))
+            return true;
+        return false;
     }
 
     // Update is called once per frame
@@ -89,7 +104,7 @@ public class RecordPlayer : MonoBehaviour
             lastrecord = Time.time;
         }
         //Player
-        if (Camera.current!= null)
+        if (Camera.current!= null && ConditionSatisfied())
         {
             String[] elements = new String[] { Camera.current.transform.position.ToString(),
             Camera.current.transform.rotation.ToString(), Camera.current.transform.forward.ToString()};
