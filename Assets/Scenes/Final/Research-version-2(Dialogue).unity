@@ -1239,10 +1239,10 @@ Canvas:
   m_GameObject: {fileID: 99049798}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1552875831}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -8527,6 +8527,11 @@ Skybox:
   m_GameObject: {fileID: 1552875823}
   m_Enabled: 1
   m_CustomSkybox: {fileID: 2100000, guid: 860a66ca4259b384f9ec01b687f71c3c, type: 2}
+--- !u!20 &1552875831 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2351505566771328527, guid: 4d7e2f87fefe0ba468719b15288b46e7, type: 3}
+  m_PrefabInstance: {fileID: 1552875818}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1574124256 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 223372579958337561, guid: f443144a6d408c34bb8a7d70a73644c4, type: 3}
@@ -10830,7 +10835,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -431.85007, y: 397.1001}
+  m_AnchoredPosition: {x: -431.84998, y: 397.1001}
   m_SizeDelta: {x: 237.10013, y: -87.800156}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2077197516
