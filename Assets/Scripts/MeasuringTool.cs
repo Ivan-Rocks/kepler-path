@@ -83,11 +83,7 @@ public class MeasuringTool : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool measuring;
-        if (SceneManager.GetActiveScene().name.Contains("Dialogue"))
-            measuring = gameObject.GetComponent<ControlsWithDialogue>().measuring;
-        else
-            measuring = gameObject.GetComponent<Controls>().measuring;
+        bool measuring = gameObject.GetComponent<ControlsWithDialogue>().measuring;
         if (measuring && gameObject.GetComponent<ControlsWithDialogue>().CurrentMode == ControlsWithDialogue.GameMode.HoloLens)
         {
             Transform x = hand.GetComponent<MRTKRayInteractor>().rayOriginTransform;
