@@ -27,19 +27,15 @@ public class RecordPlayer : MonoBehaviour
         }
         lastrecord = Time.time;
         recording_threshold = (float)1 / lambda;
-        double unixTime = GetUnixTimestamp(DateTime.UtcNow);
-        //print("Current Unix time: " + unixTime);
-        //filePath = Application.persistentDataPath + "/Generated Data/Simulation.csv";
-        //String startTimeDate = utcTime.ToString("yyyy-MM-dd HH:mm:ss.fff"); // Ivan -- this is what Luc utcTime.ToString("yyyy-MM-dd HH:mm:ss.fff")
-        //filePath = Path.Combine(Application.persistentDataPath, startTimeDate + "_Simulation.csv"); // Ivan -- this is what Luc
-        System.DateTime utcTime = System.DateTime.UtcNow;
-        string formattedTime = utcTime.ToString("yyyy.MM.dd-HH_mm_ss");
-        //print("Current Unix time: " + formattedTime);
-        //filePath = Path.Combine(Application.persistentDataPath, formattedTime + "_Simulation.csv"); // Ivan -- this is what Luc
-        filePath = Path.Combine(Application.persistentDataPath, formattedTime + "_Player.csv");
-        //filePath = "Internal Storage/HoloOrbitsData/Simulation.csv";
-        player_writer = new StreamWriter(filePath, true);
-        player_writer.WriteLine("id,time,position,rotation,pointer");
+        if (controls.CurrentMode == ControlsWithDialogue.GameMode.HoloLens)
+        {
+            double unixTime = GetUnixTimestamp(DateTime.UtcNow);
+            System.DateTime utcTime = System.DateTime.UtcNow;
+            string formattedTime = utcTime.ToString("yyyy.MM.dd-HH_mm_ss");
+            filePath = Path.Combine(Application.persistentDataPath, formattedTime + "_Player.csv");
+            player_writer = new StreamWriter(filePath, true);
+            player_writer.WriteLine("id,time,position,rotation,pointer");
+        }
     }
 
     private double GetUnixTimestamp(DateTime dateTime)
@@ -50,8 +46,11 @@ public class RecordPlayer : MonoBehaviour
 
     private void OnDestroy()
     {
-        player_writer.Close();
-        player_writer.Dispose();
+        if (controls.CurrentMode == ControlsWithDialogue.GameMode.HoloLens)
+        {
+            player_writer.Close();
+            player_writer.Dispose();
+        }
     }
 
     public void ClearCsvFile(string filePath)
@@ -80,8 +79,11 @@ public class RecordPlayer : MonoBehaviour
         print(message);
         if (controls.CurrentMode == ControlsWithDialogue.GameMode.WebGL)
             FirebaseLogPlayerData(message);
-        player_writer.WriteLine(message);
-        player_writer.Flush();
+        if (controls.CurrentMode == ControlsWithDialogue.GameMode.HoloLens)
+        {
+            player_writer.WriteLine(message);
+            player_writer.Flush();
+        }
     }
 
     public bool ConditionSatisfied()

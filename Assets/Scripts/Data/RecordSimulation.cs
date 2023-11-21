@@ -21,7 +21,7 @@ public class RecordSimulation : MonoBehaviour
     private bool recoding_simulation = false;
     private string filePath; 
     private string delimiter = ","; // Delimiter to separate values in the CSV file
-    private StreamWriter writer;
+    private StreamWriter simulation_writer;
 
     [DllImport("__Internal")] public static extern void FirebaseLogSimulationData(string message);
 
@@ -35,13 +35,15 @@ public class RecordSimulation : MonoBehaviour
         }
         lastrecord = Time.time;
         recording_threshold = (float)1 / lambda;
-
-        double unixTime = GetUnixTimestamp(DateTime.UtcNow);
-        System.DateTime utcTime = System.DateTime.UtcNow;
-        string formattedTime = utcTime.ToString("yyyy.MM.dd-HH_mm_ss");
-        filePath = Path.Combine(Application.persistentDataPath, formattedTime + "_Simulation.csv");
-        writer = new StreamWriter(filePath, true);
-        writer.WriteLine("id,time,position,rotation,scale");
+        if (controls.CurrentMode == ControlsWithDialogue.GameMode.HoloLens)
+        {
+            double unixTime = GetUnixTimestamp(DateTime.UtcNow);
+            System.DateTime utcTime = System.DateTime.UtcNow;
+            string formattedTime = utcTime.ToString("yyyy.MM.dd-HH_mm_ss");
+            filePath = Path.Combine(Application.persistentDataPath, formattedTime + "_Simulation.csv");
+            simulation_writer = new StreamWriter(filePath, true);
+            simulation_writer.WriteLine("id,time,position,rotation,scale");
+        }
     }
 
     private double GetUnixTimestamp(DateTime dateTime)
@@ -52,18 +54,14 @@ public class RecordSimulation : MonoBehaviour
 
     private void OnDestroy()
     {
-        writer.Close();
-        writer.Dispose();
-    }
-
-    public void ClearCsvFile(string filePath)
-    {
-        // Open the file in write mode and overwrite the content with an empty string
-        using (StreamWriter streamWriter = new StreamWriter(filePath))
+        if (controls.CurrentMode == ControlsWithDialogue.GameMode.HoloLens)
         {
-            streamWriter.Write(string.Empty);
+            simulation_writer.Close();
+            simulation_writer.Dispose();
         }
     }
+
+
 
     public void recordSimulation()
     {
@@ -88,8 +86,11 @@ public class RecordSimulation : MonoBehaviour
         print(message);
         if (controls.CurrentMode == ControlsWithDialogue.GameMode.WebGL)
             FirebaseLogSimulationData(message);
-        writer.WriteLine(message);
-        writer.Flush();
+        if (controls.CurrentMode == ControlsWithDialogue.GameMode.HoloLens)
+        {
+            simulation_writer.WriteLine(message);
+            simulation_writer.Flush();
+        }
     }
 
     // Update is called once per frame

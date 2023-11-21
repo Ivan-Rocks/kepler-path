@@ -22,14 +22,17 @@ public class RecordActions : MonoBehaviour
     {
         controls = Simulation.GetComponent<ControlsWithDialogue>();
         print(controls == null);
-        double unixTime = GetUnixTimestamp(DateTime.UtcNow);
-        System.DateTime utcTime = System.DateTime.UtcNow;
-        string formattedTime = utcTime.ToString("yyyy.MM.dd-HH_mm_ss");
-        filePath = Path.Combine(Application.persistentDataPath, formattedTime + "_Actions.csv");
-        print(filePath);
-        action_writer = new StreamWriter(filePath, true);
-        Console.WriteLine(action_writer); // Ivan -- this is what Luc
-        action_writer.WriteLine("id,time,Scene,Action,Event,Description");
+        if (controls.CurrentMode == ControlsWithDialogue.GameMode.HoloLens)
+        {
+            double unixTime = GetUnixTimestamp(DateTime.UtcNow);
+            System.DateTime utcTime = System.DateTime.UtcNow;
+            string formattedTime = utcTime.ToString("yyyy.MM.dd-HH_mm_ss");
+            filePath = Path.Combine(Application.persistentDataPath, formattedTime + "_Actions.csv");
+            print(filePath);
+            action_writer = new StreamWriter(filePath, true);
+            Console.WriteLine(action_writer); // Ivan -- this is what Luc
+            action_writer.WriteLine("id,time,Scene,Action,Event,Description");
+        }
     }
 
     private double GetUnixTimestamp(DateTime dateTime)
@@ -40,8 +43,11 @@ public class RecordActions : MonoBehaviour
 
     private void OnDestroy()
     {
-        action_writer.Close();
-        action_writer.Dispose();
+        if (controls.CurrentMode == ControlsWithDialogue.GameMode.HoloLens)
+        {
+            action_writer.Close();
+            action_writer.Dispose();
+        }
     }
 
     public void ClearCsvFile(string filePath)
@@ -70,8 +76,11 @@ public class RecordActions : MonoBehaviour
         print(message);
         if (controls.CurrentMode == ControlsWithDialogue.GameMode.WebGL)
             FirebaseLogActionData(message);
-        action_writer.WriteLine(message);
-        action_writer.Flush();
+        if (controls.CurrentMode == ControlsWithDialogue.GameMode.HoloLens)
+        {
+            action_writer.WriteLine(message);
+            action_writer.Flush();
+        }
     }
 
     // Update is called once per frame
@@ -82,13 +91,13 @@ public class RecordActions : MonoBehaviour
             mode = "Observe";
         } else {
            if (controls.measuring)
-            {
+           {
                 mode = "Measure";
-            }
+           }
            else
-            {
+           {
                 mode = "Play";
-            }
+           }
         }
         //print(mode);
     }
