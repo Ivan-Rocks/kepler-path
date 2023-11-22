@@ -34,7 +34,7 @@ public class Login : MonoBehaviour
     public void OnLoginSuccess()
     {
         print("success");
-        SceneManager.LoadScene("Research-version-2(Dialogue)");
+        SceneManager.LoadScene(1);
         //showText.text = "new username, success";
     }
 
