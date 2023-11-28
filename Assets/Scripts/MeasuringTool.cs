@@ -99,7 +99,7 @@ public class MeasuringTool : MonoBehaviour
                     record_status++;
                     start.GetComponent<AudioSource>().Play();
                     GameObject notice = GameObject.Find("Selection Notice");
-                    notice.GetComponent<SelectionNotice>().setText(start);
+                    notice.GetComponent<SelectionNotice>().setText(start, new Vector3(0,0,0));
                     print("first" + start.name);
                     Data.GetComponent<RecordActions>().recordHit(start);
                 }
@@ -122,7 +122,7 @@ public class MeasuringTool : MonoBehaviour
                         distance = (start.transform.position - end.transform.position).magnitude;
                         distance /= GameObject.Find("Simulation").transform.localScale.x;
                         GameObject notice = GameObject.Find("Selection Notice");
-                        notice.GetComponent<SelectionNotice>().setText(end);
+                        notice.GetComponent<SelectionNotice>().setText(end, new Vector3(0,0,0));
                         Data.GetComponent<RecordActions>().recordHit(end);
                     }
                 }
@@ -152,7 +152,7 @@ public class MeasuringTool : MonoBehaviour
                     record_status++;
                     start.GetComponent<AudioSource>().Play();
                     GameObject notice = GameObject.Find("Selection Notice");
-                    notice.GetComponent<SelectionNotice>().setText(start);
+                    notice.GetComponent<SelectionNotice>().setText(start, Input.mousePosition);
                     print("first" + start.name);
                     Data.GetComponent<RecordActions>().recordHit(start);
                 }
@@ -175,7 +175,7 @@ public class MeasuringTool : MonoBehaviour
                         distance = (start.transform.position - end.transform.position).magnitude;
                         distance /= GameObject.Find("Simulation").transform.localScale.x;
                         GameObject notice = GameObject.Find("Selection Notice");
-                        notice.GetComponent<SelectionNotice>().setText(end);
+                        notice.GetComponent<SelectionNotice>().setText(end, Input.mousePosition);
                         Data.GetComponent<RecordActions>().recordHit(end);
                     }
                 }
