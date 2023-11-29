@@ -22,7 +22,7 @@ public class UIManipulation : MonoBehaviour
     private bool show = false;
 
 
-    // Start is called before the first frame update
+/*    // Start is called before the first frame update
     void Start()
     {
         if (gameObject.GetComponent<ControlsWithDialogue>().CurrentMode == ControlsWithDialogue.GameMode.HoloLens)
@@ -32,25 +32,25 @@ public class UIManipulation : MonoBehaviour
         {
             ScaleSlider.SetActive(show);
             RotationSliderX.SetActive(show);
-            /*RotationSliderY.SetActive(show);
-            RotationSliderZ.SetActive(show);*/
+            *//*RotationSliderY.SetActive(show);
+            RotationSliderZ.SetActive(show);*//*
             IncreaseRotationButton.SetActive(show); 
             DecreaseRotationButton.SetActive(show);
             RotationButtonX.SetActive(show);
         }
-    }
+    }*/
 
-    public void onShowButtonPressed()
+/*    public void onShowButtonPressed()
     {
         show  = !show;
         ScaleSlider.SetActive(show);
         RotationSliderX.SetActive(show);
-        /*RotationSliderY.SetActive(show);
-        RotationSliderZ.SetActive(show);*/
+        *//*RotationSliderY.SetActive(show);
+        RotationSliderZ.SetActive(show);*//*
         IncreaseRotationButton.SetActive(show); 
         DecreaseRotationButton.SetActive(show);
         RotationButtonX.SetActive(show);
-    }
+    }*/
 
     public void onScaleSliderChanged()
     {
