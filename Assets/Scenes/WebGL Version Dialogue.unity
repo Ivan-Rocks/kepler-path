@@ -6101,6 +6101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eda31fcb6f74e04784c1dbe58b61e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Data: {fileID: 0}
   UIBarParent: {fileID: 290082179}
   ShowButton: {fileID: 70538108}
   ScaleSlider: {fileID: 256264518}
@@ -6134,7 +6135,7 @@ MonoBehaviour:
   Reset: {fileID: 156512635}
   Cancel: {fileID: 177213212}
   Simulation: {fileID: 1144366395}
-  CurrentMode: 0
+  CurrentMode: 2
   transparent_objects:
   - {fileID: 621715429}
   - {fileID: 1741336184}

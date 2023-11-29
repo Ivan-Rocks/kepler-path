@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class UIManipulation : MonoBehaviour
 {
+    public GameObject Data;
     public GameObject UIBarParent;
     public GameObject ShowButton;
     public GameObject ScaleSlider;
@@ -22,23 +23,25 @@ public class UIManipulation : MonoBehaviour
     private bool show = false;
 
 
-/*    // Start is called before the first frame update
+    // Start is called before the first frame update
     void Start()
     {
+        Data = GameObject.Find("Data");
         if (gameObject.GetComponent<ControlsWithDialogue>().CurrentMode == ControlsWithDialogue.GameMode.HoloLens)
         {
             UIBarParent.SetActive(false);
         } else
-        {
+        {   /*
             ScaleSlider.SetActive(show);
             RotationSliderX.SetActive(show);
-            *//*RotationSliderY.SetActive(show);
-            RotationSliderZ.SetActive(show);*//*
+            RotationSliderY.SetActive(show);
+            RotationSliderZ.SetActive(show);
             IncreaseRotationButton.SetActive(show); 
             DecreaseRotationButton.SetActive(show);
             RotationButtonX.SetActive(show);
+            */
         }
-    }*/
+    }
 
 /*    public void onShowButtonPressed()
     {
@@ -57,7 +60,7 @@ public class UIManipulation : MonoBehaviour
         float value = ScaleSlider.GetComponent<Slider>().value;
         Vector3 newScale = new Vector3(value, value, value);
         gameObject.transform.localScale = newScale;
-        //print(value);
+        Data.GetComponent<RecordSimulation>().recordScaleSlider();
     }
 
     /*
@@ -70,6 +73,7 @@ public class UIManipulation : MonoBehaviour
         /*float valueY = RotationSliderY.GetComponent<Slider>().value;
         float valueZ = RotationSliderZ.GetComponent<Slider>().value;*/
         transform.rotation = Quaternion.Euler(valueX, 0, 0);
+        Data.GetComponent <RecordSimulation>().recordRotationSlider();
     }
 
 
