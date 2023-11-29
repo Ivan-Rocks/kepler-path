@@ -6134,7 +6134,7 @@ MonoBehaviour:
   Reset: {fileID: 156512635}
   Cancel: {fileID: 177213212}
   Simulation: {fileID: 1144366395}
-  CurrentMode: 0
+  CurrentMode: 2
   transparent_objects:
   - {fileID: 621715429}
   - {fileID: 1741336184}
