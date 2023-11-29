@@ -6134,7 +6134,7 @@ MonoBehaviour:
   Reset: {fileID: 156512635}
   Cancel: {fileID: 177213212}
   Simulation: {fileID: 1144366395}
-  CurrentMode: 2
+  CurrentMode: 0
   transparent_objects:
   - {fileID: 621715429}
   - {fileID: 1741336184}
@@ -7936,7 +7936,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -431.8501, y: 397.1001}
+  m_AnchoredPosition: {x: -431.85004, y: 397.1001}
   m_SizeDelta: {x: 237.10013, y: -87.800156}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1368537179
@@ -9804,7 +9804,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -224.7, y: 0}
+  m_AnchoredPosition: {x: -224.70001, y: 0}
   m_SizeDelta: {x: 350, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1741336184
@@ -11189,16 +11189,16 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2016893735}
+  - component: {fileID: 2016893736}
   - component: {fileID: 2016893738}
   - component: {fileID: 2016893737}
-  - component: {fileID: 2016893736}
   m_Layer: 5
   m_Name: Selection Notice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2016893735
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11216,7 +11216,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 200}
   m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2016893736
@@ -11233,7 +11233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textColor: {r: 0.82052845, g: 0.8207547, b: 0.081301175, a: 0.003921569}
   positionOffsetSpeed: 0.05
-  colorDecaySpeed: 0.0005
+  colorDecaySpeed: 0.0015
 --- !u!114 &2016893737
 MonoBehaviour:
   m_ObjectHideFlags: 0

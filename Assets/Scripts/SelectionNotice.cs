@@ -43,7 +43,7 @@ public class SelectionNotice : MonoBehaviour
             {
                 gameObject.transform.position = Camera.main.WorldToScreenPoint(selected.transform.position + new Vector3(0.3f, -1.0f, 0)) + position_offset;
             } else {
-                gameObject.GetComponent<RectTransform>().anchoredPosition3D = clickPosition + new Vector3(0.3f, -1.0f, 0) + position_offset;
+                //gameObject.GetComponent<RectTransform>().anchoredPosition3D = clickPosition + new Vector3(0.3f, -1.0f, 0) + position_offset;
                 print(gameObject.GetComponent<RectTransform>().anchoredPosition3D);
             }
         }
