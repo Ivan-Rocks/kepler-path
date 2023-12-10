@@ -1,5 +1,9 @@
+Jina:Supervise and Principal Investigator.
 Ivan Zhang: Simulation and Spatial Measuring Design, Project Code Implementation, Data Collecion System Design
 Chris Palaguachi: Project Setup, Project Iteration , HoloLens end Testing, UI Design, MRTK Components Design
+Rodrigo:Graduate Research & Data Analysis
+Robin Jephthah Rajarathinam:Graduate Research & Data Analysis
+
 
 
 For CS415 Project:
