@@ -17,6 +17,7 @@ public class RecordSimulation : MonoBehaviour
     [SerializeField] private int lambda;
     private float recording_threshold;
     private float lastrecord;
+    private bool canrecord;
     //Simulation recording
     private bool recoding_simulation = false;
     private string filePath; 
@@ -61,11 +62,30 @@ public class RecordSimulation : MonoBehaviour
         }
     }
 
-
-
     public void recordSimulation()
     {
         recoding_simulation = !recoding_simulation;
+    }
+
+    public void recordScaleSlider()
+    {
+        if (!canrecord)
+            return;
+        String[] elements = new String[] {
+                Simulation.transform.position.ToString(),
+                Simulation.transform.localScale.ToString(),
+                Simulation.transform.rotation.ToString()};
+        write_to_CSV(elements);
+    }
+    public void recordRotationSlider()
+    {
+        if (!canrecord)
+            return;
+        String[] elements = new String[] {
+                Simulation.transform.position.ToString(),
+                Simulation.transform.localScale.ToString(),
+                Simulation.transform.rotation.ToString()};
+        write_to_CSV(elements);
     }
 
     public void write_to_CSV(String[] s)
@@ -99,9 +119,11 @@ public class RecordSimulation : MonoBehaviour
         //print(recoding_simulation);
         if (Time.time - lastrecord < recording_threshold)
         {
+            canrecord = false;
             return;
         } else
         {
+            canrecord = true;
             lastrecord = Time.time;
         }
         //Simulation

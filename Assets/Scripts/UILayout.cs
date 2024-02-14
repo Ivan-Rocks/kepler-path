@@ -31,13 +31,13 @@ public class UILayout : MonoBehaviour
         if (Camera.main != null)
         {
             if (MainMenu != null && MainMenu.activeSelf)
-                SetUITransform(MainMenu, new Vector3(0, -0.5f, 1));
+                SetUITransform(MainMenu, new Vector3(0, -0.47f, 1));
             if (Dialogue != null && Dialogue.activeSelf)
                 SetUITransform(Dialogue, new Vector3(0,0,1));
             if (ObsPanel != null && ObsPanel.activeSelf)
                 SetUITransform(ObsPanel, new Vector3(-0.7f, -0.3f, 1));
             if (RadarPanel != null && RadarPanel.activeSelf)
-                SetUITransform(RadarPanel, new Vector3(-0.7f, 0.3f, 1));
+                SetUITransform(RadarPanel, new Vector3(-0.65f, -0.3f, 1));
 
         }
     }
