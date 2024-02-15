@@ -10,6 +10,8 @@ mergeInto(LibraryManager.library, {
       const user = userCredential.user;
       window.alert("success");
       window.userEmail = parsedEmail;
+      window.user = userCredential.user;
+      console.log(user)
       unityInstance.SendMessage(parsedObjectName, parsedCallback, "TBD");
     })
     .catch((error) => {

@@ -133,6 +133,7 @@
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
       import { getDatabase, ref, get, set, push, update } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-database.js";
       import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js"
+      import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
       // TODO: Add SDKs for Firebase products that you want to use
       // https://firebase.google.com/docs/web/setup#available-libraries
     
@@ -151,11 +152,14 @@
       // Initialize Firebase Components
       const firebaseApp = initializeApp(firebaseConfig);
       const auth = getAuth(firebaseApp);
-      console.log(auth);
       const database = getDatabase(firebaseApp);
+      const firestore = getFirestore(firebaseApp);
+
+        console.log(firestore);
+
       // Make Variables Global
-      window.firebaseApp = firebaseApp;
       window.database = database;
+        window.firestore = firestore;
       window.ref = ref;
       window.get = get;
       window.set = set;
@@ -164,6 +168,10 @@
       window.auth = auth;
       window.signInWithEmailAndPassword = signInWithEmailAndPassword;
       window.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
+      window.getFirestore = getFirestore;
+      window.doc = doc;
+      window.setDoc = setDoc;
+
       //Conrimation Message of Execution
       console.log("Successfully executed initialization of Firebase Environment");
 

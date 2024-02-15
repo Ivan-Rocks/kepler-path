@@ -11,8 +11,12 @@ mergeInto(LibraryManager.library, {
     } else {
       createUserWithEmailAndPassword(auth, parsedEmail, parsedPassword)
         .then((userCredential) => {
+          window.user = userCredential.user;
+          console.log(user);
+          const userDocRef = doc(firestore, 'Users', user.uid);
+          setDoc(userDocRef, { email: parsedEmail});
+        }).then(()=> {
           window.alert("New User Created");
-          window.userEmail = parsedEmail;
           unityInstance.SendMessage(parsedObjectName, parsedCallback, "TBD");
         })
         .catch((error) => {
