@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CreateAccount : MonoBehaviour
 {
@@ -32,6 +33,11 @@ public class CreateAccount : MonoBehaviour
     public void onRegisterAccount()
     {
         //print(email+ " " + password + " " + confirmedpassword);
+    }
+
+    public void goToLogin()
+    {
+        SceneManager.LoadScene(0);
     }
 
     // Update is called once per frame

@@ -8,10 +8,12 @@ using System.IO;
 using UnityEditor;
 using static System.Net.Mime.MediaTypeNames;
 using UnityEngine.SceneManagement;
+using System;
 
 public class Login : MonoBehaviour
 {
-    public string username;
+    public string email;
+    public string password;
     public GameObject inputText;
     public TextMeshProUGUI showText;
     [DllImport("__Internal")] public static extern void FirebaseLogin(string path, string objectName, string callback, string fallback);
@@ -22,13 +24,24 @@ public class Login : MonoBehaviour
         
     }
 
+    public void setEmail(string str)
+    {
+        email = str;
+    }
+
+    public void setPassword(string str)
+    {
+        password = str;
+    }
+
     public void ConfirmLogin()
     {
-        username = inputText.GetComponent<TMP_InputField>().text;
-        if (username != "")
-        {
-            FirebaseLogin(username, gameObject.name, "OnLoginSuccess", "OnLoginFailed");
-        }
+        print(email+ " "+ password);
+    }
+
+    public void goToRegister()
+    {
+        SceneManager.LoadScene(1);
     }
 
     public void OnLoginSuccess()
