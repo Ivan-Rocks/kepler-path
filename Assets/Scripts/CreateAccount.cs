@@ -48,7 +48,7 @@ public class CreateAccount : MonoBehaviour
     public void OnRegisterSuccess()
     {
         print("success");
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
         //showText.text = "new username, success";
     }
 

@@ -9,6 +9,8 @@ mergeInto(LibraryManager.library, {
     .then((userCredential) => {
       const user = userCredential.user;
       window.alert("success");
+      window.userEmail = parsedEmail;
+      unityInstance.SendMessage(parsedObjectName, parsedCallback, "TBD");
     })
     .catch((error) => {
       const errorCode = error.code;

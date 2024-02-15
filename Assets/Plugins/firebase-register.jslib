@@ -12,6 +12,8 @@ mergeInto(LibraryManager.library, {
       createUserWithEmailAndPassword(auth, parsedEmail, parsedPassword)
         .then((userCredential) => {
           window.alert("New User Created");
+          window.userEmail = parsedEmail;
+          unityInstance.SendMessage(parsedObjectName, parsedCallback, "TBD");
         })
         .catch((error) => {
           const errorCode = error.code;

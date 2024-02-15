@@ -48,14 +48,12 @@ public class Login : MonoBehaviour
     public void OnLoginSuccess()
     {
         print("success");
-        SceneManager.LoadScene(1);
-        //showText.text = "new username, success";
+        SceneManager.LoadScene(2);
     }
 
     public void OnLoginFailed()
     {
         print("failed");
-        //showText.text = "username taken, failed";
     }
 
     // Update is called once per frame
