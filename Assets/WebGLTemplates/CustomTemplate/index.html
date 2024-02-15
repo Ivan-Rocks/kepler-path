@@ -129,28 +129,30 @@
     </script>
     <script type="module">
       // Import the functions you need from the SDKs you need
+      //        Remember to Use the same version!
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
       import { getDatabase, ref, get, set, push, update } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-database.js";
+      import { getAuth } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js"
       // TODO: Add SDKs for Firebase products that you want to use
       // https://firebase.google.com/docs/web/setup#available-libraries
     
       // Your web app's Firebase configuration
         const firebaseConfig = {
-            apiKey: "AIzaSyB-kbxloHEECSiGHe7n_zLb1zTrY3nwTNo",
-            authDomain: "holoorbits-temp.firebaseapp.com",
-            databaseURL: "https://holoorbits-temp-default-rtdb.firebaseio.com",
-            projectId: "holoorbits-temp",
-            storageBucket: "holoorbits-temp.appspot.com",
-            messagingSenderId: "675534610066",
-            appId: "1:675534610066:web:fd047a6a02e90fb20fd04b"
+            apiKey: "AIzaSyCJqsgQAOYR2pP5Wiqv4qSK6fpaAuiCIf8",
+            authDomain: "kepler-path-test.firebaseapp.com",
+            databaseURL: "https://kepler-path-test-default-rtdb.firebaseio.com",
+            projectId: "kepler-path-test",
+            storageBucket: "kepler-path-test.appspot.com",
+            messagingSenderId: "1097317201807",
+            appId: "1:1097317201807:web:c51fa8d9f4c247e839fdfa"
         };
 
     
-      // Initialize Firebase
+      // Initialize Firebase Components
       const firebaseApp = initializeApp(firebaseConfig);
-      console.log(firebaseApp.name);
+      const auth = getAuth(firebaseApp);
+      console.log(auth);
       const database = getDatabase(firebaseApp);
-      
       // Make Variables Global
       window.firebaseApp = firebaseApp;
       window.database = database;
@@ -159,16 +161,9 @@
       window.set = set;
       window.push = push
       window.update = update
-      /*
-      ref(window.database, 'User/Ivan').once('value').then(snapshot => {
-        console.log(snapshot.val());
-      });*/
-      //Example Set
-      //set(ref(database, 'Users/Ivan'), {username: 'Ivan', password:12345678});
-      //set(ref(database, 'Users/Barry'), {username: 'Chris', password:123456});
-      console.log("made it to the end of index.html");
-      //Example Get
-      //get(ref(database,'Users/Chris')).then(snapshot => {console.log(snapshot.val())})
+      //Conrimation Message of Execution
+      console.log("Successfully executed initialization of Firebase Environment");
+
     </script>
 
 
