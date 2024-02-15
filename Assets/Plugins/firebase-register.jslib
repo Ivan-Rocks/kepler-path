@@ -12,14 +12,11 @@ mergeInto(LibraryManager.library, {
       createUserWithEmailAndPassword(auth, parsedEmail, parsedPassword)
         .then((userCredential) => {
           window.user = userCredential.user;
-          console.log(user);
           const userDocRef = doc(firestore, 'Users', user.uid);
           setDoc(userDocRef, { email: parsedEmail});
         }).then(() => {
           window.instanceID = 1;
           window.instancePath = "Users/" + (user.uid).toString() + "/Instance" + (instanceID).toString() + "/";
-          console.log(database);
-          console.log(instancePath);
           set(ref(database, instancePath), {Actions: "", Simulation: "", Player:""});
         }).then(() => {
           window.alert("New User Created");

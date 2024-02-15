@@ -8,10 +8,15 @@ mergeInto(LibraryManager.library, {
     signInWithEmailAndPassword(auth, parsedEmail, parsedPassword)
     .then((userCredential) => {
       const user = userCredential.user;
+      window.user = user;
+      const pathRef = ref(database, "Users/" + user.uid);
+      get(pathRef).then((snapshot) => {
+      window.instanceID = (snapshot.size+1);
+      window.instancePath = "Users/" + (user.uid).toString() + "/Instance" + (instanceID).toString() + "/";
+      set(ref(database, instancePath), {Actions: "", Simulation: "", Player:""});
+      })
+    }).then(() => {
       window.alert("success");
-      window.userEmail = parsedEmail;
-      window.user = userCredential.user;
-      console.log(user)
       unityInstance.SendMessage(parsedObjectName, parsedCallback, "TBD");
     })
     .catch((error) => {
