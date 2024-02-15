@@ -1,7 +1,8 @@
 mergeInto(LibraryManager.library, {
-  FirebaseRegister: function (username, password, path, objectName, callback, fallback) {
-    var parsedUsername = UTF8ToString(username);
+  FirebaseRegister: function (email, password, confirmedPassword, path, objectName, callback, fallback) {
+    var parsedEmail = UTF8ToString(email);
     var parsedPassword = UTF8ToString(password);
+    var parsedconfirmedPassword = UTF8ToString(confirmedPassword);
     var parsedPath = UTF8ToString(path);
     var parsedObjectName = UTF8ToString(objectName);
     var parsedCallback = UTF8ToString(callback);

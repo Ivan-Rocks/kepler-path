@@ -16,7 +16,7 @@ public class Login : MonoBehaviour
     public string password;
     public GameObject inputText;
     public TextMeshProUGUI showText;
-    [DllImport("__Internal")] public static extern void FirebaseLogin(string path, string objectName, string callback, string fallback);
+    [DllImport("__Internal")] public static extern void FirebaseLogin(string email, string password, string objectName, string callback, string fallback);
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +37,7 @@ public class Login : MonoBehaviour
     public void ConfirmLogin()
     {
         print(email+ " "+ password);
+        FirebaseLogin(email, password, gameObject.name, "OnLoginSuccess", "OnLoginFailed");
     }
 
     public void goToRegister()
