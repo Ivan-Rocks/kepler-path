@@ -132,7 +132,7 @@
       //        Remember to Use the same version!
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
       import { getDatabase, ref, get, set, push, update } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-database.js";
-      import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js"
+      import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js"
       // TODO: Add SDKs for Firebase products that you want to use
       // https://firebase.google.com/docs/web/setup#available-libraries
     
@@ -163,6 +163,7 @@
       window.update = update
       window.auth = auth;
       window.signInWithEmailAndPassword = signInWithEmailAndPassword;
+      window.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
       //Conrimation Message of Execution
       console.log("Successfully executed initialization of Firebase Environment");
 
